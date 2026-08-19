@@ -1,0 +1,33 @@
+{
+  "name": "ferupis-monorepo",
+  "private": true,
+  "packageManager": "npm@10.9.2",
+  "engines": {
+    "node": "22.16.0",
+    "npm": "10.9.2"
+  },
+  "workspaces": [
+    "apps/ferupis-qwik"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giuliomarinelli/Ferupis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giuliomarinelli/Ferupis/issues"
+  },
+  "homepage": "https://github.com/giuliomarinelli/Ferupis#readme",
+  "description": "",
+  "overrides": {
+    "vite-imagetools": "10.0.1"
+  },
+  "devDependencies": {
+    "wrangler": "4.124.0"
+  }
+}
