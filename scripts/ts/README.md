@@ -162,3 +162,28 @@ Each card shows the source dimensions, the scale required to reach 1024 px, the 
 Clipboard writes use the browser Clipboard API when available and fall back to a legacy copy path when necessary.
 
 Decisions are persisted in the browser with `localStorage` and are intentionally not written back to `picsMap` automatically. If any approved asset is `YELLOW`, the copied upscale command automatically includes `--approve-yellow`.
+
+## Restored media synchronization
+
+Once the AI restoration pass is complete, every `picsMap` entry must resolve to exactly one asset under `apps/ferupis-qwik/src/media/pics/restored/`.
+
+Run:
+
+```bash
+npm run script:pics:restored-sync
+```
+
+The sync is idempotent and performs two operations together:
+
+1. it indexes the files already present in `restored/` by image id and leaves them untouched;
+2. for every id missing from `restored/`, it copies the original source into `restored/` preserving the original file extension.
+
+It then rewrites the `restored` object for every element of `picsMap`. The `restored.path` is derived from the file that actually exists on disk, so an AI-restored image can point to `<id>.png` while a copied fallback can point to `<id>.jpg`, `<id>.gif`, or another original extension. `restored.mimeType` is aligned to the actual restored file type; legacy metadata and the upscaling flag remain associated with the same id.
+
+The script fails if more than one restored file exists for the same id, because the map must remain unambiguous.
+
+Preview the operation without writing files or modifying `index.ts`:
+
+```bash
+npm run script:pics:restored-sync -- --dry-run
+```
