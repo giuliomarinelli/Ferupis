@@ -6,12 +6,20 @@ on:
       - feat/media-upscaling-pipeline
     paths:
       - .github/workflows/sync-restored-media-once.yml
+  pull_request:
+    branches:
+      - develop
+    types:
+      - opened
+      - reopened
+      - synchronize
 
 permissions:
   contents: write
 
 jobs:
   sync:
+    if: github.event_name == 'push' || github.event.pull_request.head.ref == 'feat/media-upscaling-pipeline'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
