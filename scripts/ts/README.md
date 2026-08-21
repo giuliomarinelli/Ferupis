@@ -9,10 +9,10 @@ The upscaling pipeline reads `apps/ferupis-qwik/src/media/pics/index.ts` and tre
 | Flag | Behaviour |
 | --- | --- |
 | `GREEN` | Automatic. Final master targets a 1024 px long edge. If reaching 1024 would require more than 3x effective enlargement, the asset fails because the flag is inconsistent with the policy. |
-| `YELLOW` | Manual gate. Requires `--approve-yellow`. Final master is capped at `min(1024, source long edge * 3)`. |
+| `YELLOW` | Manual gate. Dry-run can inspect the group; actual processing requires explicit `--ids` plus `--approve-yellow`. Final master is capped at `min(1024, source long edge * 3)`. |
 | `RED` | Hard block. The pipeline never invokes photographic AI upscaling for the asset. |
 
-The source asset is never modified.
+The source asset is never modified. Existing restored masters are preserved unless `--overwrite` is explicitly supplied.
 
 ### Processing stages
 
@@ -73,10 +73,10 @@ Process selected `GREEN` assets:
 npm run script:pics:upscale -- --ids D4A26D9D0D034AE7B77B0F776710E8A3,7B978A4F7D3E4D589CF600FADD1FFFC3
 ```
 
-Plan all `YELLOW` assets after explicitly opening the manual gate:
+Inspect every `YELLOW` asset without processing it:
 
 ```bash
-npm run script:pics:upscale -- --flag YELLOW --approve-yellow --dry-run
+npm run script:pics:upscale -- --flag YELLOW --dry-run
 ```
 
 Process an explicitly reviewed `YELLOW` asset:
@@ -85,10 +85,18 @@ Process an explicitly reviewed `YELLOW` asset:
 npm run script:pics:upscale -- --ids <ID> --approve-yellow
 ```
 
+Keeping the approval separate from the id selection prevents accidental batch promotion of all `YELLOW` assets.
+
 Keep normalization and raw x4 intermediates for QA:
 
 ```bash
 npm run script:pics:upscale -- --ids <ID> --keep-temp
+```
+
+Replace an already restored master only when this is intentional:
+
+```bash
+npm run script:pics:upscale -- --ids <ID> --overwrite
 ```
 
 Use a different model or GPU for a controlled comparison:
