@@ -17,8 +17,8 @@ const args: Arg[] = [
       console.log(`MIME Types Original
 ${'='.repeat(30)}\n`)
       mimeTypes.forEach((m, i) => console.log(`${i + 1} - ${m}`))
-      console.log('\n')
       console.log(`Count: ${mimeTypes.length}`)
+      console.log('\n')
     }
   }
 ]
