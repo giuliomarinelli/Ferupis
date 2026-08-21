@@ -272,6 +272,26 @@ function assertPolicy(flag: UpscalingFlag, options: CliOptions): void {
   }
 }
 
+function assertSelectionPolicy(selected: ReturnType<typeof selectAssets>, options: CliOptions): void {
+  const redIds = selected
+    .filter((entry) => entry.originals.upscalingFlag === 'RED')
+    .map((entry) => entry.originals.id)
+
+  if (redIds.length > 0) {
+    throw new Error(`RED assets are hard-blocked: ${redIds.join(', ')}`)
+  }
+
+  const yellowIds = selected
+    .filter((entry) => entry.originals.upscalingFlag === 'YELLOW')
+    .map((entry) => entry.originals.id)
+
+  if (yellowIds.length > 0 && !options.approveYellow) {
+    throw new Error(
+      `YELLOW assets require explicit --approve-yellow: ${yellowIds.join(', ')}`,
+    )
+  }
+}
+
 function computeTargetLongEdge(flag: UpscalingFlag, sourceLongEdge: number): number {
   if (flag === 'GREEN') {
     const requiredScale = TARGET_LONG_EDGE / sourceLongEdge
@@ -280,10 +300,7 @@ function computeTargetLongEdge(flag: UpscalingFlag, sourceLongEdge: number): num
         `GREEN invariant violated: ${sourceLongEdge}px -> ${TARGET_LONG_EDGE}px requires ${requiredScale.toFixed(2)}x (> ${MAX_EFFECTIVE_UPSCALE}x)`,
       )
     }
-    return Math.min(TARGET_LONG_EDGE, sourceLongEdge)
-      === TARGET_LONG_EDGE
-      ? TARGET_LONG_EDGE
-      : TARGET_LONG_EDGE
+    return TARGET_LONG_EDGE
   }
 
   return Math.min(TARGET_LONG_EDGE, Math.floor(sourceLongEdge * MAX_EFFECTIVE_UPSCALE))
@@ -454,6 +471,8 @@ async function main(): Promise<void> {
   if (selected.length === 0) {
     throw new Error('No assets matched the requested selection')
   }
+
+  assertSelectionPolicy(selected, options)
 
   const binary = resolveBinary(options)
   const modelsDir = resolveModelsDir(options, binary)
