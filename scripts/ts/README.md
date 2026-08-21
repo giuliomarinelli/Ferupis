@@ -106,3 +106,64 @@ npm run script:pics:upscale -- --ids <ID> --model realesrnet-x4plus --gpu 0 --ke
 ```
 
 A `RED` id always fails, even when selected explicitly.
+
+## Upscaling review sheet
+
+The review tool generates a local HTML contact sheet so `YELLOW` assets can be assessed in batches instead of opening files one by one.
+
+The default selection is every `YELLOW` asset:
+
+```bash
+npm run script:pics:review
+```
+
+Review another flag group:
+
+```bash
+npm run script:pics:review -- --flag GREEN
+```
+
+Review only explicit ids:
+
+```bash
+npm run script:pics:review -- --ids ID1,ID2,ID3
+```
+
+The generated sheet is written to:
+
+```text
+.tmp/upscale/review/index.html
+```
+
+Generated thumbnails and full-resolution normalized previews are written under:
+
+```text
+.tmp/upscale/review/thumbs/
+.tmp/upscale/review/previews/
+```
+
+All review output remains under ignored `.tmp/` and is not committed.
+
+### Review workflow
+
+Each card shows the source dimensions, the scale required to reach 1024 px, the policy target, and the effective policy scale. Clicking the image opens the normalized source preview in a separate tab.
+
+Each asset can be marked as:
+
+- `Approve`: accepted for upscaling.
+- `Test`: needs a controlled upscale/visual comparison before approval.
+- `Reject`: should not enter the current photographic upscaling batch.
+- `Clear`: remove the current decision.
+
+Decisions are persisted in the browser with `localStorage` and are intentionally not written back to `picsMap` automatically.
+
+The toolbar can copy:
+
+- approved ids;
+- test ids;
+- rejected ids;
+- a ready-to-run `npm run script:pics:upscale -- --ids ...` command.
+
+If any approved asset is `YELLOW`, the copied command automatically includes `--approve-yellow`.
+
+This keeps the review decision per image while still allowing the approved images to be processed in a single batch.
