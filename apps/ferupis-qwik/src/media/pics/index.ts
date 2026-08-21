@@ -1,3 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const upscalingFlags = ['GREEN', 'YELLOW', 'RED'] as const
+
+type UpscalingFlag = typeof upscalingFlags[number]
+
 export interface PicsMap {
   originals: {
     id: string;
@@ -6,6 +11,7 @@ export interface PicsMap {
     oldWinPath: string;
     keyname: string;
     mimeType: string;
+    upscalingFlag: UpscalingFlag
   };
 }
 
