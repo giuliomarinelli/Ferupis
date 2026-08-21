@@ -1,6 +1,7 @@
 {
   "name": "ferupis-monorepo",
   "private": true,
+  "type": "module",
   "packageManager": "npm@10.9.2",
   "engines": {
     "node": "22.16.0",
@@ -11,7 +12,8 @@
   ],
   "scripts": {
     "dev:f": "npm run dev --workspace @apps/ferupis-qwik -- --port 5176 --host 0.0.0.0",
-    "build:f": "npm run build --workspace @apps/ferupis-qwik"
+    "build:f": "npm run build --workspace @apps/ferupis-qwik",
+    "script:pics": "tsc -p scripts/ts/tsconfig.json && node --experimental-strip-types scripts/ts/dist/scripts/ts/src/pics.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,7 @@
     "vite-imagetools": "10.0.1"
   },
   "devDependencies": {
+    "@types/node": "20.19.0",
     "wrangler": "4.124.0"
   }
 }

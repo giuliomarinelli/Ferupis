@@ -7,6 +7,9 @@
     "node": "22.16.0",
     "npm": "10.9.2"
   },
+  "exports": {
+    "./pics": "./src/media/pics/index.ts"
+  },
   "scripts": {
     "build": "qwik build",
     "build.client": "vite build",
