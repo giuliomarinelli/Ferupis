@@ -178,6 +178,8 @@ The sync is idempotent and performs two operations together:
 1. it indexes the files already present in `restored/` by image id and leaves them untouched;
 2. for every id missing from `restored/`, it copies the original source into `restored/` preserving the original file extension.
 
+For fallback copies the script first tries the mapped `src/media/pics/originals/<id>.*` source used in the local working tree. If that source is not present (for example in a clean Git checkout), it resolves the tracked legacy source through `apps/ferupis-old` plus `oldPath`.
+
 It then rewrites the `restored` object for every element of `picsMap`. The `restored.path` is derived from the file that actually exists on disk, so an AI-restored image can point to `<id>.png` while a copied fallback can point to `<id>.jpg`, `<id>.gif`, or another original extension. `restored.mimeType` is aligned to the actual restored file type; legacy metadata and the upscaling flag remain associated with the same id.
 
 The script fails if more than one restored file exists for the same id, because the map must remain unambiguous.
