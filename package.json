@@ -10,7 +10,8 @@
     "apps/ferupis-qwik"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:f": "npm run dev --workspace @apps/ferupis-qwik -- --port 5176 --host 0.0.0.0",
+    "build:f": "npm run build --workspace @apps/ferupis-qwik"
   },
   "repository": {
     "type": "git",

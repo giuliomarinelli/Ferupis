@@ -1,0 +1,30 @@
+{
+  "name": "@gm/qwik-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22.16.0",
+    "npm": "10.9.2"
+  },
+  "scripts": {
+    "build.types": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test test/*.test.mjs"
+  },
+  "exports": {
+    ".": "./src/index.ts",                                                            
+    "./system-color-scheme": "./src/frontend/contexts/system-color-scheme/index.ts",
+    "./overlay": "./src/frontend/components/ui/overlay/index.ts",
+    "./ui": "./src/frontend/components/ui/index.ts",
+    "./ux": "./src/frontend/components/ux/index.ts"
+  },
+  "peerDependencies": {
+    "@builder.io/qwik": "1.20.0",
+    "@builder.io/qwik-city": "1.20.0"
+  },
+  "devDependencies": {
+    "@builder.io/qwik": "1.20.0",
+    "@builder.io/qwik-city": "1.20.0",
+    "typescript": "5.4.5"
+  }
+}
