@@ -79,10 +79,10 @@ Inspect every `YELLOW` asset without processing it:
 npm run script:pics:upscale -- --flag YELLOW --dry-run
 ```
 
-Process an explicitly reviewed `YELLOW` asset:
+Process explicitly reviewed `YELLOW` assets:
 
 ```bash
-npm run script:pics:upscale -- --ids <ID> --approve-yellow
+npm run script:pics:upscale -- --ids ID1,ID2,ID3 --approve-yellow
 ```
 
 Keeping the approval separate from the id selection prevents accidental batch promotion of all `YELLOW` assets.
@@ -148,22 +148,17 @@ All review output remains under ignored `.tmp/` and is not committed.
 
 Each card shows the source dimensions, the scale required to reach 1024 px, the policy target, and the effective policy scale. Clicking the image opens the normalized source preview in a separate tab.
 
-Each asset can be marked as:
+`Unclassified` is only the initial review state; IDs are always independently accessible. The sheet supports:
 
-- `Approve`: accepted for upscaling.
-- `Test`: needs a controlled upscale/visual comparison before approval.
-- `Reject`: should not enter the current photographic upscaling batch.
-- `Clear`: remove the current decision.
+- `Copy ID` on every card (the displayed ID is clickable too);
+- `Copy all IDs` regardless of review state;
+- checkbox selection of arbitrary cards;
+- `Select visible` after filtering;
+- `Copy selected IDs`;
+- bulk `Approve selected`, `Test selected`, and `Reject selected` actions;
+- `Copy approved IDs`, `Copy test IDs`, and `Copy rejected IDs`;
+- a ready-to-run upscale command for all approved assets.
 
-Decisions are persisted in the browser with `localStorage` and are intentionally not written back to `picsMap` automatically.
+Clipboard writes use the browser Clipboard API when available and fall back to a legacy copy path when necessary.
 
-The toolbar can copy:
-
-- approved ids;
-- test ids;
-- rejected ids;
-- a ready-to-run `npm run script:pics:upscale -- --ids ...` command.
-
-If any approved asset is `YELLOW`, the copied command automatically includes `--approve-yellow`.
-
-This keeps the review decision per image while still allowing the approved images to be processed in a single batch.
+Decisions are persisted in the browser with `localStorage` and are intentionally not written back to `picsMap` automatically. If any approved asset is `YELLOW`, the copied upscale command automatically includes `--approve-yellow`.
