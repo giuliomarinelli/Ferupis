@@ -21,6 +21,10 @@ export function getOriginalsMimeTypes(): string[] {
     return distinct
 } 
 
+export function getOriginalsOldWinPathByKeyname(keyname: string): string | null {
+  return picsMap.find((p) => p.originals.keyname === keyname)?.originals.oldWinPath ?? null
+}
+
 export const picsMap: PicsMap[] = [
   {
     originals: {
