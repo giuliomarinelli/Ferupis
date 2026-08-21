@@ -13,7 +13,8 @@
   "scripts": {
     "dev:f": "npm run dev --workspace @apps/ferupis-qwik -- --port 5176 --host 0.0.0.0",
     "build:f": "npm run build --workspace @apps/ferupis-qwik",
-    "script:pics": "tsc -p scripts/ts/tsconfig.json && node --experimental-strip-types scripts/ts/dist/scripts/ts/src/pics.js"
+    "script:pics": "tsc -p scripts/ts/tsconfig.json && node --experimental-strip-types scripts/ts/dist/scripts/ts/src/pics.js",
+    "script:pics:upscale": "tsc -p scripts/ts/tsconfig.json && node --experimental-strip-types scripts/ts/dist/scripts/ts/src/upscale-pics.js"
   },
   "repository": {
     "type": "git",
