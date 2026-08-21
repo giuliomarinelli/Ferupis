@@ -30,6 +30,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\asterix.gif`,
       keyname: "asterix.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -40,6 +41,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\acacia.gif`,
       keyname: "acacia.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -50,6 +52,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\alveare.gif`,
       keyname: "alveare.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -60,6 +63,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\apeacaci.jpg`,
       keyname: "apeacaci.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -70,6 +74,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\apepolli.jpg`,
       keyname: "apepolli.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -80,6 +85,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\apepropo.jpg`,
       keyname: "apepropo.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -90,6 +96,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\aperegin.gif`,
       keyname: "aperegin.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -100,6 +107,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\apetipi.jpg`,
       keyname: "apetipi.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -110,6 +118,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\apioper.jpg`,
       keyname: "apioper.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -120,6 +129,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\atarasas.jpg`,
       keyname: "atarasas.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -130,6 +140,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\atarass1.jpg`,
       keyname: "atarass1.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -140,6 +151,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\atiglios.jpg`,
       keyname: "atiglios.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -150,6 +162,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\aveax99.jpg`,
       keyname: "aveax99.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -160,6 +173,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\born1.jpg`,
       keyname: "born1.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -170,6 +184,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\born2.jpg`,
       keyname: "born2.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -180,6 +195,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\born3.jpg`,
       keyname: "born3.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -190,6 +206,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\born4.jpg`,
       keyname: "born4.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -200,6 +217,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\campmill.jpg`,
       keyname: "campmill.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -210,6 +228,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\camptar.jpg`,
       keyname: "camptar.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -220,6 +239,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\cellepa1.jpg`,
       keyname: "cellepa1.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -230,6 +250,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\cellepa2.jpg`,
       keyname: "cellepa2.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -240,6 +261,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\covata.gif`,
       keyname: "covata.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -250,6 +272,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\covatap.jpg`,
       keyname: "covatap.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -260,6 +283,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\crpappic.jpg`,
       keyname: "crpappic.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -270,6 +294,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\dueapi.jpg`,
       keyname: "dueapi.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -280,6 +305,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\favo.gif`,
       keyname: "favo.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -290,6 +316,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\favomed.jpg`,
       keyname: "favomed.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -300,6 +327,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\favomiel.jpg`,
       keyname: "favomiel.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -310,6 +338,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\favonew.jpg`,
       keyname: "favonew.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -320,6 +349,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\favouova.jpg`,
       keyname: "favouova.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -330,6 +360,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\favoxlbi.jpg`,
       keyname: "favoxlbi.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -340,6 +371,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\fogliame.jpg`,
       keyname: "fogliame.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -350,6 +382,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\fpolline.jpg`,
       keyname: "fpolline.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -360,6 +393,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\fuco.gif`,
       keyname: "fuco.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -370,6 +404,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\fuco.jpg`,
       keyname: "fuco.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -380,6 +415,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\girasol2.gif`,
       keyname: "girasol2.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -390,6 +426,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\girasome.jpg`,
       keyname: "girasome.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -400,6 +437,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\girasopi.jpg`,
       keyname: "girasopi.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -410,6 +448,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\ilmielx.gif`,
       keyname: "ilmielx.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -420,6 +459,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\logmfpi.gif`,
       keyname: "logmfpi.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -430,6 +470,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\logomf.jpg`,
       keyname: "logomf.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -440,6 +481,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\melata.gif`,
       keyname: "melata.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -450,6 +492,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\metcadpi.jpg`,
       keyname: "metcadpi.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -460,6 +503,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\metcalfa.jpg`,
       keyname: "metcalfa.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -470,6 +514,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\millefio.gif`,
       keyname: "millefio.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -480,6 +525,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\nascita.gif`,
       keyname: "nascita.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -490,6 +536,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\nascitas.gif`,
       keyname: "nascitas.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -500,6 +547,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\operaia.gif`,
       keyname: "operaia.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -510,6 +558,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\pappare3.gif`,
       keyname: "pappare3.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -520,6 +569,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\polline.gif`,
       keyname: "polline.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -530,6 +580,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\pollinef.jpg`,
       keyname: "pollinef.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -540,6 +591,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\propoli.gif`,
       keyname: "propoli.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -550,6 +602,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\propoli.jpg`,
       keyname: "propoli.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -560,6 +613,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\propoli1.jpg`,
       keyname: "propoli1.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -570,6 +624,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\regdepox.jpg`,
       keyname: "regdepox.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -580,6 +635,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\regina.jpg`,
       keyname: "regina.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -590,6 +646,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\sciamatu.gif`,
       keyname: "sciamatu.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -600,6 +657,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\sciame.jpg`,
       keyname: "sciame.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -610,6 +668,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\sciame1.jpg`,
       keyname: "sciame1.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -620,6 +679,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\t3.jpg`,
       keyname: "t3.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -630,6 +690,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\tarassac.gif`,
       keyname: "tarassac.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -640,6 +701,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\tiglio.gif`,
       keyname: "tiglio.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -650,6 +712,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\tiglioxl.jpg`,
       keyname: "tiglioxl.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -660,6 +723,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\uovo.gif`,
       keyname: "uovo.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -670,6 +734,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\uovo.jpg`,
       keyname: "uovo.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -680,6 +745,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\vasimiel.jpg`,
       keyname: "vasimiel.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -690,6 +756,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\vasipicc.jpg`,
       keyname: "vasipicc.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -700,6 +767,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\vasomela.jpg`,
       keyname: "vasomela.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -710,6 +778,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\vasotara.jpg`,
       keyname: "vasotara.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -720,6 +789,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\beeworld\vasotigl.jpg`,
       keyname: "vasotigl.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -730,6 +800,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\favobgx.jpg`,
       keyname: "favobgx.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -740,6 +811,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\favoxlbi.jpg`,
       keyname: "favoxlbi.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -750,6 +822,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto.gif`,
       keyname: "foto.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -760,6 +833,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\acacia30.jpg`,
       keyname: "acacia30.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -770,6 +844,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\acacim30.jpg`,
       keyname: "acacim30.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -780,6 +855,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\alveam27.jpg`,
       keyname: "alveam27.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -790,6 +866,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\alvear27.jpg`,
       keyname: "alvear27.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -800,6 +877,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\cr13.jpg`,
       keyname: "cr13.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -810,6 +888,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\cr14.jpg`,
       keyname: "cr14.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -820,6 +899,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\cr15.jpg`,
       keyname: "cr15.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -830,6 +910,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\cr16.jpg`,
       keyname: "cr16.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -840,6 +921,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\crm13.jpg`,
       keyname: "crm13.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -850,6 +932,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\crm14.jpg`,
       keyname: "crm14.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -860,6 +943,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\crm15.jpg`,
       keyname: "crm15.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -870,6 +954,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\crm16.jpg`,
       keyname: "crm16.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -880,6 +965,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\favo24.jpg`,
       keyname: "favo24.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -890,6 +976,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\favom24.jpg`,
       keyname: "favom24.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -900,6 +987,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\favoop26.jpg`,
       keyname: "favoop26.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -910,6 +998,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\favop25.jpg`,
       keyname: "favop25.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -920,6 +1009,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\favopm25.jpg`,
       keyname: "favopm25.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -930,6 +1020,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\favopm26.jpg`,
       keyname: "favopm26.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -940,6 +1031,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\favoxlbi.jpg`,
       keyname: "favoxlbi.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -950,6 +1042,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\filva12.jpg`,
       keyname: "filva12.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -960,6 +1053,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\filvam12.jpg`,
       keyname: "filvam12.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -970,6 +1064,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\foto.gif`,
       keyname: "foto.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -980,6 +1075,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\giras32.jpg`,
       keyname: "giras32.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -990,6 +1086,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\girasm32.jpg`,
       keyname: "girasm32.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1000,6 +1097,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\larve02.jpg`,
       keyname: "larve02.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1010,6 +1108,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\larve03.jpg`,
       keyname: "larve03.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1020,6 +1119,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\larve04.jpg`,
       keyname: "larve04.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1030,6 +1130,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\larvem02.jpg`,
       keyname: "larvem02.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1040,6 +1141,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\larvem03.jpg`,
       keyname: "larvem03.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1050,6 +1152,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\larvem04.jpg`,
       keyname: "larvem04.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1060,6 +1163,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\logmfpi.gif`,
       keyname: "logmfpi.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1070,6 +1174,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\noccim28.jpg`,
       keyname: "noccim28.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1080,6 +1185,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\noccio28.jpg`,
       keyname: "noccio28.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1090,6 +1196,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\pupe05.jpg`,
       keyname: "pupe05.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1100,6 +1207,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\pupem05.jpg`,
       keyname: "pupem05.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1110,6 +1218,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\regc20.jpg`,
       keyname: "regc20.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1120,6 +1229,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\regcm20.jpg`,
       keyname: "regcm20.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1130,6 +1240,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\regde21.jpg`,
       keyname: "regde21.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1140,6 +1251,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\regdem21.jpg`,
       keyname: "regdem21.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1150,6 +1262,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\regna17.jpg`,
       keyname: "regna17.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1160,6 +1273,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\regnam17.jpg`,
       keyname: "regnam17.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1170,6 +1284,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\regve18.jpg`,
       keyname: "regve18.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1180,6 +1295,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\regve19.jpg`,
       keyname: "regve19.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1190,6 +1306,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\regvem19.jpg`,
       keyname: "regvem19.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1200,6 +1317,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\regvme18.jpg`,
       keyname: "regvme18.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1210,6 +1328,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\regxl22.jpg`,
       keyname: "regxl22.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1220,6 +1339,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\regxlm22.jpg`,
       keyname: "regxlm22.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1230,6 +1350,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\sciae23.jpg`,
       keyname: "sciae23.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1240,6 +1361,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\sciaem23.jpg`,
       keyname: "sciaem23.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1250,6 +1372,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\t306.jpg`,
       keyname: "t306.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1260,6 +1383,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\t307.jpg`,
       keyname: "t307.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1270,6 +1394,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\t308.jpg`,
       keyname: "t308.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1280,6 +1405,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\t309.jpg`,
       keyname: "t309.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1290,6 +1416,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\t3m06.jpg`,
       keyname: "t3m06.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1300,6 +1427,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\t3m07.jpg`,
       keyname: "t3m07.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1310,6 +1438,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\t3m08.jpg`,
       keyname: "t3m08.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1320,6 +1449,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\t3m09.jpg`,
       keyname: "t3m09.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1330,6 +1460,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\tarasm29.jpg`,
       keyname: "tarasm29.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1340,6 +1471,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\tarass29.jpg`,
       keyname: "tarass29.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1350,6 +1482,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\tiglim31.jpg`,
       keyname: "tiglim31.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1360,6 +1493,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\tiglio31.jpg`,
       keyname: "tiglio31.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1370,6 +1504,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\uova.jpg`,
       keyname: "uova.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1380,6 +1515,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\uova01.jpg`,
       keyname: "uova01.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1390,6 +1526,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\vafa10.jpg`,
       keyname: "vafa10.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1400,6 +1537,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\vafam10.jpg`,
       keyname: "vafam10.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1410,6 +1548,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\varop11.jpg`,
       keyname: "varop11.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1420,6 +1559,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\foto\varopm11.jpg`,
       keyname: "varopm11.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "GREEN",
     },
   },
   {
@@ -1430,6 +1570,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\gif.gif`,
       keyname: "gif.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1440,6 +1581,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\ilmielx.gif`,
       keyname: "ilmielx.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1450,6 +1592,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\leapi.gif`,
       keyname: "leapi.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1460,6 +1603,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\logmfpi.gif`,
       keyname: "logmfpi.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1470,6 +1614,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\logmfxl1.gif`,
       keyname: "logmfxl1.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1480,6 +1625,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\acacia.gif`,
       keyname: "acacia.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1490,6 +1636,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\apeacaci.jpg`,
       keyname: "apeacaci.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1500,6 +1647,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\apepropo.jpg`,
       keyname: "apepropo.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1510,6 +1658,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\apetipi.jpg`,
       keyname: "apetipi.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1520,6 +1669,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\atarasas.jpg`,
       keyname: "atarasas.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1530,6 +1680,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\atarass1.jpg`,
       keyname: "atarass1.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1540,6 +1691,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\atiglio.jpg`,
       keyname: "atiglio.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1550,6 +1702,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\atiglios.jpg`,
       keyname: "atiglios.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1560,6 +1713,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\campmill.jpg`,
       keyname: "campmill.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1570,6 +1724,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\camptar.jpg`,
       keyname: "camptar.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1580,6 +1735,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\camptara.jpg`,
       keyname: "camptara.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1590,6 +1746,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\cellepa1.jpg`,
       keyname: "cellepa1.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1600,6 +1757,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\cellepa2.jpg`,
       keyname: "cellepa2.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1610,6 +1768,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\crpapp1s.jpg`,
       keyname: "crpapp1s.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1620,6 +1779,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\crpapp2s.jpg`,
       keyname: "crpapp2s.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1630,6 +1790,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\crpappa1.jpg`,
       keyname: "crpappa1.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1640,6 +1801,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\crpappa2.jpg`,
       keyname: "crpappa2.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1650,6 +1812,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\crpappic.jpg`,
       keyname: "crpappic.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1660,6 +1823,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\crpapxls.jpg`,
       keyname: "crpapxls.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1670,6 +1834,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\cupappa.jpg`,
       keyname: "cupappa.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1680,6 +1845,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\dueapi.jpg`,
       keyname: "dueapi.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1690,6 +1856,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\favomiel.jpg`,
       keyname: "favomiel.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1700,6 +1867,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\favoxlbi.jpg`,
       keyname: "favoxlbi.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1710,6 +1878,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\fogliame.jpg`,
       keyname: "fogliame.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1720,6 +1889,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\girasol2.gif`,
       keyname: "girasol2.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1730,6 +1900,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\girasome.jpg`,
       keyname: "girasome.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1740,6 +1911,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\girasopi.jpg`,
       keyname: "girasopi.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1750,6 +1922,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\ilmielx.gif`,
       keyname: "ilmielx.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1760,6 +1933,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\logmfpi.gif`,
       keyname: "logmfpi.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1770,6 +1944,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\logmfxl1.gif`,
       keyname: "logmfxl1.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1780,6 +1955,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\logomf.jpg`,
       keyname: "logomf.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1790,6 +1966,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\melata.gif`,
       keyname: "melata.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1800,6 +1977,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\metcadpi.jpg`,
       keyname: "metcadpi.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1810,6 +1988,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\metcalfa.jpg`,
       keyname: "metcalfa.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1820,6 +1999,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\mielepic.jpg`,
       keyname: "mielepic.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1830,6 +2010,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\millefio.gif`,
       keyname: "millefio.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1840,6 +2021,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\pappare3.gif`,
       keyname: "pappare3.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1850,6 +2032,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\propoli.gif`,
       keyname: "propoli.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1860,6 +2043,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\propoli.jpg`,
       keyname: "propoli.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1870,6 +2054,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\propoli1.jpg`,
       keyname: "propoli1.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1880,6 +2065,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\tarassac.gif`,
       keyname: "tarassac.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1890,6 +2076,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\tiglio.gif`,
       keyname: "tiglio.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1900,6 +2087,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\tiglioxl.jpg`,
       keyname: "tiglioxl.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1910,6 +2098,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\uovo.jpg`,
       keyname: "uovo.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1920,6 +2109,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\vasimiel.jpg`,
       keyname: "vasimiel.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1930,6 +2120,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\vasipicc.jpg`,
       keyname: "vasipicc.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1940,6 +2131,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\vasomela.jpg`,
       keyname: "vasomela.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1950,6 +2142,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\vasotara.jpg`,
       keyname: "vasotara.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1960,6 +2153,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\miele\vasotigl.jpg`,
       keyname: "vasotigl.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -1970,6 +2164,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\pappare3.gif`,
       keyname: "pappare3.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1980,6 +2175,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\propoli.gif`,
       keyname: "propoli.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -1990,6 +2186,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\top.gif`,
       keyname: "top.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -2000,6 +2197,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\video.gif`,
       keyname: "video.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -2010,6 +2208,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\video\Beetarx.jpg`,
       keyname: "Beetarx.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -2020,6 +2219,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\video\Beetigx.jpg`,
       keyname: "Beetigx.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -2030,6 +2230,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\video\favobgx.jpg`,
       keyname: "favobgx.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -2040,6 +2241,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\video\fucborn.jpg`,
       keyname: "fucborn.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -2050,6 +2252,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\video\logmfpi.gif`,
       keyname: "logmfpi.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
   {
@@ -2060,6 +2263,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\video\regdepx.jpg`,
       keyname: "regdepx.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -2070,6 +2274,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\video\sciamenx.jpg`,
       keyname: "sciamenx.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -2080,6 +2285,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\video\Varlarvx.jpg`,
       keyname: "Varlarvx.jpg",
       mimeType: "image/jpeg",
+      upscalingFlag: "YELLOW",
     },
   },
   {
@@ -2090,6 +2296,7 @@ export const picsMap: PicsMap[] = [
       oldWinPath: String.raw`C:\.project_repo\Ferupis\apps\ferupis-old\video\video.gif`,
       keyname: "video.gif",
       mimeType: "image/gif",
+      upscalingFlag: "RED",
     },
   },
 ];
