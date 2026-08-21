@@ -254,7 +254,9 @@ function renderCard(asset: ReviewAsset): string {
       </a>
       <div class="body">
         <div class="heading">
-          <code>${escapeHtml(asset.id)}</code>
+          <button class="id-button" type="button" data-copy-id="${escapeHtml(asset.id)}" title="Copy ID">
+            <code>${escapeHtml(asset.id)}</code>
+          </button>
           <span class="flag ${asset.flag.toLowerCase()}">${asset.flag}</span>
         </div>
         <div class="meta">
@@ -264,7 +266,12 @@ function renderCard(asset: ReviewAsset): string {
           <div><strong>Policy target:</strong> ${asset.targetLongEdge}px (${asset.policyScale.toFixed(2)}x)</div>
         </div>
         <p>${escapeHtml(asset.note)}</p>
+        <label class="select-row">
+          <input type="checkbox" data-select-id="${escapeHtml(asset.id)}" />
+          <span>Select for batch actions</span>
+        </label>
         <div class="actions">
+          <button type="button" data-copy-id="${escapeHtml(asset.id)}">Copy ID</button>
           <button type="button" data-action="approve">Approve</button>
           <button type="button" data-action="test">Test</button>
           <button type="button" data-action="reject">Reject</button>
@@ -295,16 +302,21 @@ function renderHtml(assets: ReviewAsset[], options: CliOptions): string {
     .toolbar h1 { margin: 0 0 8px; font-size: 22px; }
     .toolbar p { margin: 0; color: #aeb7c5; }
     .tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .tools.batch { margin-top: 8px; }
     button, select { border: 1px solid #394252; background: #1c222c; color: #f3f5f7; border-radius: 9px; padding: 9px 11px; cursor: pointer; }
     button:hover, select:hover { border-color: #667289; }
-    .stats { margin-top: 12px; color: #aeb7c5; }
+    .status { min-height: 20px; margin-top: 10px; color: #7ec8ff; font-size: 13px; }
+    .stats { margin-top: 8px; color: #aeb7c5; }
     main { padding: 24px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
     .card { background: #171b22; border: 1px solid #303643; border-radius: 14px; overflow: hidden; }
+    .card.selected { outline: 2px solid #6fb5ff; outline-offset: 2px; }
     .preview { display: block; aspect-ratio: 4/3; background: #090b0e; }
     .preview img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .body { padding: 14px; }
     .heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .id-button { min-width: 0; padding: 0; border: 0; background: transparent; text-align: left; }
+    .id-button:hover { border: 0; }
     code { font-size: 11px; word-break: break-all; background: #222832; padding: 4px 6px; border-radius: 6px; }
     .flag { padding: 4px 7px; border-radius: 999px; font-size: 11px; font-weight: 700; }
     .flag.green { color: #52d784; background: rgba(82,215,132,.13); }
@@ -312,6 +324,8 @@ function renderHtml(assets: ReviewAsset[], options: CliOptions): string {
     .flag.red { color: #ff7272; background: rgba(255,114,114,.13); }
     .meta { display: grid; gap: 4px; margin-top: 12px; color: #b6bfcc; font-size: 13px; }
     .body p { min-height: 42px; color: #d7dce4; font-size: 13px; }
+    .select-row { display: flex; align-items: center; gap: 8px; margin: 8px 0 10px; color: #b6bfcc; font-size: 13px; cursor: pointer; }
+    .select-row input { width: 16px; height: 16px; }
     .actions { display: flex; flex-wrap: wrap; gap: 7px; }
     .decision { margin-top: 10px; border: 1px solid #303643; border-radius: 8px; padding: 7px 9px; color: #9fa9b8; }
     .card[data-state="approve"] .decision { color: #52d784; border-color: rgba(82,215,132,.45); }
@@ -332,12 +346,22 @@ function renderHtml(assets: ReviewAsset[], options: CliOptions): string {
         <option value="reject">Rejected</option>
         <option value="unclassified">Unclassified</option>
       </select>
+      <button id="copy-all" type="button">Copy all IDs</button>
       <button id="copy-approved" type="button">Copy approved IDs</button>
       <button id="copy-test" type="button">Copy test IDs</button>
       <button id="copy-rejected" type="button">Copy rejected IDs</button>
       <button id="copy-command" type="button">Copy upscale command</button>
       <button id="clear-all" type="button">Clear decisions</button>
     </div>
+    <div class="tools batch">
+      <button id="select-visible" type="button">Select visible</button>
+      <button id="clear-selection" type="button">Clear selection</button>
+      <button id="copy-selected" type="button">Copy selected IDs</button>
+      <button id="approve-selected" type="button">Approve selected</button>
+      <button id="test-selected" type="button">Test selected</button>
+      <button id="reject-selected" type="button">Reject selected</button>
+    </div>
+    <div id="status" class="status" aria-live="polite"></div>
     <div id="stats" class="stats"></div>
   </header>
   <main>
@@ -351,6 +375,8 @@ function renderHtml(assets: ReviewAsset[], options: CliOptions): string {
     const cards = [...document.querySelectorAll('.card')];
     const filter = document.getElementById('filter');
     const stats = document.getElementById('stats');
+    const status = document.getElementById('status');
+    const selectedIds = new Set();
 
     function readState() {
       try { return JSON.parse(localStorage.getItem(storageKey) || '{}'); }
@@ -366,12 +392,47 @@ function renderHtml(assets: ReviewAsset[], options: CliOptions): string {
       return 'Unclassified';
     }
 
+    function showStatus(message) {
+      status.textContent = message;
+      window.clearTimeout(showStatus.timer);
+      showStatus.timer = window.setTimeout(() => { status.textContent = ''; }, 2500);
+    }
+
+    async function copyText(text, label) {
+      if (!text) {
+        showStatus('Nothing to copy.');
+        return;
+      }
+
+      try {
+        if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('Clipboard API unavailable');
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        const copied = document.execCommand('copy');
+        textarea.remove();
+        if (!copied) {
+          showStatus('Copy failed: select the ID text manually.');
+          return;
+        }
+      }
+
+      showStatus(label);
+    }
+
     function refresh() {
       const state = readState();
       let approved = 0, test = 0, rejected = 0;
 
       for (const card of cards) {
-        const value = state[card.dataset.id] || '';
+        const id = card.dataset.id;
+        const value = state[id] || '';
         card.dataset.state = value;
         card.querySelector('.decision').textContent = labelFor(value);
 
@@ -379,12 +440,17 @@ function renderHtml(assets: ReviewAsset[], options: CliOptions): string {
         const visible = selected === 'all' || (selected === 'unclassified' ? value === '' : value === selected);
         card.classList.toggle('hidden', !visible);
 
+        const isSelected = selectedIds.has(id);
+        card.classList.toggle('selected', isSelected);
+        const checkbox = card.querySelector('input[data-select-id]');
+        if (checkbox) checkbox.checked = isSelected;
+
         if (value === 'approve') approved += 1;
         else if (value === 'test') test += 1;
         else if (value === 'reject') rejected += 1;
       }
 
-      stats.textContent = 'Approved: ' + approved + ' | Test: ' + test + ' | Rejected: ' + rejected + ' | Unclassified: ' + (assets.length - approved - test - rejected);
+      stats.textContent = 'Approved: ' + approved + ' | Test: ' + test + ' | Rejected: ' + rejected + ' | Unclassified: ' + (assets.length - approved - test - rejected) + ' | Selected: ' + selectedIds.size;
     }
 
     function idsFor(decision) {
@@ -392,12 +458,48 @@ function renderHtml(assets: ReviewAsset[], options: CliOptions): string {
       return assets.filter((asset) => (state[asset.id] || '') === decision).map((asset) => asset.id);
     }
 
-    async function copy(text) {
-      await navigator.clipboard.writeText(text);
+    function visibleIds() {
+      return cards.filter((card) => !card.classList.contains('hidden')).map((card) => card.dataset.id);
     }
 
+    function applyDecisionToSelected(decision) {
+      if (selectedIds.size === 0) {
+        showStatus('No selected assets.');
+        return;
+      }
+
+      const state = readState();
+      for (const id of selectedIds) {
+        if (decision === '') delete state[id];
+        else state[id] = decision;
+      }
+      writeState(state);
+      refresh();
+      showStatus(labelFor(decision) + ': ' + selectedIds.size + ' selected assets.');
+    }
+
+    document.addEventListener('change', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement) || !target.matches('input[data-select-id]')) return;
+      const id = target.dataset.selectId;
+      if (!id) return;
+      if (target.checked) selectedIds.add(id);
+      else selectedIds.delete(id);
+      refresh();
+    });
+
     document.addEventListener('click', (event) => {
-      const button = event.target.closest('button[data-action]');
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const copyButton = target.closest('button[data-copy-id]');
+      if (copyButton) {
+        const id = copyButton.dataset.copyId;
+        if (id) void copyText(id, 'Copied ID: ' + id);
+        return;
+      }
+
+      const button = target.closest('button[data-action]');
       if (!button) return;
       const card = button.closest('.card');
       if (!card) return;
@@ -410,16 +512,62 @@ function renderHtml(assets: ReviewAsset[], options: CliOptions): string {
     });
 
     filter.addEventListener('change', refresh);
-    document.getElementById('copy-approved').addEventListener('click', () => copy(idsFor('approve').join(',')));
-    document.getElementById('copy-test').addEventListener('click', () => copy(idsFor('test').join(',')));
-    document.getElementById('copy-rejected').addEventListener('click', () => copy(idsFor('reject').join(',')));
-    document.getElementById('clear-all').addEventListener('click', () => { localStorage.removeItem(storageKey); refresh(); });
+
+    document.getElementById('copy-all').addEventListener('click', () => {
+      void copyText(assets.map((asset) => asset.id).join(','), 'Copied all ' + assets.length + ' IDs.');
+    });
+
+    document.getElementById('copy-approved').addEventListener('click', () => {
+      const ids = idsFor('approve');
+      void copyText(ids.join(','), 'Copied ' + ids.length + ' approved IDs.');
+    });
+
+    document.getElementById('copy-test').addEventListener('click', () => {
+      const ids = idsFor('test');
+      void copyText(ids.join(','), 'Copied ' + ids.length + ' test IDs.');
+    });
+
+    document.getElementById('copy-rejected').addEventListener('click', () => {
+      const ids = idsFor('reject');
+      void copyText(ids.join(','), 'Copied ' + ids.length + ' rejected IDs.');
+    });
+
+    document.getElementById('select-visible').addEventListener('click', () => {
+      for (const id of visibleIds()) selectedIds.add(id);
+      refresh();
+      showStatus('Selected ' + selectedIds.size + ' assets.');
+    });
+
+    document.getElementById('clear-selection').addEventListener('click', () => {
+      selectedIds.clear();
+      refresh();
+      showStatus('Selection cleared.');
+    });
+
+    document.getElementById('copy-selected').addEventListener('click', () => {
+      const ids = [...selectedIds];
+      void copyText(ids.join(','), 'Copied ' + ids.length + ' selected IDs.');
+    });
+
+    document.getElementById('approve-selected').addEventListener('click', () => applyDecisionToSelected('approve'));
+    document.getElementById('test-selected').addEventListener('click', () => applyDecisionToSelected('test'));
+    document.getElementById('reject-selected').addEventListener('click', () => applyDecisionToSelected('reject'));
+
+    document.getElementById('clear-all').addEventListener('click', () => {
+      localStorage.removeItem(storageKey);
+      refresh();
+      showStatus('All decisions cleared.');
+    });
+
     document.getElementById('copy-command').addEventListener('click', () => {
       const ids = idsFor('approve');
-      if (ids.length === 0) return copy('');
+      if (ids.length === 0) {
+        showStatus('No approved assets: no upscale command to copy.');
+        return;
+      }
       const containsYellow = assets.some((asset) => asset.flag === 'YELLOW' && ids.includes(asset.id));
       const command = 'npm run script:pics:upscale -- --ids ' + ids.join(',') + (containsYellow ? ' --approve-yellow' : '');
-      return copy(command);
+      void copyText(command, 'Upscale command copied for ' + ids.length + ' approved assets.');
     });
 
     refresh();
