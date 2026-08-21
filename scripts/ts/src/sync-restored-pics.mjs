@@ -2,6 +2,7 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFi
 import { basename, extname, resolve } from 'node:path'
 
 const APP_ROOT = resolve('apps/ferupis-qwik')
+const LEGACY_ROOT = resolve('apps/ferupis-old')
 const INDEX_PATH = resolve(APP_ROOT, 'src/media/pics/index.ts')
 const RESTORED_ROOT = resolve(APP_ROOT, 'src/media/pics/restored')
 const DRY_RUN = process.argv.includes('--dry-run')
@@ -41,6 +42,27 @@ function sourcePathFromMappedPath(mappedPath) {
     fail(`Unsupported mapped media path: ${mappedPath}`)
   }
   return resolve(APP_ROOT, mappedPath.slice(2))
+}
+
+function legacyPathFromOldPath(oldPath) {
+  const relativeLegacyPath = oldPath.replace(/^[/\\]+/, '')
+  return resolve(LEGACY_ROOT, relativeLegacyPath)
+}
+
+function resolveOriginalSource(original) {
+  const mappedSourcePath = sourcePathFromMappedPath(original.path)
+  if (existsSync(mappedSourcePath)) {
+    return mappedSourcePath
+  }
+
+  const legacySourcePath = legacyPathFromOldPath(original.oldPath)
+  if (existsSync(legacySourcePath)) {
+    return legacySourcePath
+  }
+
+  fail(
+    `Original source not found for ${original.id}. Checked:\n- ${mappedSourcePath}\n- ${legacySourcePath}`,
+  )
 }
 
 function buildRestoredFilesIndex() {
@@ -113,9 +135,7 @@ function main() {
     if (restoredFilename) {
       alreadyRestored += 1
     } else {
-      const sourcePath = sourcePathFromMappedPath(original.path)
-      if (!existsSync(sourcePath)) fail(`Original source not found for ${original.id}: ${sourcePath}`)
-
+      const sourcePath = resolveOriginalSource(original)
       const extension = extname(sourcePath)
       if (!extension) fail(`Original source has no extension for ${original.id}: ${sourcePath}`)
 
