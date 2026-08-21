@@ -5,8 +5,7 @@ import sharp from 'sharp'
 import { picsMap } from '@apps/ferupis-qwik/pics'
 
 type UpscalingFlag = 'GREEN' | 'YELLOW' | 'RED'
-
-type PipelineStatus = 'PLANNED' | 'PROCESSED' | 'FAILED'
+type PipelineStatus = 'PLANNED' | 'PROCESSED' | 'SKIPPED' | 'FAILED'
 
 interface CliOptions {
   flag: UpscalingFlag
@@ -14,6 +13,7 @@ interface CliOptions {
   approveYellow: boolean
   dryRun: boolean
   keepTemp: boolean
+  overwrite: boolean
   binary?: string
   modelsDir?: string
   model: string
@@ -55,12 +55,13 @@ Selection:
   --ids <id1,id2,...>        Process only the listed ids; overrides --flag selection
 
 Policy gates:
-  --approve-yellow           Required for every YELLOW asset
+  --approve-yellow           Required to process explicitly selected YELLOW ids
   RED assets are always blocked and cannot be forced
 
 Execution:
   --dry-run                  Resolve assets and dimensions without invoking Real-ESRGAN
   --keep-temp                Keep normalized and raw x4 intermediates under .tmp/upscale
+  --overwrite                Replace an existing restored master
   --binary <path>            Real-ESRGAN executable path
   --models-dir <path>        Directory containing NCNN .param/.bin models
   --model <name>             Model name (default: ${DEFAULT_MODEL})
@@ -74,7 +75,8 @@ Environment variables:
 
 Policy:
   GREEN  automatic, target 1024px long edge, hard limit <= ${MAX_EFFECTIVE_UPSCALE}x effective upscale
-  YELLOW explicit approval required, target capped at source x ${MAX_EFFECTIVE_UPSCALE} and never above 1024px
+  YELLOW dry-run may inspect the group; processing requires explicit --ids plus --approve-yellow
+         target capped at source x ${MAX_EFFECTIVE_UPSCALE} and never above 1024px
   RED    hard block
 `)
 }
@@ -111,6 +113,7 @@ function parseArgs(): CliOptions {
     approveYellow: false,
     dryRun: false,
     keepTemp: false,
+    overwrite: false,
     model: DEFAULT_MODEL,
     gpu: process.env.REALESRGAN_GPU ?? DEFAULT_GPU,
   }
@@ -135,6 +138,11 @@ function parseArgs(): CliOptions {
 
     if (arg === '--keep-temp') {
       options.keepTemp = true
+      continue
+    }
+
+    if (arg === '--overwrite') {
+      options.overwrite = true
       continue
     }
 
@@ -262,16 +270,6 @@ function selectAssets(options: CliOptions) {
   return picsMap.filter((entry) => entry.originals.upscalingFlag === options.flag)
 }
 
-function assertPolicy(flag: UpscalingFlag, options: CliOptions): void {
-  if (flag === 'RED') {
-    throw new Error('RED asset blocked by upscaling policy')
-  }
-
-  if (flag === 'YELLOW' && !options.approveYellow) {
-    throw new Error('YELLOW asset requires explicit --approve-yellow')
-  }
-}
-
 function assertSelectionPolicy(selected: ReturnType<typeof selectAssets>, options: CliOptions): void {
   const redIds = selected
     .filter((entry) => entry.originals.upscalingFlag === 'RED')
@@ -285,7 +283,13 @@ function assertSelectionPolicy(selected: ReturnType<typeof selectAssets>, option
     .filter((entry) => entry.originals.upscalingFlag === 'YELLOW')
     .map((entry) => entry.originals.id)
 
-  if (yellowIds.length > 0 && !options.approveYellow) {
+  if (yellowIds.length === 0 || options.dryRun) return
+
+  if (options.ids.length === 0) {
+    throw new Error('YELLOW processing requires explicit --ids; batch approval by flag is not allowed')
+  }
+
+  if (!options.approveYellow) {
     throw new Error(
       `YELLOW assets require explicit --approve-yellow: ${yellowIds.join(', ')}`,
     )
@@ -349,8 +353,6 @@ async function processAsset(
   const sourcePath = sourcePathFromMappedPath(mappedPath)
   const outputPath = resolve(OUTPUT_ROOT, `${id}.png`)
 
-  assertPolicy(flag, options)
-
   if (!existsSync(sourcePath)) {
     throw new Error(`Source image not found: ${sourcePath}`)
   }
@@ -385,6 +387,11 @@ async function processAsset(
   )
 
   if (options.dryRun) return result
+
+  if (existsSync(outputPath) && !options.overwrite) {
+    console.log(`[${flag}] ${id}: SKIPPED - restored master already exists (use --overwrite to replace)`)
+    return { ...result, status: 'SKIPPED' }
+  }
 
   mkdirSync(OUTPUT_ROOT, { recursive: true })
 
@@ -446,13 +453,14 @@ function writeReport(options: CliOptions, results: PipelineResult[]): string {
           targetLongEdge: TARGET_LONG_EDGE,
           maxEffectiveUpscale: MAX_EFFECTIVE_UPSCALE,
           red: 'BLOCKED',
-          yellow: 'EXPLICIT_APPROVAL_REQUIRED',
+          yellow: 'EXPLICIT_IDS_AND_APPROVAL_REQUIRED',
           green: 'AUTOMATIC',
         },
         execution: {
           dryRun: options.dryRun,
           model: options.model,
           gpu: options.gpu,
+          overwrite: options.overwrite,
         },
         results,
       },
@@ -462,6 +470,21 @@ function writeReport(options: CliOptions, results: PipelineResult[]): string {
   )
 
   return reportPath
+}
+
+function printSummary(results: PipelineResult[]): void {
+  const counts = results.reduce<Record<PipelineStatus, number>>(
+    (acc, result) => {
+      acc[result.status] += 1
+      return acc
+    },
+    { PLANNED: 0, PROCESSED: 0, SKIPPED: 0, FAILED: 0 },
+  )
+
+  console.log(`Planned: ${counts.PLANNED}`)
+  console.log(`Processed: ${counts.PROCESSED}`)
+  console.log(`Skipped: ${counts.SKIPPED}`)
+  console.log(`Failed: ${counts.FAILED}`)
 }
 
 async function main(): Promise<void> {
@@ -514,13 +537,11 @@ async function main(): Promise<void> {
   }
 
   const reportPath = writeReport(options, results)
-  const failed = results.filter((result) => result.status === 'FAILED')
 
   console.log(`\nReport: ${reportPath}`)
-  console.log(`Processed/planned: ${results.length - failed.length}`)
-  console.log(`Failed: ${failed.length}`)
+  printSummary(results)
 
-  if (failed.length > 0) {
+  if (results.some((result) => result.status === 'FAILED')) {
     process.exitCode = 1
   }
 }
