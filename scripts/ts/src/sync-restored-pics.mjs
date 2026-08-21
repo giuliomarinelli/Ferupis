@@ -7,7 +7,7 @@ const INDEX_PATH = resolve(APP_ROOT, 'src/media/pics/index.ts')
 const RESTORED_ROOT = resolve(APP_ROOT, 'src/media/pics/restored')
 const DRY_RUN = process.argv.includes('--dry-run')
 
-const ENTRY_PATTERN = /(^  \{\r?\n    originals: \{\r?\n[\s\S]*?^    \},\r?\n)(?:    restored: \{\r?\n[\s\S]*?^    \},\r?\n)?(^  \},)/gm
+const ENTRY_PATTERN = /(^  \{\r?\n[\s\S]*?^  \},)/gm
 
 function fail(message) {
   throw new Error(message)
@@ -25,14 +25,15 @@ function getRawTemplate(block, field) {
   return match[1]
 }
 
-function parseOriginal(block) {
+function parseEntry(block) {
   return {
     id: getQuoted(block, 'id'),
-    path: getQuoted(block, 'path'),
+    originalsPath: getQuoted(block, 'originalsPath'),
     oldPath: getQuoted(block, 'oldPath'),
     oldWinPath: getRawTemplate(block, 'oldWinPath'),
     keyname: getQuoted(block, 'keyname'),
-    mimeType: getQuoted(block, 'mimeType'),
+    originalsMimeType: getQuoted(block, 'originalsMimeType'),
+    restoredMimeType: getQuoted(block, 'restoredMimeType'),
     upscalingFlag: getQuoted(block, 'upscalingFlag'),
   }
 }
@@ -50,7 +51,7 @@ function legacyPathFromOldPath(oldPath) {
 }
 
 function resolveOriginalSource(original) {
-  const mappedSourcePath = sourcePathFromMappedPath(original.path)
+  const mappedSourcePath = sourcePathFromMappedPath(original.originalsPath)
   if (existsSync(mappedSourcePath)) {
     return mappedSourcePath
   }
@@ -99,26 +100,23 @@ function mimeTypeFor(filename, fallback) {
   }
 }
 
+function replaceQuoted(block, field, value) {
+  const pattern = new RegExp(`(^    ${field}:\\s*)"[^"]*"`, 'm')
+  if (!pattern.test(block)) fail(`Unable to update ${field} in picsMap entry`)
+  return block.replace(pattern, `$1${JSON.stringify(value)}`)
+}
+
 function renderRestored(original, restoredFilename) {
   const restoredPath = `~/src/media/pics/restored/${restoredFilename}`
-  const restoredMimeType = mimeTypeFor(restoredFilename, original.mimeType)
-
-  return `    restored: {\n` +
-    `      id: ${JSON.stringify(original.id)},\n` +
-    `      path: ${JSON.stringify(restoredPath)},\n` +
-    `      oldPath: ${JSON.stringify(original.oldPath)},\n` +
-    `      oldWinPath: String.raw\`${original.oldWinPath}\`,\n` +
-    `      keyname: ${JSON.stringify(original.keyname)},\n` +
-    `      mimeType: ${JSON.stringify(restoredMimeType)},\n` +
-    `      upscalingFlag: ${JSON.stringify(original.upscalingFlag)},\n` +
-    `    },\n`
+  const restoredMimeType = mimeTypeFor(restoredFilename, original.originalsMimeType)
+  return { restoredPath, restoredMimeType }
 }
 
 function main() {
   if (!existsSync(INDEX_PATH)) fail(`picsMap not found: ${INDEX_PATH}`)
 
   const source = readFileSync(INDEX_PATH, 'utf8')
-  const expectedEntries = [...source.matchAll(/^    originals:\s*\{/gm)].length
+  const expectedEntries = [...source.matchAll(/^    id:\s*"/gm)].length
   if (expectedEntries === 0) fail('No picsMap originals entries found')
 
   const restoredById = buildRestoredFilesIndex()
@@ -127,8 +125,8 @@ function main() {
   let alreadyRestored = 0
   let mapped = 0
 
-  const nextSource = source.replace(ENTRY_PATTERN, (full, originalsPrefix, entryClose) => {
-    const original = parseOriginal(originalsPrefix)
+  const nextSource = source.replace(ENTRY_PATTERN, (full) => {
+    const original = parseEntry(full)
     knownIds.add(original.id)
 
     let restoredFilename = restoredById.get(original.id)
@@ -149,7 +147,12 @@ function main() {
     }
 
     mapped += 1
-    return `${originalsPrefix}${renderRestored(original, restoredFilename)}${entryClose}`
+    const restored = renderRestored(original, restoredFilename)
+    return replaceQuoted(
+      replaceQuoted(full, 'restoredPath', restored.restoredPath),
+      'restoredMimeType',
+      restored.restoredMimeType,
+    )
   })
 
   if (mapped !== expectedEntries) {

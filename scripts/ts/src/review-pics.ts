@@ -136,8 +136,8 @@ function sourcePathFromMappedPath(mappedPath: string): string {
 function selectAssets(options: CliOptions) {
   if (options.ids.length > 0) {
     const requested = new Set(options.ids)
-    const selected = picsMap.filter((entry) => requested.has(entry.originals.id))
-    const found = new Set(selected.map((entry) => entry.originals.id))
+    const selected = picsMap.filter((entry) => requested.has(entry.id))
+    const found = new Set(selected.map((entry) => entry.id))
     const missing = options.ids.filter((id) => !found.has(id))
 
     if (missing.length > 0) {
@@ -147,7 +147,7 @@ function selectAssets(options: CliOptions) {
     return selected
   }
 
-  return picsMap.filter((entry) => entry.originals.upscalingFlag === options.flag)
+  return picsMap.filter((entry) => entry.upscalingFlag === options.flag)
 }
 
 function computePolicyTarget(flag: UpscalingFlag, sourceLongEdge: number): number {
@@ -190,7 +190,7 @@ async function createReviewAssets(options: CliOptions): Promise<ReviewAsset[]> {
   const assets: ReviewAsset[] = []
 
   for (const entry of selected) {
-    const { id, path: mappedPath, keyname, oldPath, upscalingFlag } = entry.originals
+    const { id, originalsPath: mappedPath, keyname, oldPath, upscalingFlag } = entry
     const flag = upscalingFlag as UpscalingFlag
     const sourcePath = sourcePathFromMappedPath(mappedPath)
     const metadata = await sharp(sourcePath).metadata()

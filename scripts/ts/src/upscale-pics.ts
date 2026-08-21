@@ -256,8 +256,8 @@ function selectAssets(options: CliOptions) {
 
   if (options.ids.length > 0) {
     const requestedIds = new Set(options.ids)
-    const selected = picsMap.filter((entry) => requestedIds.has(entry.originals.id))
-    const foundIds = new Set(selected.map((entry) => entry.originals.id))
+    const selected = picsMap.filter((entry) => requestedIds.has(entry.id))
+    const foundIds = new Set(selected.map((entry) => entry.id))
     const missingIds = options.ids.filter((id) => !foundIds.has(id))
 
     if (missingIds.length > 0) {
@@ -267,21 +267,21 @@ function selectAssets(options: CliOptions) {
     return selected
   }
 
-  return picsMap.filter((entry) => entry.originals.upscalingFlag === options.flag)
+  return picsMap.filter((entry) => entry.upscalingFlag === options.flag)
 }
 
 function assertSelectionPolicy(selected: ReturnType<typeof selectAssets>, options: CliOptions): void {
   const redIds = selected
-    .filter((entry) => entry.originals.upscalingFlag === 'RED')
-    .map((entry) => entry.originals.id)
+    .filter((entry) => entry.upscalingFlag === 'RED')
+    .map((entry) => entry.id)
 
   if (redIds.length > 0) {
     throw new Error(`RED assets are hard-blocked: ${redIds.join(', ')}`)
   }
 
   const yellowIds = selected
-    .filter((entry) => entry.originals.upscalingFlag === 'YELLOW')
-    .map((entry) => entry.originals.id)
+    .filter((entry) => entry.upscalingFlag === 'YELLOW')
+    .map((entry) => entry.id)
 
   if (yellowIds.length === 0 || options.dryRun) return
 
@@ -348,7 +348,7 @@ async function processAsset(
   binary: string,
   modelsDir: string | undefined,
 ): Promise<PipelineResult> {
-  const { id, path: mappedPath, upscalingFlag } = entry.originals
+  const { id, originalsPath: mappedPath, upscalingFlag } = entry
   const flag = upscalingFlag as UpscalingFlag
   const sourcePath = sourcePathFromMappedPath(mappedPath)
   const outputPath = resolve(OUTPUT_ROOT, `${id}.png`)
@@ -520,8 +520,8 @@ async function main(): Promise<void> {
       results.push(await processAsset(entry, options, binary, modelsDir))
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error)
-      const { id, upscalingFlag } = entry.originals
-      const sourcePath = sourcePathFromMappedPath(entry.originals.path)
+      const { id, upscalingFlag } = entry
+      const sourcePath = sourcePathFromMappedPath(entry.originalsPath)
       const outputPath = resolve(OUTPUT_ROOT, `${id}.png`)
 
       console.error(`[${upscalingFlag}] ${id}: FAILED - ${message}`)
