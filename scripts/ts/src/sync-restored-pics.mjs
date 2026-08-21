@@ -71,6 +71,7 @@ function buildRestoredFilesIndex() {
 
   for (const entry of readdirSync(RESTORED_ROOT, { withFileTypes: true })) {
     if (!entry.isFile()) continue
+    if (entry.name === '.gitkeep') continue
     const extension = extname(entry.name)
     if (!extension) continue
     const id = basename(entry.name, extension)
