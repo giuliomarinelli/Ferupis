@@ -16,7 +16,7 @@
     "./system-color-scheme": "./src/frontend/contexts/system-color-scheme/index.ts",
     "./overlay": "./src/frontend/components/ui/overlay/index.ts",
     "./ui": "./src/frontend/components/ui/index.ts",
-    "./ux": "./src/frontend/components/ux/index.ts"
+    "./ux": "./src/frontend/components/ux/index.ts"    
   },
   "peerDependencies": {
     "@builder.io/qwik": "1.20.0",

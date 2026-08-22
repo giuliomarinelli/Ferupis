@@ -5,8 +5,8 @@ type ThemeInitScriptOptions = {
   defaultTheme?: Theme
 }
 
-export const DEFAULT_THEME_STORAGE_KEY = 'tw_theme_pref'
-export const DEFAULT_THEME_COOKIE_NAME = 'theme'
+export const DEFAULT_THEME_STORAGE_KEY = '_f_theme_pref'
+export const DEFAULT_THEME_COOKIE_NAME = '_f_theme'
 
 export const createThemeInitScript = (options: ThemeInitScriptOptions = {}) => {
   const cookieName = options.cookieName ?? DEFAULT_THEME_COOKIE_NAME
