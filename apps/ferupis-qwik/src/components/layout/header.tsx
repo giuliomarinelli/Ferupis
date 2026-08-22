@@ -8,7 +8,7 @@ export const Header = component$(() => (
     <header class="site-header">
         <Container context="header" class="flex items-center justify-between">
             <Link href="/" class="flex items-center gap-4">
-                <div class="w-[50px]">
+                <div class="w-[45px]">
                     <BrandLogo class="w-full h-auto" />
                 </div>
                 <span class="font-brand font-semibold text-2xl">Ferupis</span>
