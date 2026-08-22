@@ -8,7 +8,8 @@
     "npm": "10.9.2"
   },
   "workspaces": [
-    "apps/ferupis-qwik"
+    "apps/ferupis-qwik",
+    "packages/*"
   ],
   "scripts": {
     "dev:f": "npm run dev --workspace @apps/ferupis-qwik -- --port 5176 --host 0.0.0.0",
