@@ -25,9 +25,6 @@
     "start": "vite --open --mode ssr",
     "qwik": "qwik"
   },
-  "dependencies": {
-    "@gm/qwik-core": "0.1.0"
-  },
   "devDependencies": {
     "@builder.io/qwik": "1.20.0",
     "@builder.io/qwik-city": "1.20.0",
@@ -45,6 +42,7 @@
     "typescript-plugin-css-modules": "latest",
     "undici": "*",
     "vite": "7.3.6",
-    "vite-tsconfig-paths": "4.2.1"
+    "vite-tsconfig-paths": "4.2.1",
+    "@gm/qwik-core": "0.1.0"
   }
 }

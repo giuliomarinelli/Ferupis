@@ -9,7 +9,9 @@ export default component$(() => (
         <div class="relative flex flex-col isolate min-h-screen overflow-x-clip bg-slate-50 text-neutral-950 dark:bg-neutral-950 dark:text-slate-50">
             <BgStack />
             <Header />
-            <Slot />
+            <div class="flex flex-1 flex-col">
+                <Slot />
+            </div>
             <Footer />
         </div>
     </ThemeProvider>
