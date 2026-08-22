@@ -249,7 +249,7 @@ export const ToggleThemeBtn = component$<ToggleThemeBtnProps>(
     return (
       <div
         class={[
-          "relative hidden sm:flex",
+          "relative flex",
           isCallRoute ? "mr-0" : "mr-0 xs:mr-1 lg:mr-2",
         ]}
       >
@@ -273,7 +273,7 @@ export const ToggleThemeBtn = component$<ToggleThemeBtnProps>(
           {theme === "dark" && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5.5 w-5.5 min-[350px]:h-7 min-[350px]:w-7 fill-current text-slate-100 hover:text-slate-300 transition-colors duration-300"
+              class="h-7 w-7 fill-current text-slate-100 hover:text-slate-300 transition-colors duration-300"
               viewBox="0 0 384 512"
               aria-hidden="true"
               focusable="false"

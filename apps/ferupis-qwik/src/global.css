@@ -279,36 +279,40 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    /* Brakpoint */
-    --breakpoint-xs: 426px;
-    --breakpoint-2xs: 376px;
-    --breakpoint-3xs: 300px;
-    /* Colori */
-    --color-light-primary: oklch(0.424 0.199 265.64);    
-    --color-bright-primary: oklch(78.5% 0.115 274.713);    
-    --color-light-accent: oklch(0.432 0.232 292.76);    
-    --color-bright-accent: oklch(90.2% 0.063 306.703);    
-    --color-light-error: oklch(0.444 0.177 26.9);    
-    --color-bright-error: oklch(0.7353 0.1624 20.51);    
-    --color-primary-light-soft: oklch(89.4% 0.057 293.283 / 0.9);    
-    --color-light-success: oklch(0.432 0.095 166.91);
-    --color-bright-success: oklch(0.845 0.143 164.98);
-    --color-light-warning: oklch(0.4606 0.1038 58.04);
-    --color-bright-warning: oklch(0.905 0.182 98.11);
-    /* Font */
-    --font-body: 'Newsreader 16pt', sans-serif;
-    --font-brand: Ysabeau, sans-serif;
-    --font-hero-link: Fraunces, sans-serif;
-    --font-sans: Roboto, sans-serif;
+  /* Brakpoint */
+  --breakpoint-xs: 426px;
+  --breakpoint-2xs: 376px;
+  --breakpoint-3xs: 300px;
+  /* Colori */
+  --color-light-primary: oklch(0.424 0.199 265.64);
+  --color-bright-primary: oklch(78.5% 0.115 274.713);
+  --color-light-accent: oklch(0.432 0.232 292.76);
+  --color-bright-accent: oklch(90.2% 0.063 306.703);
+  --color-light-error: oklch(0.444 0.177 26.9);
+  --color-bright-error: oklch(0.7353 0.1624 20.51);
+  --color-primary-light-soft: oklch(89.4% 0.057 293.283 / 0.9);
+  --color-light-success: oklch(0.432 0.095 166.91);
+  --color-bright-success: oklch(0.845 0.143 164.98);
+  --color-light-warning: oklch(0.4606 0.1038 58.04);
+  --color-bright-warning: oklch(0.905 0.182 98.11);
+  /* Font */
+  --font-body: Tenor Sans, sans-serif;
+  --font-brand: Ysabeau, sans-serif;
+  --font-hero-link: Fraunces, sans-serif;
+  --font-sans: Roboto, sans-serif;
 }
 
 html,
 body {
-    @apply bg-slate-50 text-neutral-950 dark:bg-neutral-950 dark:text-slate-50 font-body;
+  @apply bg-slate-50 text-neutral-950 dark:bg-neutral-950 dark:text-slate-50 font-body;
 }
 
 @layer components {
-    .site-header {
-        @apply sticky top-0 z-30 flex h-[64.5px] shrink-0 flex-col justify-center border-b-[0.1px] border-indigo-300 bg-indigo-50/80 py-3 dark:border-slate-500 dark:bg-neutral-950/80 backdrop-blur-lg;
-    }
+  .site-header {
+    @apply sticky top-0 z-30 flex h-[64.5px] shrink-0 flex-col justify-center border-b-[0.1px] border-indigo-300 bg-indigo-50/80 py-3 dark:border-slate-500 dark:bg-neutral-950/80 backdrop-blur-lg;
+  }
+
+  .a-link {
+    @apply text-light-accent decoration-light-accent underline-offset-4 transition-colors hover:text-violet-500 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-violet-500 dark:text-bright-accent dark:decoration-bright-accent dark:hover:text-violet-200 dark:focus-visible:outline-indigo-300 hover:underline;
+  }
 }

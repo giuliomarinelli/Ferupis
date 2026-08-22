@@ -26,7 +26,7 @@ export const Container = component$<ContainerProps>((props) => {
                         context === 'article' ?
                             `max-w-[72ch] px-8` :
                             context === 'header' ?
-                            `px-2 py-3` :
+                            `px-3 2xs:px-4 xs:px-5 py-3` :
                             `px-6 sm:px-8 py-3` 
             ],
             props.class ?? ''
