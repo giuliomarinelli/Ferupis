@@ -42,7 +42,7 @@ function sourcePathFromMappedPath(mappedPath) {
   if (!mappedPath.startsWith('~/')) {
     fail(`Unsupported mapped media path: ${mappedPath}`)
   }
-  return resolve(APP_ROOT, mappedPath.slice(2))
+  return resolve(APP_ROOT, 'src', mappedPath.slice(2))
 }
 
 function legacyPathFromOldPath(oldPath) {
@@ -107,7 +107,7 @@ function replaceQuoted(block, field, value) {
 }
 
 function renderRestored(original, restoredFilename) {
-  const restoredPath = `~/src/media/pics/restored/${restoredFilename}`
+  const restoredPath = `~/media/pics/restored/${restoredFilename}`
   const restoredMimeType = mimeTypeFor(restoredFilename, original.originalsMimeType)
   return { restoredPath, restoredMimeType }
 }

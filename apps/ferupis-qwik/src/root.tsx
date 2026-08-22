@@ -22,7 +22,7 @@ export default component$(() => {
             href={`${import.meta.env.BASE_URL}manifest.json`}
           />
         )}
-+        <link
+        <link
           rel="preload"
           href={`${import.meta.env.BASE_URL}fonts/BreeSerif-Regular-subset.woff2`}
           as="font"

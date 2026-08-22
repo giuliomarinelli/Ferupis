@@ -1,13 +1,18 @@
-import { $, component$, useVisibleTask$ } from "@builder.io/qwik";
+import { $, component$, useStore, useVisibleTask$ } from "@builder.io/qwik";
 import { useTheme } from "../../../contexts/theme/use-theme";
 import { CheckIcon, MoonIcon, SunIcon } from "../icons/icons";
 
 const THEME_MENU_LG_ID = "theme-lg-menu";
 
-export type ToggleThemeBtnLgProps = {
+export type ToggleThemeBtnProps = {
   themeMenuLgState: ThemeMenuState;
   isCallRoute?: boolean;
 };
+
+export type ToggleThemeMenuBtnProps = Pick<
+  ToggleThemeBtnProps,
+  "isCallRoute"
+>;
 
 export interface ThemeMenuState {
   isOpened: boolean;
@@ -22,7 +27,7 @@ export interface ThemeMenuState {
  *
  */
 
-const ToggleThemeMenuLg = component$<ToggleThemeBtnLgProps>(
+const ToggleThemeMenu = component$<ToggleThemeBtnProps>(
   ({ themeMenuLgState: menuState }) => {
     const { state: themeState, setTheme } = useTheme();
     const labelThemeMenu = "Menu selezione tema";
@@ -108,7 +113,8 @@ const ToggleThemeMenuLg = component$<ToggleThemeBtnLgProps>(
         aria-label={labelThemeMenu}
         aria-hidden={!menuState.isVisible}
         class={`
-                absolute top-14 right-18 z-900
+                font-sans
+                absolute top-14 right-0 z-900
                 w-64 rounded-md shadow-lg bg-slate-50 dark:bg-neutral-900
                 text-sm leading-relaxed
                 transform transition-all duration-200 ease-out
@@ -144,7 +150,7 @@ const ToggleThemeMenuLg = component$<ToggleThemeBtnLgProps>(
             </span>
             {themeState.choice === "light" && (
               <span aria-hidden="true">
-                <CheckIcon classList="h-4 w-4" />
+                <CheckIcon classList="h-4 w-4 text-light-success dark:text-bright-success" />
               </span>
             )}
           </button>
@@ -173,7 +179,7 @@ const ToggleThemeMenuLg = component$<ToggleThemeBtnLgProps>(
             </span>
             {themeState.choice === "dark" && (
               <span aria-hidden="true">
-                <CheckIcon classList="h-4 w-4" />
+                <CheckIcon classList="h-4 w-4 text-light-success dark:text-bright-success" />
               </span>
             )}
           </button>
@@ -212,7 +218,7 @@ const ToggleThemeMenuLg = component$<ToggleThemeBtnLgProps>(
             </span>
             {themeState.choice === "OS" && (
               <span aria-hidden="true">
-                <CheckIcon classList="h-4 w-4" />
+                <CheckIcon classList="h-4 w-4 text-light-success dark:text-bright-success" />
               </span>
             )}
           </button>
@@ -222,7 +228,7 @@ const ToggleThemeMenuLg = component$<ToggleThemeBtnLgProps>(
   },
 );
 
-export const ToggleThemeLgBtn = component$<ToggleThemeBtnLgProps>(
+export const ToggleThemeBtn = component$<ToggleThemeBtnProps>(
   ({ themeMenuLgState: menuState, isCallRoute }) => {
     const { state } = useTheme();
     const { theme } = state;
@@ -241,15 +247,19 @@ export const ToggleThemeLgBtn = component$<ToggleThemeBtnLgProps>(
     });
 
     return (
-      <>
+      <div
+        class={[
+          "relative hidden sm:flex",
+          isCallRoute ? "mr-0" : "mr-0 xs:mr-1 lg:mr-2",
+        ]}
+      >
         <button
           type="button"
           class={[
-            "cursor-pointer hidden sm:flex items-center justify-center size-10 rounded-full theme-toggle-button",
-            isCallRoute ? "mr-0" : "mr-0 xs:mr-1 lg:mr-2",
+            "cursor-pointer flex items-center justify-center size-10 rounded-full theme-toggle-button",
             "transition-all duration-500 hover:bg-slate-300/65 dark:hover:bg-white/15",
-            "focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-light-accent-primary-hq",
-            "hover:scale-105",
+            "focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-light-primary",
+            "origin-right hover:scale-105",
           ]}
           title={menuState.isOpened ? closeLabel : openLabel}
           aria-label={menuState.isOpened ? closeLabel : openLabel}
@@ -280,7 +290,7 @@ export const ToggleThemeLgBtn = component$<ToggleThemeBtnLgProps>(
               focusable="false"
             >
               <path
-                class="fill-current text-indigo-300"
+                class="fill-current text-blue-200"
                 d="M208 256a48 48 0 1 0 96 0 48 48 0 1 0 -96 0z"
               />
               <path
@@ -290,8 +300,25 @@ export const ToggleThemeLgBtn = component$<ToggleThemeBtnLgProps>(
             </svg>
           )}
         </button>
-        <ToggleThemeMenuLg themeMenuLgState={menuState} />
-      </>
+        <ToggleThemeMenu themeMenuLgState={menuState} />
+      </div>
+    );
+  },
+);
+
+export const ToggleThemeMenuBtn = component$<ToggleThemeMenuBtnProps>(
+  ({ isCallRoute }) => {
+    const themeMenuState = useStore<ThemeMenuState>({
+      isOpened: false,
+      isMounted: false,
+      isVisible: false,
+    });
+
+    return (
+      <ToggleThemeBtn
+        themeMenuLgState={themeMenuState}
+        isCallRoute={isCallRoute}
+      />
     );
   },
 );

@@ -130,7 +130,7 @@ function sourcePathFromMappedPath(mappedPath: string): string {
   if (!mappedPath.startsWith('~/')) {
     throw new Error(`Unsupported mapped media path: ${mappedPath}`)
   }
-  return resolve(APP_ROOT, mappedPath.slice(2))
+  return resolve(APP_ROOT, 'src', mappedPath.slice(2))
 }
 
 function selectAssets(options: CliOptions) {

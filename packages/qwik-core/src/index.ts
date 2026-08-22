@@ -13,6 +13,16 @@ export { OffcanvasProvider } from './frontend/contexts/offcanvas/provider'
 export { useOffcanvas } from './frontend/contexts/offcanvas/use-offcanvas'
 
 export {
+  ToggleThemeBtn,
+  ToggleThemeMenuBtn,
+} from './frontend/components/ui/menu/theme-menu'
+export type {
+  ThemeMenuState,
+  ToggleThemeBtnProps,
+  ToggleThemeMenuBtnProps,
+} from './frontend/components/ui/menu/theme-menu'
+
+export {
   Overlay,
   OverlayProvider,
   useOverlay,

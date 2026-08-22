@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../../../packages/qwik-core/src";
 
 /* Font per Brand: Ysabeau e Tenor Sans */
 
@@ -291,9 +292,9 @@
     --color-bright-error: oklch(0.7353 0.1624 20.51);    
     --color-primary-light-soft: oklch(89.4% 0.057 293.283 / 0.9);    
     --color-light-success: oklch(0.432 0.095 166.91);
-    --color-bright-success: #fff;
+    --color-bright-success: oklch(0.845 0.143 164.98);
     --color-light-warning: oklch(0.4606 0.1038 58.04);
-    --color-bright-warning: #fff;
+    --color-bright-warning: oklch(0.905 0.182 98.11);
     /* Font */
     --font-body: 'Newsreader 16pt', sans-serif;
     --font-brand: Ysabeau, sans-serif;
