@@ -11,7 +11,7 @@ export type BookingSlotPickerSlot = {
 
 export type BookingSlotPickerDay = {
     dayTimestamp: string
-    dayLocaleDate: string
+    dayLabel: string
     slots: BookingSlotPickerSlot[]
 }
 
@@ -19,7 +19,6 @@ export type BookingSlotPickerProps = {
     days: BookingSlotPickerDay[]
     selectedSlotId: number | null
     onSelectSlot$: QRL<(slotId: number) => void>
-    lang: string
     maxBodyHeightPx?: number
     slotMinWidthPx?: number
     invalid?: boolean
@@ -46,7 +45,6 @@ export const BookingSlotPicker = component$<BookingSlotPickerProps>((props) => {
         days,
         selectedSlotId,
         onSelectSlot$,
-        lang,
         maxBodyHeightPx = DEFAULT_MAX_BODY_HEIGHT_PX,
         slotMinWidthPx = DEFAULT_SLOT_MIN_WIDTH_PX,
         invalid = false,
@@ -75,28 +73,18 @@ export const BookingSlotPicker = component$<BookingSlotPickerProps>((props) => {
             const slot = day.slots.find((item) => item.id === selectedSlotId)
 
             if (slot) {
-                return `${day.dayLocaleDate} · ${formatSlotTime(slot)}`
+                return `${day.dayLabel} · ${formatSlotTime(slot)}`
             }
         }
 
         return null
     })()
 
-    const translatedEmptyMessage =
-        emptyMessage ??
-        (
-            lang === "it"
-                ? "Non ci sono slot disponibili nei prossimi giorni."
-                : "There are no available slots in the next few days."
-        )
+    const normalizedEmptyMessage =
+        emptyMessage ?? "Non ci sono slot disponibili nei prossimi giorni."
 
-    const translatedErrorMessage =
-        errorMessage ??
-        (
-            lang === "it"
-                ? "Seleziona uno slot disponibile."
-                : "Please select an available time slot."
-        )
+    const normalizedErrorMessage =
+        errorMessage ?? "Seleziona uno slot disponibile."
 
     return (
         <section
@@ -120,19 +108,17 @@ export const BookingSlotPicker = component$<BookingSlotPickerProps>((props) => {
                         "disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-slate-300 disabled:hover:text-slate-700",
                         "dark:border-slate-700 dark:text-slate-200 dark:hover:border-bright-primary dark:hover:text-bright-primary"
                     ]}
-                    aria-label={lang === "it" ? "Giorno precedente" : "Previous day"}
+                    aria-label="Giorno precedente"
                 >
                     ‹
                 </button>
 
                 <div class="min-w-0 text-center">
                     <p class="text-sm leading-5 font-medium text-light-primary dark:text-bright-primary">
-                        {lang === "it" ? "Scegli uno slot disponibile" : "Choose an available slot"}
+                        Scegli uno slot disponibile
                     </p>
                     <p class="text-xs text-slate-500 dark:text-slate-400">
-                        {lang === "it"
-                            ? "Orari nel fuso Europe/Rome"
-                            : "Times shown in Europe/Rome timezone"}
+                        Orari nel fuso Europe/Rome
                     </p>
                 </div>
 
@@ -147,7 +133,7 @@ export const BookingSlotPicker = component$<BookingSlotPickerProps>((props) => {
                         "disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-slate-300 disabled:hover:text-slate-700",
                         "dark:border-slate-700 dark:text-slate-200 dark:hover:border-bright-primary dark:hover:text-bright-primary"
                     ]}
-                    aria-label={lang === "it" ? "Giorno successivo" : "Next day"}
+                    aria-label="Giorno successivo"
                 >
                     ›
                 </button>
@@ -155,7 +141,7 @@ export const BookingSlotPicker = component$<BookingSlotPickerProps>((props) => {
 
             {!hasSlots && (
                 <div class="rounded-lg border border-dashed border-slate-300 px-4 py-8 text-center text-sm italic text-slate-500 dark:border-slate-700 dark:text-slate-400">
-                    {translatedEmptyMessage}
+                    {normalizedEmptyMessage}
                 </div>
             )}
 
@@ -180,7 +166,6 @@ export const BookingSlotPicker = component$<BookingSlotPickerProps>((props) => {
                                         onSelectSlot$={onSelectSlot$}
                                         slotMinWidthPx={slotMinWidthPx}
                                         basisClass="min-w-0 basis-full shrink-0"
-                                        lang={lang}
                                     />
                                 ))}
                             </div>
@@ -201,7 +186,6 @@ export const BookingSlotPicker = component$<BookingSlotPickerProps>((props) => {
                                         onSelectSlot$={onSelectSlot$}
                                         slotMinWidthPx={slotMinWidthPx}
                                         basisClass="min-w-0 basis-1/2 shrink-0"
-                                        lang={lang}
                                     />
                                 ))}
                             </div>
@@ -219,7 +203,7 @@ export const BookingSlotPicker = component$<BookingSlotPickerProps>((props) => {
                                     : "pointer-events-none translate-y-1 opacity-0"
                             ]}
                         >
-                            {lang === "it" ? "Slot selezionato:" : "Selected slot:"}{" "}
+                            Slot selezionato:{" "}
                             <span>{selectedSlotLabel}</span>
                         </p>
 
@@ -233,7 +217,7 @@ export const BookingSlotPicker = component$<BookingSlotPickerProps>((props) => {
                                     : "pointer-events-none translate-y-1 opacity-0"
                             ]}
                         >
-                            {translatedErrorMessage}
+                            {normalizedErrorMessage}
                         </p>
                     </div>
                 </>
@@ -248,7 +232,6 @@ type BookingSlotDayColumnProps = {
     onSelectSlot$: QRL<(slotId: number) => void>
     slotMinWidthPx: number
     basisClass: string
-    lang: string
 }
 
 const BookingSlotDayColumn = component$<BookingSlotDayColumnProps>((props) => {
@@ -257,8 +240,7 @@ const BookingSlotDayColumn = component$<BookingSlotDayColumnProps>((props) => {
         selectedSlotId,
         onSelectSlot$,
         slotMinWidthPx,
-        basisClass,
-        lang
+        basisClass
     } = props
 
     const availableSlots = day.slots.filter((slot) => slot.status === "available")
@@ -267,12 +249,12 @@ const BookingSlotDayColumn = component$<BookingSlotDayColumnProps>((props) => {
         <article class={[basisClass, "max-w-full px-1 sm:px-2"]}>
             <div class="h-full min-w-0 rounded-lg border border-slate-200 bg-slate-50/70 p-3 xs:p-4 dark:border-slate-800 dark:bg-slate-900/60">
                 <h3 class="mb-4 text-sm font-semibold text-slate-900 xs:text-base dark:text-slate-50">
-                    {day.dayLocaleDate}
+                    {day.dayLabel}
                 </h3>
 
                 {availableSlots.length === 0 && (
                     <p class="text-sm italic text-slate-500 dark:text-slate-400">
-                        {lang === "it" ? "Nessuno slot disponibile." : "No available slots."}
+                        Nessuno slot disponibile.
                     </p>
                 )}
 

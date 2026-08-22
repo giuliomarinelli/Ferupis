@@ -1,21 +1,14 @@
-import { $, component$, Slot, type QRL, type Signal } from '@builder.io/qwik'
+import { $, component$, Slot, type QRL } from '@builder.io/qwik'
 import { Link, useNavigate } from '@builder.io/qwik-city'
-import type { LanguageCode } from '../../../shared/language/config'
 import { LargeCloseIcon, PhoneIcon, ThinCloseIcon, type IconProps } from './icons/icons'
 import { useOverlay } from './overlay'
-import { useLanguage } from '../../contexts/language'
 
-export type LocalizedLanguageCode = LanguageCode
 export type CtaButtonContext = 'nav' | 'header'
 
 export type BtnProps = {
-  lang: Signal<LocalizedLanguageCode>
-  labelIt: string
-  labelEn: string
-  shortLabelIt?: string
-  shortLabelEn?: string
-  titleIt?: string
-  titleEn?: string
+  label: string
+  shortLabel?: string
+  title?: string
   fontSize?: string
   adjunctiveTwClassList?: string
   action?: QRL<() => void>
@@ -29,8 +22,7 @@ export interface BtnLinkProps extends BtnProps {
 
 export type BtnLinkActionProps = Omit<
   BtnLinkProps,
-  | 'shortLabelEn'
-  | 'shortLabelIt'
+  | 'shortLabel'
   | 'context'
   | 'icon'
   | 'fontSize'
@@ -42,21 +34,20 @@ export type BtnLinkActionProps = Omit<
 
 export type IconBtnProps = Omit<
   BtnProps,
-  | 'labelIt'
-  | 'labelEn'
-  | 'shortLabelIt'
-  | 'shortLabelEn'
+  | 'label'
+  | 'shortLabel'
   | 'fontSize'
   | 'adjunctiveTwClassList'
   | 'context'
 > &
   IconProps
 
-export type IcontBtnLinkProps = IconBtnProps & BtnLinkProps
+export type IconBtnLinkProps = IconBtnProps & BtnLinkProps
+export type IcontBtnLinkProps = IconBtnLinkProps
 
 export type IconName = 'phone'
 
-export type OverlayCloseBtnProps = Omit<IconBtnProps, 'lang'> & {
+export type OverlayCloseBtnProps = IconBtnProps & {
   redirectToPathname?: string
 } 
 
@@ -79,13 +70,9 @@ export const OverlayCloseBtn = component$<OverlayCloseBtnProps>((props) => {
 
 export const CtaPrimaryBtnSqLink = component$<BtnLinkProps>((props) => {
   const {
-    lang,
-    labelIt,
-    labelEn,
-    shortLabelIt,
-    shortLabelEn,
-    titleIt,
-    titleEn,
+    label,
+    shortLabel,
+    title,
     fontSize,
     adjunctiveTwClassList,
     href,
@@ -98,13 +85,8 @@ export const CtaPrimaryBtnSqLink = component$<BtnLinkProps>((props) => {
     throw new Error('href required in CtaPrimaryBtnSqLink')
   }
 
-  const localizedLabel = lang.value === 'it' ? labelIt : labelEn
-  const localizedShortLabel =
-    lang.value === 'it'
-      ? (shortLabelIt ?? labelIt)
-      : (shortLabelEn ?? labelEn)
-  const localizedTitle = (lang.value === 'it' ? titleIt : titleEn)?.trim()
-  const normalizedTitle = localizedTitle || undefined
+  const normalizedShortLabel = shortLabel ?? label
+  const normalizedTitle = title?.trim() || undefined
   const normalizedFontSize = fontSize?.trim()
   const fontSizeValue = normalizedFontSize
     ? /[a-z%)]$/i.test(normalizedFontSize)
@@ -112,9 +94,9 @@ export const CtaPrimaryBtnSqLink = component$<BtnLinkProps>((props) => {
       : `${normalizedFontSize}rem`
     : undefined
 
-  const localizedLabelClassList =
+  const labelClassList =
     context === 'header' ? 'hidden lg:inline' : ''
-  const localizedShortLabelClassList =
+  const shortLabelClassList =
     context === 'header' ? 'hidden md:inline lg:hidden' : 'hidden'
   const linkClassList =
     context === 'header'
@@ -137,14 +119,14 @@ export const CtaPrimaryBtnSqLink = component$<BtnLinkProps>((props) => {
       onClick$={action}
     >
       {icon === 'phone' && <PhoneIcon classList="size-5" />}
-      <span class={localizedLabelClassList}>{localizedLabel}</span>
-      <span class={localizedShortLabelClassList}>{localizedShortLabel}</span>
+      <span class={labelClassList}>{label}</span>
+      <span class={shortLabelClassList}>{normalizedShortLabel}</span>
     </Link>
   )
 })
 
 export const LargeCloseBtn = component$<IconBtnProps>((props) => {
-  const { lang, action, classList, titleEn, titleIt } = props
+  const { action, classList, title } = props
   const handleClick = $(() => {
     action?.()
   })
@@ -152,7 +134,7 @@ export const LargeCloseBtn = component$<IconBtnProps>((props) => {
   return (
     <button
       type="button"
-      title={lang.value === 'it' ? titleIt : titleEn}
+      title={title}
       onClick$={handleClick}
       class={classList ?? ''}
     >
@@ -164,15 +146,12 @@ export const LargeCloseBtn = component$<IconBtnProps>((props) => {
 
 export const PrimaryActionBtn = component$<BtnLinkActionProps>((props) => {
   const {
-    labelIt,
-    labelEn,
+    label,
     isLink,
-    lang,
     action,
     adjunctiveTwClassList,
     href,
-    titleEn,
-    titleIt,
+    title,
     disabled,
     buttonType,
   } = props
@@ -187,9 +166,6 @@ export const PrimaryActionBtn = component$<BtnLinkActionProps>((props) => {
   const disabledStateClassList =
     'bg-indigo-400/70 hover:bg-indigo-400/70 dark:bg-indigo-300/68 dark:hover:bg-indigo-300/68 cursor-not-allowed'
   const classList = `${isDisabled ? disabledStateClassList : enabledStateClassList} ${baseClassList}`
-  const label = lang.value === 'it' ? labelIt : labelEn
-  const title = lang.value === 'it' ? titleIt : titleEn
-
   if (isLink) {
     return (
       <Link
@@ -225,15 +201,12 @@ export const PrimaryActionBtn = component$<BtnLinkActionProps>((props) => {
 export const SecondaryActionOutlineBtn = component$<BtnLinkActionProps>(
   (props) => {
     const {
-      labelIt,
-      labelEn,
+      label,
       isLink,
-      lang,
       action,
       adjunctiveTwClassList,
       href,
-      titleEn,
-      titleIt,
+      title,
       disabled,
       buttonType,
     } = props
@@ -248,9 +221,6 @@ export const SecondaryActionOutlineBtn = component$<BtnLinkActionProps>(
     const disabledStateClassList =
       'bg-indigo-400/70 hover:bg-indigo-400/70 dark:bg-indigo-300/68 dark:hover:bg-indigo-300/68 cursor-not-allowed'
     const classList = `${isDisabled ? disabledStateClassList : enabledStateClassList} ${baseClassList}`
-    const label = lang.value === 'it' ? labelIt : labelEn
-    const title = lang.value === 'it' ? titleIt : titleEn
-
     if (isLink) {
       return (
         <Link
