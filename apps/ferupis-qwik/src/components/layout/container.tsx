@@ -16,7 +16,7 @@ type ContainerProps = {
 export const Container = component$<ContainerProps>((props) => {    
     const context = props.context === undefined ? 'content' : props.context
     return (
-        <Poly as={tag} class={[
+        <Poly as={props.tag} class={[
             props.classOverride ?? [
                 `relative z-10 mx-auto flex w-full max-w-7xl items-center`,
                 context === null ? '' :
