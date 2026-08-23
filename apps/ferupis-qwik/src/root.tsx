@@ -227,7 +227,7 @@ export default component$(() => {
         />
         <RouterHead />
       </head>
-      <body lang="it">
+      <body lang="it" class="page-scrollbar">
         <RouterOutlet />
       </body>
     </QwikCityProvider>
