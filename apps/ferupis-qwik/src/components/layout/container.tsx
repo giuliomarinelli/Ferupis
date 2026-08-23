@@ -13,8 +13,7 @@ type ContainerProps = {
     class?: string | string[]
 }
 
-export const Container = component$<ContainerProps>((props) => {
-    const tag = props.tag ?? 'div'
+export const Container = component$<ContainerProps>((props) => {    
     const context = props.context === undefined ? 'content' : props.context
     return (
         <Poly as={tag} class={[
