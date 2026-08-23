@@ -13,7 +13,7 @@ type ContainerProps = {
     class?: string | string[]
 }
 
-export const Container = component$<ContainerProps>((props) => {    
+export const Container = component$<ContainerProps>((props) => {
     const context = props.context === undefined ? 'content' : props.context
     return (
         <Poly as={props.tag} class={[
@@ -25,12 +25,11 @@ export const Container = component$<ContainerProps>((props) => {
                         context === 'article' ?
                             `max-w-[72ch] px-8` :
                             context === 'header' ?
-                            `px-3 2xs:px-4 xs:px-5 py-3` :
-                            `px-6 sm:px-8 py-3` 
+                                `px-3 2xs:px-4 xs:px-5 py-3` :
+                                `px-6 sm:px-8 py-3`
             ],
             props.class ?? ''
-        ]
-        }>
+        ]}>
             <Slot />
         </Poly>
     )
