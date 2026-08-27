@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { Link } from '@builder.io/qwik-city'
+import { toSiteRoutePath } from "~/config/routes";
 import HeroLogo from "~/media/pics/restored/9A24F744BA8146C2AE4EF18B13C5B7B8.gif?jsx";
 
 export const heroLinkClass =
@@ -13,7 +14,7 @@ export const HeroSection = component$(() => {
                 class="mx-auto grid w-full grid-cols-1 items-center justify-items-center gap-x-4 gap-y-4 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6 md:grid-cols-[minmax(0,1fr)_minmax(13rem,18rem)_minmax(0,1fr)] md:gap-x-10 md:gap-y-8 lg:gap-x-16"
             >
                 <Link
-                    href="#le-api"
+                    href={toSiteRoutePath('leApi')}
                     class={`hero-link le-api-color col-start-1 row-start-1 md:col-start-1 md:row-start-1`}
                 >
                     Le Api
