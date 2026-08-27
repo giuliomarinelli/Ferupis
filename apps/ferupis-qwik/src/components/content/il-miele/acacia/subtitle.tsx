@@ -2,6 +2,6 @@ import { component$ } from "@builder.io/qwik";
 
 export const AcaciaSubtitle = component$(() => (
   <p class="subtitle">
-    Placeholder.
+    Chiaro, delicato e naturalmente ricco di fruttosio.
   </p>
 ));
