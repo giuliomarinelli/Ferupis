@@ -1,8 +1,9 @@
 import { component$ } from "@builder.io/qwik";
-import { ContentHeader } from "~/components/content-typography/content-header/content-header";
+import { ContentHeader } from "~/components/content-typography";
 
 export default component$(() => (
-    <>
-        <ContentHeader eyebrow="Ferupis" heading="Le Api" headingTag="h1" showSubTitle={false} />
-    </>
-))
+  <ContentHeader.Root>
+    <ContentHeader.Eyebrow text="Ferupis" />
+    <ContentHeader.Heading text="Le Api" tag="h1" />
+  </ContentHeader.Root>
+));
