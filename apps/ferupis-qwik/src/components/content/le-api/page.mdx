@@ -4,11 +4,7 @@ import BeeMark from "~/media/pics/restored/10ABE9FB8C9246459F68A9CA6EFA6023.gif?
 import FerupisLegacyLogo from "~/media/pics/restored/04E8A4AF8CDE435D88BA4C1131FB2B36.jpg?jsx";
 import { LeApiSubtitle } from "./subtitle";
 
-<Container
-  context="article"
-  tag="article"
-  class="flex-col items-stretch py-12 sm:py-16 lg:py-20 [&_h2]:mt-12 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-tight sm:[&_h2]:text-3xl [&_p]:mt-5 [&_p]:text-base [&_p]:leading-8 sm:[&_p]:text-lg [&_ul]:mt-5 [&_ul]:list-disc [&_ul]:space-y-4 [&_ul]:pl-5 sm:[&_ul]:pl-6 [&_li]:pl-1"
->
+<Container context="article" tag="article" class="mdx-article">
 
 <ContentHeader.Root class="w-full mb-10 sm:mb-12">
   <div class="mb-5 flex items-center gap-3 sm:mb-6">
@@ -49,14 +45,12 @@ Raccolgono anche la propoli, una sostanza di origine vegetale ricavata dalle gem
 
 Le api non vanno in letargo: rimangono attive e si raggruppano al centro dei favi formando il glomere. Producono calore attraverso l’attività dei muscoli del torace, utilizzando l’energia fornita dal miele.
 
-<div class="mx-auto mt-12 flex w-full max-w-xs flex-col items-center gap-3 text-center sm:max-w-sm">
+<figure class="max-w-xs sm:max-w-sm">
   <FerupisLegacyLogo
     alt="Logo storico Ferupis"
     class="h-auto w-24 rounded-md sm:w-28"
   />
-  <p class="!mt-0 text-sm leading-6 opacity-65">
-    Un’immagine dal sito Ferupis originale.
-  </p>
-</div>
+  <figcaption>Un’immagine dal sito Ferupis originale.</figcaption>
+</figure>
 
 </Container>
