@@ -1,15 +1,30 @@
 import { ContentHeader } from "~/components/content-typography";
 import { Container } from "~/components/layout/container";
-import BeeAtHive from "~/media/pics/restored/C0B4012B7779EFB5755EB0CC54C03D44.png?jsx";
-import HoneyFilledComb from "~/media/pics/restored/7CEEE0A0F1443E00C998634AFF0243C7.png?jsx";
-import BeeOnPurpleFlower from "~/media/pics/restored/9A5FC67B14F873B593BA3FD9DE92301F.png?jsx";
-import HoneyJars from "~/media/pics/restored/17C16691420818F05678E9FC8D9B532B.png?jsx";
+import BeeOnAcacia from "~/media/pics/restored/64225C194C7A457F804107E653FDEE18.jpg?jsx";
 import { AcaciaSubtitle } from "./subtitle";
 
 <Container context="article" tag="article" class="mdx-article">
-  <ContentHeader.Root class="mb-10 w-full sm:mb-12">
-    <ContentHeader.Eyebrow text="Ferupis · Il Miele" />
-    <ContentHeader.Heading text="Acacia" tag="h1" class="il-miele-color" />
-    <ContentHeader.Subtitle component={AcaciaSubtitle} />
-  </ContentHeader.Root>
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Il Miele" />
+  <ContentHeader.Heading text="Acacia" tag="h1" class="text-light-primary dark:text-bright-primary" />
+  <ContentHeader.Subtitle component={AcaciaSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-right md:mt-6 md:mb-5 md:ml-8 md:w-[38%]">
+  <BeeOnAcacia alt="Ape su fiori di acacia" class="h-auto w-full rounded-xl" />
+  <figcaption>Un’ape sui fiori di acacia.</figcaption>
+</figure>
+
+Il miele di acacia è caratterizzato da un elevato contenuto di fruttosio e da un sapore molto dolce e delicato.
+
+Ha un colore giallo paglierino molto chiaro e rimane allo stato liquido molto a lungo. In pianura la fioritura dell’acacia avviene nel mese di maggio.
+
+</section>
+
+## Nella tradizione popolare
+
+La medicina popolare indica questo miele per alleviare l’acidità di stomaco.
+
 </Container>

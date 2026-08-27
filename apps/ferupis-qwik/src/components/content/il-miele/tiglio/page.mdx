@@ -1,15 +1,53 @@
 import { ContentHeader } from "~/components/content-typography";
 import { Container } from "~/components/layout/container";
-import BeeAtHive from "~/media/pics/restored/C0B4012B7779EFB5755EB0CC54C03D44.png?jsx";
-import HoneyFilledComb from "~/media/pics/restored/7CEEE0A0F1443E00C998634AFF0243C7.png?jsx";
-import BeeOnPurpleFlower from "~/media/pics/restored/9A5FC67B14F873B593BA3FD9DE92301F.png?jsx";
-import HoneyJars from "~/media/pics/restored/17C16691420818F05678E9FC8D9B532B.png?jsx";
+import LindenTree from "~/media/pics/restored/6859CEBC50144E47AA0B89C506A1A935.jpg?jsx";
+import BeeOnLindenBlossom from "~/media/pics/restored/75C1D9CC38FE482FACE882F3C7031EB4.png?jsx";
+import LindenHoneyJar from "~/media/pics/restored/50D0AE1B419141D39F43B56A24ABA609.jpg?jsx";
 import { TiglioSubtitle } from "./subtitle";
 
 <Container context="article" tag="article" class="mdx-article">
-  <ContentHeader.Root class="mb-10 w-full sm:mb-12">
-    <ContentHeader.Eyebrow text="Ferupis · Il Miele" />
-    <ContentHeader.Heading text="Tiglio" tag="h1" class="il-miele-color" />
-    <ContentHeader.Subtitle component={TiglioSubtitle} />
-  </ContentHeader.Root>
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Il Miele" />
+  <ContentHeader.Heading text="Tiglio" tag="h1" class="text-light-success dark:text-bright-success" />
+  <ContentHeader.Subtitle component={TiglioSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-left md:mt-6 md:mr-8 md:mb-5 md:w-[34%]">
+  <LindenTree alt="Albero di tiglio" class="h-auto w-full rounded-xl" />
+  <figcaption>Un tiglio.</figcaption>
+</figure>
+
+Il miele di tiglio è caratterizzato da un sapore balsamico, aromatico e intenso. In pianura l’albero fiorisce nel mese di giugno, diffondendo un odore caratteristico.
+
+In alcune annate le api raccolgono anche la melata prodotta dagli afidi che succhiano la linfa dalle foglie.
+
+</section>
+
+## La melata di tiglio
+
+Si ottiene così un miele di melata di tiglio, di colore scuro e con riflessi tendenti al verde. La cristallizzazione del miele di tiglio è lenta e, in presenza di melata, può non avvenire.
+
+<div class="grid gap-5 sm:grid-cols-2">
+  <figure>
+    <BeeOnLindenBlossom
+      alt="Ape su fiori di tiglio"
+      class="h-auto w-full rounded-xl"
+    />
+    <figcaption>Un’ape sui fiori di tiglio.</figcaption>
+  </figure>
+  <figure>
+    <LindenHoneyJar
+      alt="Vasetto di miele di tiglio"
+      class="mx-auto h-auto w-full max-w-xs rounded-xl"
+    />
+    <figcaption>Un vasetto di miele di tiglio.</figcaption>
+  </figure>
+</div>
+
+## Nella tradizione popolare
+
+La medicina popolare indica questo miele come adatto a favorire i processi digestivi e diuretici e ad alleviare i sintomi della bronchite e della tosse.
+
 </Container>

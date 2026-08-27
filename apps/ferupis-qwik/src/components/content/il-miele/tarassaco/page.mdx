@@ -1,15 +1,56 @@
 import { ContentHeader } from "~/components/content-typography";
 import { Container } from "~/components/layout/container";
-import BeeAtHive from "~/media/pics/restored/C0B4012B7779EFB5755EB0CC54C03D44.png?jsx";
-import HoneyFilledComb from "~/media/pics/restored/7CEEE0A0F1443E00C998634AFF0243C7.png?jsx";
-import BeeOnPurpleFlower from "~/media/pics/restored/9A5FC67B14F873B593BA3FD9DE92301F.png?jsx";
-import HoneyJars from "~/media/pics/restored/17C16691420818F05678E9FC8D9B532B.png?jsx";
+import DandelionField from "~/media/pics/restored/88E8F68B45C84AC9AF091EACDD8DD1ED.jpg?jsx";
+import DandelionFlower from "~/media/pics/restored/CF7477EB8CC54D4C9085E00396945110.png?jsx";
+import DandelionHoneyJar from "~/media/pics/restored/B701494FF1CD4C459AAEE8D267782C58.png?jsx";
 import { TarassacoSubtitle } from "./subtitle";
 
 <Container context="article" tag="article" class="mdx-article">
-  <ContentHeader.Root class="mb-10 w-full sm:mb-12">
-    <ContentHeader.Eyebrow text="Ferupis · Il Miele" />
-    <ContentHeader.Heading text="Tarassaco" tag="h1" class="il-miele-color" />
-    <ContentHeader.Subtitle component={TarassacoSubtitle} />
-  </ContentHeader.Root>
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Il Miele" />
+  <ContentHeader.Heading text="Tarassaco" tag="h1" class="il-miele-color" />
+  <ContentHeader.Subtitle component={TarassacoSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-left md:mb-5 md:mr-8 md:mt-6 md:w-[42%]">
+  <DandelionField
+    alt="Campo di tarassaco in fiore"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>La fioritura del tarassaco in pianura.</figcaption>
+</figure>
+
+Il tarassaco fiorisce in pianura nel mese di aprile. È conosciuto anche con numerosi nomi popolari, tra cui **dente di leone**, **soffione** e **radicella**.
+
+Il nettare raccolto dalle api viene trasformato in un miele dal sapore particolare e caratteristico, con una nota amarotica.
+
+</section>
+
+## Aspetto e cristallizzazione
+
+Il miele di tarassaco cristallizza spontaneamente in tempi molto rapidi.
+
+<div class="grid gap-5 sm:grid-cols-2">
+  <figure>
+    <DandelionFlower
+      alt="Fiore di tarassaco"
+      class="h-auto w-full rounded-xl"
+    />
+    <figcaption>Il fiore di tarassaco.</figcaption>
+  </figure>
+  <figure>
+    <DandelionHoneyJar
+      alt="Vasetto di miele di tarassaco"
+      class="mx-auto h-auto w-full max-w-xs rounded-xl"
+    />
+    <figcaption>Un vasetto di miele di tarassaco.</figcaption>
+  </figure>
+</div>
+
+## Nella tradizione popolare
+
+La medicina popolare attribuisce a questo miele proprietà epatoprotettive.
+
 </Container>
