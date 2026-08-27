@@ -39,6 +39,41 @@ export const SITE_ROUTE_REGISTRY = defineSiteRouteRegistry({
     indexable: true,
     parent: 'home'
   },
+  ilMiele: {
+    internalPath: "il-miele",
+    publicPath: "il-miele",
+    label: "Il Miele",
+    indexable: true,
+    parent: 'home'
+  },
+  laPropoli: {
+    internalPath: "la-propoli",
+    publicPath: "la-propoli",
+    label: "La Propoli",
+    indexable: true,
+    parent: 'home'
+  },
+  laPappaReale: {
+    internalPath: "la-pappa-reale",
+    publicPath: "la-pappa-reale",
+    label: "La Pappa Reale",
+    indexable: true,
+    parent: 'home'
+  },
+  foto: {
+    internalPath: "foto",
+    publicPath: "foto",
+    label: "Le Api",
+    indexable: true,
+    parent: 'home'
+  },
+  contattaci: {
+    internalPath: "contattaci",
+    publicPath: "contattaci",
+    label: "Contattaci",
+    indexable: true,
+    parent: 'home'
+  },
 });
 
 export type SiteRouteKey = keyof typeof SITE_ROUTE_REGISTRY;

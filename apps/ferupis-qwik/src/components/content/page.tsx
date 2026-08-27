@@ -8,7 +8,7 @@ export const heroLinkClass =
 
 export const HomePage = component$(() => {
     return (
-        <section class="flex w-full items-center justify-center py-6 sm:py-10">
+        <section class="relative -top-10 flex w-full items-center justify-center py-6 sm:py-10">
             <nav
                 aria-label="Navigazione principale"
                 class="mx-auto grid w-full grid-cols-1 items-center justify-items-center gap-x-4 gap-y-4 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6 md:grid-cols-[minmax(0,1fr)_minmax(13rem,18rem)_minmax(0,1fr)] md:gap-x-10 md:gap-y-8 lg:gap-x-16"
@@ -21,14 +21,14 @@ export const HomePage = component$(() => {
                 </Link>
 
                 <Link
-                    href="#il-miele"
+                    href={toSiteRoutePath('ilMiele')}
                     class={`hero-link il-miele-color col-start-1 row-start-2 sm:col-start-2 sm:row-start-1 md:col-start-1 md:row-start-2`}
                 >
                     Il Miele
                 </Link>
 
                 <a
-                    href="#la-propoli"
+                    href={toSiteRoutePath('laPropoli')}
                     class={`hero-link la-propoli-color col-start-1 row-start-3 sm:col-span-2 sm:row-start-2 md:col-span-1 md:col-start-1 md:row-start-3`}
                 >
                     La Propoli
@@ -41,21 +41,21 @@ export const HomePage = component$(() => {
                 </div>
 
                 <Link
-                    href="#la-pappa-reale"
+                    href={toSiteRoutePath('laPappaReale')}
                     class={`hero-link la-papppa-reale-color col-start-1 row-start-5 sm:col-span-2 sm:row-start-4 md:col-span-1 md:col-start-3 md:row-start-1`}
                 >
                     La Pappa Reale
                 </Link>
 
                 <Link
-                    href="#foto"
+                    href={toSiteRoutePath('foto')}
                     class={`hero-link foto-color col-start-1 row-start-6 sm:row-start-5 md:col-start-3 md:row-start-2`}
                 >
                     Foto
                 </Link>
 
                 <Link
-                    href="/contatti/"
+                    href={toSiteRoutePath('contattaci')}
                     class={`hero-link video-color col-start-1 row-start-7 sm:col-start-2 sm:row-start-5 md:col-start-3 md:row-start-3`}
                 >
                     Contattaci
