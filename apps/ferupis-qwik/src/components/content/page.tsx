@@ -6,9 +6,9 @@ import HeroLogo from "~/media/pics/restored/9A24F744BA8146C2AE4EF18B13C5B7B8.gif
 export const heroLinkClass =
     "";
 
-export const HeroSection = component$(() => {
+export const HomePage = component$(() => {
     return (
-        <section class="flex min-h-[68svh] w-full items-center justify-center py-6 sm:py-10">
+        <section class="flex w-full items-center justify-center py-6 sm:py-10">
             <nav
                 aria-label="Navigazione principale"
                 class="mx-auto grid w-full grid-cols-1 items-center justify-items-center gap-x-4 gap-y-4 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6 md:grid-cols-[minmax(0,1fr)_minmax(13rem,18rem)_minmax(0,1fr)] md:gap-x-10 md:gap-y-8 lg:gap-x-16"
