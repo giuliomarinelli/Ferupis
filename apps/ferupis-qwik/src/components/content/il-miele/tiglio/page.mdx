@@ -8,17 +8,14 @@ import { TiglioSubtitle } from "./subtitle";
 <Container context="article" tag="article" class="mdx-article">
 <ContentHeader.Root class="mb-10 w-full sm:mb-12">
   <ContentHeader.Eyebrow text="Ferupis · Il Miele" />
-  <ContentHeader.Heading text="Tiglio" tag="h1" class="il-miele-color" />
+  <ContentHeader.Heading text="Tiglio" tag="h1" class="text-light-success dark:text-bright-success" />
   <ContentHeader.Subtitle component={TiglioSubtitle} />
 </ContentHeader.Root>
 
 <section class="flow-root">
 
-<figure class="md:float-left md:mb-5 md:mr-8 md:mt-6 md:w-[34%]">
-  <LindenTree
-    alt="Albero di tiglio"
-    class="h-auto w-full rounded-xl"
-  />
+<figure class="md:float-left md:mt-6 md:mr-8 md:mb-5 md:w-[34%]">
+  <LindenTree alt="Albero di tiglio" class="h-auto w-full rounded-xl" />
   <figcaption>Un tiglio.</figcaption>
 </figure>
 
