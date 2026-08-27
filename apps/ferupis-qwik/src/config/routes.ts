@@ -74,6 +74,76 @@ export const SITE_ROUTE_REGISTRY = defineSiteRouteRegistry({
     indexable: true,
     parent: 'home'
   },
+  alveare: {
+    internalPath: "le-api/alveare",
+    publicPath: "le-api/alveare",
+    label: "L'alveare",
+    indexable: true,
+    parent: 'leApi'
+  },
+  covata: {
+    internalPath: "le-api/covata",
+    publicPath: "le-api/covata",
+    label: "La covata",
+    indexable: true,
+    parent: 'leApi'
+  },
+  uovo: {
+    internalPath: "le-api/uovo",
+    publicPath: "le-api/uovo",
+    label: "L'uovo d'ape",
+    indexable: true,
+    parent: 'leApi'
+  },
+  apeRegina: {
+    internalPath: "le-api/ape-regina",
+    publicPath: "le-api/ape-regina",
+    label: "L'ape regina",
+    indexable: true,
+    parent: 'leApi'
+  },
+  favo: {
+    internalPath: "le-api/favo",
+    publicPath: "le-api/favo",
+    label: "Il favo",
+    indexable: true,
+    parent: 'leApi'
+  },
+  nascita: {
+    internalPath: "le-api/nascita",
+    publicPath: "le-api/nascita",
+    label: "La nascita",
+    indexable: true,
+    parent: 'leApi'
+  },
+  apeOperaia: {
+    internalPath: "le-api/ape-operaia",
+    publicPath: "le-api/ape-operaia",
+    label: "L'ape operaia",
+    indexable: true,
+    parent: 'leApi'
+  },
+  fuco: {
+    internalPath: "le-api/fuco",
+    publicPath: "le-api/fuco",
+    label: "Il fuco",
+    indexable: true,
+    parent: 'leApi'
+  },
+  sciamatura: {
+    internalPath: "le-api/sciamatura",
+    publicPath: "le-api/sciamatura",
+    label: "La sciamatura",
+    indexable: true,
+    parent: 'leApi'
+  },
+  polline: {
+    internalPath: "le-api/polline",
+    publicPath: "le-api/polline",
+    label: "Il polline",
+    indexable: true,
+    parent: 'leApi'
+  },
 });
 
 export type SiteRouteKey = keyof typeof SITE_ROUTE_REGISTRY;

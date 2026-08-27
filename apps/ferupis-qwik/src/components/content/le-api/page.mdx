@@ -6,6 +6,8 @@ import { LeApiSubtitle } from "./subtitle";
 import { PrimaryActionBtn } from "@gm/qwik-core/ui";
 import { ComeBackBtn } from "~/components/UI/come-back-btn";
 import { DESCR_GEMMA } from "~/config/constants";
+import { Link } from "@builder.io/qwik-city";
+import { toSiteRoutePath } from "~/config/routes";
 
 <Container context="article" tag="article" class="mdx-article">
 <ContentHeader.Root class="mb-10 w-full sm:mb-12">
@@ -16,33 +18,33 @@ import { DESCR_GEMMA } from "~/config/constants";
 
 ## Una vita al servizio dell’alveare
 
-Tutta la vita dell’ape si svolge in funzione dell’insieme degli individui che costituiscono la famiglia: l’alveare. Le attività delle api sono finalizzate all’allevamento della covata, cioè delle nuove api che porteranno avanti il ciclo vitale e manterranno la famiglia abbastanza numerosa da svolgere tutti i lavori necessari al sostentamento e alla propagazione della specie.
+Tutta la vita dell’ape si svolge in funzione dell’insieme degli individui che costituiscono la famiglia: l’<Link href={toSiteRoutePath('alveare')}>alveare</Link>. Le attività delle api sono finalizzate all’allevamento della <Link href={toSiteRoutePath('covata')}>covata</Link>, cioè delle nuove api che porteranno avanti il ciclo vitale e manterranno la famiglia abbastanza numerosa da svolgere tutti i lavori necessari al sostentamento e alla propagazione della specie.
 
-L’ape nasce da un uovo deposto dall’unica femmina feconda della famiglia, l’ape regina. L’uovo è bianco, allungato e leggermente curvo e viene deposto sul fondo delle cellette del favo. Dopo tre giorni nasce una piccola larva, subito alimentata dalle api giovani con pappa reale, il cosiddetto latte delle api prodotto da ghiandole dell’apparato boccale.
+L’ape nasce da un <Link href={toSiteRoutePath('uovo')}>uovo</Link> deposto dall’unica femmina feconda della famiglia, l’<Link href={toSiteRoutePath('apeRegina')}>ape regina</Link>. L’<Link href={toSiteRoutePath('uovo')}>uovo</Link> è bianco, allungato e leggermente curvo e viene deposto sul fondo delle cellette del <Link href={toSiteRoutePath('favo')}>favo</Link>. Dopo tre giorni nasce una piccola larva, subito alimentata dalle api giovani con <Link href={toSiteRoutePath('laPappaReale')}>pappa reale</Link>, il cosiddetto latte delle api prodotto da ghiandole dell’apparato boccale.
 
-In pochi giorni la larva cresce fino a riempire la propria celletta. Questa viene quindi opercolata dalle api con un impasto morbido di cera e polline, che la nuova ape ritaglierà con le mandibole al momento della nascita.
+In pochi giorni la larva cresce fino a riempire la propria celletta. Questa viene quindi opercolata dalle api con un impasto morbido di cera e <Link href={toSiteRoutePath('polline')}>polline</Link>, che la nuova ape ritaglierà con le mandibole al momento della <Link href={toSiteRoutePath('nascita')}>nascita</Link>.
 
 ## I tre individui della famiglia
 
-- Da un uovo fecondato può nascere l’**ape operaia**, una femmina con apparato riproduttivo non sviluppato. Le operaie rappresentano quasi la totalità degli individui e, nel periodo estivo, possono essere presenti in decine di migliaia.
-- Da un uovo non fecondato nasce il **fuco**, il maschio. In primavera può essere presente a centinaia e ha la funzione di fecondare in volo l’ape regina. Gli spermatozoi vengono conservati in una sacca nell’addome della regina e utilizzati nel corso della sua vita.
-- Da un uovo fecondato può nascere anche una femmina con apparato riproduttivo completamente sviluppato: l’**ape regina**, l’unica in grado di deporre uova fertili.
+- Da un <Link href={toSiteRoutePath('uovo')}>uovo</Link> fecondato può nascere l’<Link class="font-bold" href={toSiteRoutePath('apeOperaia')}>ape operaia</Link>, una femmina con apparato riproduttivo non sviluppato. Le operaie rappresentano quasi la totalità degli individui e, nel periodo estivo, possono essere presenti in decine di migliaia.
+- Da un <Link href={toSiteRoutePath('uovo')}>uovo</Link> non fecondato nasce <Link class="font-bold" href={toSiteRoutePath('fuco')}>il fuco</Link>, il maschio. In primavera può essere presente a centinaia e ha la funzione di fecondare in volo l’<Link class="font-bold" href={toSiteRoutePath('apeRegina')}>ape regina</Link>. Gli spermatozoi vengono conservati in una sacca nell’addome della regina e utilizzati nel corso della sua vita.
+- Da un <Link href={toSiteRoutePath('uovo')}>uovo</Link> fecondato può nascere anche una femmina con apparato riproduttivo completamente sviluppato: l’<Link class="font-bold" href={toSiteRoutePath('apeRegina')}>ape regina</Link>, l’unica in grado di deporre uova fertili.
 
-In condizioni normali la nascita di una nuova regina è legata all’istinto di propagazione della specie, la sciamatura, che avviene generalmente nel periodo primaverile.
+In condizioni normali la <Link href={toSiteRoutePath('nascita')}>nascita</Link> di una nuova regina è legata all’istinto di propagazione della specie, la <Link href={toSiteRoutePath('sciamatura')}>sciamatura</Link>, che avviene generalmente nel periodo primaverile.
 
 ## Nettare, miele e comunicazione
 
 L’ape vola sul territorio alla ricerca degli alimenti e delle sostanze necessarie al sostentamento della famiglia. È in grado di ricordare e di comunicare alle altre api informazioni sulla distanza e sulla posizione delle fonti di cibo.
 
-Visita i fiori alla ricerca del nettare, che preleva tramite la ligula e trasporta nell’alveare. Qui il nettare viene consegnato alle api di casa e depositato nei favi, generalmente nella zona superiore alla covata. I ripetuti scambi da un’ape all’altra lo arricchiscono di enzimi prodotti dalle ghiandole dell’apparato boccale e, dopo vari passaggi, il nettare matura diventando miele.
+Visita i fiori alla ricerca del nettare, che preleva tramite la ligula e trasporta nell’<Link href={toSiteRoutePath('alveare')}>alveare</Link>. Qui il nettare viene consegnato alle api di casa e depositato nei favi, generalmente nella zona superiore alla <Link href={toSiteRoutePath('covata')}>covata</Link>. I ripetuti scambi da un’ape all’altra lo arricchiscono di enzimi prodotti dalle ghiandole dell’apparato boccale e, dopo vari passaggi, il nettare matura diventando <Link href={toSiteRoutePath('ilMiele')}>miele</Link>.
 
 ## Polline, propoli e inverno
 
-Le api raccolgono il polline utilizzando apposite spazzole sulle zampe posteriori, con le quali riuniscono i granuli nelle cestelle. Il polline costituisce l’alimento proteico della covata.
+Le api raccolgono il <Link href={toSiteRoutePath('polline')}>polline</Link> utilizzando apposite spazzole sulle zampe posteriori, con le quali riuniscono i granuli nelle cestelle. Il <Link href={toSiteRoutePath('polline')}>polline</Link>> costituisce l’alimento proteico della <Link href={toSiteRoutePath('covata')}>covata</Link>.
 
-Raccolgono anche la propoli, una sostanza di origine vegetale ricavata dalle gemme di alcune varietà di alberi e utilizzata per rivestire le superfici interne dell’alveare. Le riserve alimentari accumulate durante la stagione produttiva servono poi per il sostentamento e il riscaldamento della famiglia nel periodo invernale.
+Raccolgono anche <Link href={toSiteRoutePath('laPropoli')}>la propoli</Link>, una sostanza di origine vegetale ricavata dalle gemme di alcune varietà di alberi e utilizzata per rivestire le superfici interne dell’<Link href={toSiteRoutePath('alveare')}>alveare</Link>. Le riserve alimentari accumulate durante la stagione produttiva servono poi per il sostentamento e il riscaldamento della famiglia nel periodo invernale.
 
-Le api non vanno in letargo: rimangono attive e si raggruppano al centro dei favi formando il glomere. Producono calore attraverso l’attività dei muscoli del torace, utilizzando l’energia fornita dal miele.
+Le api non vanno in letargo: rimangono attive e si raggruppano al centro dei favi formando il glomere. Producono calore attraverso l’attività dei muscoli del torace, utilizzando l’energia fornita dal <Link href={toSiteRoutePath('ilMiele')}>miele</Link>.
 
 <figure class="max-w-sm sm:max-w-lg">
   <FerupisLegacyLogo
