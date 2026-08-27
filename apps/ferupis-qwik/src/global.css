@@ -4,285 +4,254 @@
 /* Font per Brand: Ysabeau e Tenor Sans */
 
 @font-face {
-  font-family: 'Ysabeau';
+  font-family: "Ysabeau";
   font-style: italic;
   font-weight: 1 1000;
   font-display: swap;
-  src: url('/fonts/Ysabeau-BoldItalic-subset.woff2') format('woff2');
-  unicode-range: U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2000-200D, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+202F-2030, U+2032-2033, U+2039-203A, U+2042, U+2044, U+205F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212;
+  src: url("/fonts/Ysabeau-BoldItalic-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Ysabeau';
+  font-family: "Ysabeau";
   font-style: normal;
   font-weight: 1 1000;
   font-display: swap;
-  src: url('/fonts/Ysabeau-Bold-subset.woff2') format('woff2');
-  unicode-range: U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2000-200D, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+202F-2030, U+2032-2033, U+2039-203A, U+2042, U+2044, U+205F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212;
+  src: url("/fonts/Ysabeau-Bold-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Tenor Sans';
+  font-family: "Tenor Sans";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/TenorSans-subset.woff2') format('woff2');
-  unicode-range: U+20-7E, U+A0-B1, U+B4-B8, U+BA-BB, U+BF-FF, U+131, U+152-153, U+2BC, U+2C6, U+2DA, U+2DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2039-203A, U+2044, U+20AC, U+2122;
+  src: url("/fonts/TenorSans-subset.woff2") format("woff2");
 }
-
 
 /* Font per contenuto: Newsreader, Source Serif 4, Literata e Spectral */
 
 @font-face {
-  font-family: 'Newsreader 16pt';
+  font-family: "Newsreader 16pt";
   font-style: italic;
   font-weight: 200 800;
   font-display: swap;
-  src: url('/fonts/Newsreader16pt-Italic-subset.woff2') format('woff2');
-  unicode-range: U+20-7E, U+A0-FF, U+131, U+152-153, U+2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2010, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2052, U+2074, U+20AC, U+2122, U+2212, U+2215;
+  src: url("/fonts/Newsreader16pt-Italic-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Newsreader 16pt';
+  font-family: "Newsreader 16pt";
   font-style: normal;
   font-weight: 200 800;
   font-display: swap;
-  src: url('/fonts/Newsreader16pt-Regular-subset.woff2') format('woff2');
-  unicode-range: U+20-7E, U+A0-FF, U+131, U+152-153, U+2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2010, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2052, U+2074, U+20AC, U+2122, U+2212, U+2215;
+  src: url("/fonts/Newsreader16pt-Regular-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Source Serif 4';
+  font-family: "Source Serif 4";
   font-style: italic;
   font-weight: 200 900;
   font-display: swap;
-  src: url('/fonts/SourceSerif4Italic-Italic-subset.woff2') format('woff2');
-  unicode-range: U+20-7E, U+A0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2002-2007, U+2009-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2025-2026, U+202F-2030, U+2032-2033, U+2039-203A, U+203C, U+2044, U+2047-2049, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/SourceSerif4Italic-Italic-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Source Serif 4';
+  font-family: "Source Serif 4";
   font-style: normal;
   font-weight: 200 900;
   font-display: swap;
-  src: url('/fonts/SourceSerif4Roman-Regular-subset.woff2') format('woff2');
-  unicode-range: U+20-7E, U+A0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2002-2007, U+2009-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2025-2026, U+202F-2030, U+2032-2033, U+2039-203A, U+203C, U+2044, U+2047-2049, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/SourceSerif4Roman-Regular-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Literata';
+  font-family: "Literata";
   font-style: italic;
   font-weight: 200 900;
   font-display: swap;
-  src: url('/fonts/Literata-Italic-subset.woff2') format('woff2');
-  unicode-range: U+20-7E, U+A0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2042, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Literata-Italic-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Literata';
+  font-family: "Literata";
   font-style: normal;
   font-weight: 200 900;
   font-display: swap;
-  src: url('/fonts/Literata-Regular-subset.woff2') format('woff2');
-  unicode-range: U+20-7E, U+A0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2042, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Literata-Regular-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral';
+  font-family: "Spectral";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/Spectral-Bold-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-Bold-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral';
+  font-family: "Spectral";
   font-style: italic;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/Spectral-BoldItalic-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-BoldItalic-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral ExtraBold';
+  font-family: "Spectral ExtraBold";
   font-style: normal;
   font-weight: 800;
   font-display: swap;
-  src: url('/fonts/Spectral-ExtraBold-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-ExtraBold-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral ExtraBold';
+  font-family: "Spectral ExtraBold";
   font-style: italic;
   font-weight: 800;
   font-display: swap;
-  src: url('/fonts/Spectral-ExtraBoldItalic-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-ExtraBoldItalic-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral ExtraLight';
+  font-family: "Spectral ExtraLight";
   font-style: normal;
   font-weight: 200;
   font-display: swap;
-  src: url('/fonts/Spectral-ExtraLight-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-ExtraLight-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral ExtraLight';
+  font-family: "Spectral ExtraLight";
   font-style: italic;
   font-weight: 200;
   font-display: swap;
-  src: url('/fonts/Spectral-ExtraLightItalic-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-ExtraLightItalic-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral';
+  font-family: "Spectral";
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/Spectral-Italic-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-Italic-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral Light';
+  font-family: "Spectral Light";
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('/fonts/Spectral-Light-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-Light-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral Light';
+  font-family: "Spectral Light";
   font-style: italic;
   font-weight: 300;
   font-display: swap;
-  src: url('/fonts/Spectral-LightItalic-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-LightItalic-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral Medium';
+  font-family: "Spectral Medium";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('/fonts/Spectral-Medium-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-Medium-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral Medium';
+  font-family: "Spectral Medium";
   font-style: italic;
   font-weight: 500;
   font-display: swap;
-  src: url('/fonts/Spectral-MediumItalic-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-MediumItalic-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral';
+  font-family: "Spectral";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/Spectral-Regular-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-Regular-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral SemiBold';
+  font-family: "Spectral SemiBold";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('/fonts/Spectral-SemiBold-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-SemiBold-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Spectral SemiBold';
+  font-family: "Spectral SemiBold";
   font-style: italic;
   font-weight: 600;
   font-display: swap;
-  src: url('/fonts/Spectral-SemiBoldItalic-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-AC, U+AE-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+  src: url("/fonts/Spectral-SemiBoldItalic-subset.woff2") format("woff2");
 }
-
 
 /* Font per link Sezione Hero: Fraunces, Bricolage Grotesque e Bree Serif */
 
 @font-face {
-  font-family: 'Fraunces';
+  font-family: "Fraunces";
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url('/fonts/Fraunces-9ptBlackItalic-subset.woff2') format('woff2');
-  unicode-range: U+20-7E, U+A0-FF, U+131, U+152-153, U+2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2052, U+2074, U+20AC, U+2122, U+2212, U+2215;
+  src: url("/fonts/Fraunces-9ptBlackItalic-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Fraunces';
+  font-family: "Fraunces";
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('/fonts/Fraunces-9ptBlack-subset.woff2') format('woff2');
-  unicode-range: U+20-7E, U+A0-FF, U+131, U+152-153, U+2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2010, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2052, U+2074, U+20AC, U+2122, U+2212, U+2215;
+  src: url("/fonts/Fraunces-9ptBlack-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Bricolage Grotesque 96pt ExtraBold';
+  font-family: "Bricolage Grotesque 96pt ExtraBold";
   font-style: normal;
   font-weight: 200 800;
   font-stretch: 75% 100%;
   font-display: swap;
-  src: url('/fonts/BricolageGrotesque-96ptExtraBold-subset.woff2') format('woff2');
-  unicode-range: U+20-7E, U+A0-A3, U+A5-AC, U+AE-FF, U+131, U+152-153, U+2C6, U+2DA, U+2DC, U+304, U+308, U+2000-200B, U+2013-2014, U+2016, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+202F-2030, U+2032-2033, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212;
+  src: url("/fonts/BricolageGrotesque-96ptExtraBold-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Bree Serif';
+  font-family: "Bree Serif";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/BreeSerif-Regular-subset.woff2') format('woff2');
-  unicode-range: U+0, U+D, U+20-7E, U+A0-A3, U+A5-FF, U+131, U+152-153, U+2BC, U+2C6, U+2DA, U+2DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+2215;
+  src: url("/fonts/BreeSerif-Regular-subset.woff2") format("woff2");
 }
-
 
 /* Font sans-serif per evenienza: Roboto */
 
 @font-face {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: italic;
   font-weight: 100 900;
   font-stretch: 75% 100%;
   font-display: swap;
-  src: url('/fonts/Roboto-Italic-subset.woff2') format('woff2');
-  unicode-range: U+0, U+2, U+D, U+20-7E, U+A0-FF, U+131, U+152-153, U+2BC, U+2C6, U+2DA, U+2DC, U+2000-200B, U+2010-2011, U+2013-2015, U+2017-201E, U+2020-2022, U+2025-2027, U+2030, U+2032-2033, U+2039-203A, U+203C, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+  src: url("/fonts/Roboto-Italic-subset.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 100 900;
   font-stretch: 75% 100%;
   font-display: swap;
-  src: url('/fonts/Roboto-Regular-subset.woff2') format('woff2');
-  unicode-range: U+0, U+2, U+D, U+20-7E, U+A0-FF, U+131, U+152-153, U+2BC, U+2C6, U+2DA, U+2DC, U+2000-200B, U+2010-2011, U+2013-2015, U+2017-201E, U+2020-2022, U+2025-2027, U+2030, U+2032-2033, U+2039-203A, U+203C, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+  src: url("/fonts/Roboto-Regular-subset.woff2") format("woff2");
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Brakpoint */
+  /* Breakpoint */
   --breakpoint-xs: 426px;
   --breakpoint-2xs: 376px;
   --breakpoint-3xs: 300px;
+
   /* Colori */
   --color-light-primary: oklch(0.424 0.199 265.64);
   --color-bright-primary: oklch(78.5% 0.115 274.713);
@@ -295,6 +264,7 @@
   --color-bright-success: oklch(0.845 0.143 164.98);
   --color-light-warning: oklch(0.4606 0.1038 58.04);
   --color-bright-warning: oklch(0.905 0.182 98.11);
+
   /* Font */
   --font-body: Tenor Sans, sans-serif;
   --font-brand: Ysabeau, sans-serif;
@@ -304,44 +274,175 @@
 
 html,
 body {
-  @apply bg-slate-50 text-neutral-950 dark:bg-neutral-950 dark:text-slate-50 font-body;
+  @apply bg-slate-50 text-neutral-950 font-body dark:bg-neutral-950 dark:text-slate-50;
 }
 
 @layer components {
   .site-header {
-    @apply sticky top-0 z-30 flex h-[64.5px] shrink-0 flex-col justify-center border-b-[0.1px] border-indigo-300 bg-indigo-50/80 py-3 dark:border-slate-500 dark:bg-neutral-950/80 backdrop-blur-lg;
+    @apply sticky top-0 z-30 flex h-[64.5px] shrink-0 flex-col justify-center border-b-[0.1px] border-indigo-300 bg-indigo-50/80 py-3 backdrop-blur-lg dark:border-slate-500 dark:bg-neutral-950/80;
   }
 
   .a-link {
-    @apply text-light-accent decoration-light-accent underline-offset-4 transition-colors hover:text-violet-500 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-violet-500 dark:text-bright-accent dark:decoration-bright-accent dark:hover:text-violet-200 dark:focus-visible:outline-indigo-300 hover:underline;
+    @apply text-light-accent decoration-light-accent underline-offset-4 transition-colors hover:text-violet-500 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-violet-500 dark:text-bright-accent dark:decoration-bright-accent dark:hover:text-violet-200 dark:focus-visible:outline-indigo-300;
+  }
+
+  /* Base tipografica condivisa dagli articoli scritti in MDX. */
+  .mdx-article {
+    @apply flex-col items-stretch py-10 sm:py-14 lg:py-18;
+    font-family: "Source Serif 4", "Literata", Georgia, serif;
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+    line-height: 1.8;
+    text-wrap: pretty;
+  }
+
+  .mdx-article > :where(p, ul, ol, blockquote, pre, table),
+  .mdx-article > :where(h2, h3, h4),
+  .mdx-article > :where(figure) {
+    width: 100%;
+  }
+
+  .mdx-article :where(p) {
+    @apply mt-5;
+  }
+
+  .mdx-article :where(h2, h3, h4) {
+    font-family: "Spectral", "Source Serif 4", Georgia, serif;
+    text-wrap: balance;
+  }
+
+  .mdx-article :where(h2) {
+    @apply mt-12 text-2xl font-semibold tracking-tight text-light-primary sm:mt-14 sm:text-3xl dark:text-bright-primary;
+    line-height: 1.2;
+  }
+
+  .mdx-article :where(h3) {
+    @apply mt-10 text-xl font-semibold tracking-tight text-neutral-900 sm:text-2xl dark:text-slate-100;
+    line-height: 1.25;
+  }
+
+  .mdx-article :where(h4) {
+    @apply mt-8 text-lg font-semibold text-neutral-900 sm:text-xl dark:text-slate-100;
+  }
+
+  .mdx-article :where(strong) {
+    @apply font-semibold text-neutral-950 dark:text-white;
+  }
+
+  .mdx-article :where(em) {
+    font-style: italic;
+  }
+
+  .mdx-article :where(a) {
+    @apply text-light-accent decoration-light-accent underline decoration-1 underline-offset-4 transition-colors hover:text-violet-500 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-violet-500 dark:text-bright-accent dark:decoration-bright-accent dark:hover:text-violet-200 dark:focus-visible:outline-indigo-300;
+  }
+
+  .mdx-article :where(ul, ol) {
+    @apply mt-5 space-y-3 pl-6 sm:pl-7;
+  }
+
+  .mdx-article :where(ul) {
+    @apply list-disc;
+  }
+
+  .mdx-article :where(ol) {
+    @apply list-decimal;
+  }
+
+  .mdx-article :where(li) {
+    @apply pl-1;
+  }
+
+  .mdx-article :where(li)::marker {
+    color: var(--color-light-primary);
+  }
+
+  .dark .mdx-article :where(li)::marker {
+    color: var(--color-bright-primary);
+  }
+
+  .mdx-article :where(blockquote) {
+    @apply mt-8 border-l-4 border-light-primary/60 bg-indigo-50/60 px-5 py-4 italic dark:border-bright-primary/60 dark:bg-indigo-950/20;
+  }
+
+  .mdx-article :where(code):not(pre code) {
+    @apply rounded bg-slate-200/70 px-1.5 py-0.5 font-mono text-[0.9em] text-neutral-950 dark:bg-neutral-800 dark:text-slate-50;
+  }
+
+  .mdx-article :where(pre) {
+    @apply mt-8 max-w-full overflow-x-auto rounded-xl border border-slate-300 bg-slate-100 p-4 text-sm leading-6 dark:border-neutral-700 dark:bg-neutral-900;
+  }
+
+  .mdx-article :where(pre code) {
+    @apply font-mono;
+  }
+
+  .mdx-article :where(hr) {
+    @apply my-12 border-0 border-t border-slate-300 dark:border-neutral-700;
+  }
+
+  .mdx-article :where(figure) {
+    @apply mx-auto mt-12 flex flex-col items-center gap-3 text-center sm:mt-14;
+  }
+
+  .mdx-article :where(figcaption) {
+    @apply text-sm leading-6 text-neutral-600 dark:text-slate-400;
+    font-family: "Tenor Sans", sans-serif;
+  }
+
+  .mdx-article :where(img) {
+    @apply max-w-full;
+  }
+
+  .mdx-article :where(table) {
+    @apply mt-8 block max-w-full overflow-x-auto border-collapse text-left text-sm sm:text-base;
+  }
+
+  .mdx-article :where(th, td) {
+    @apply border-b border-slate-300 px-3 py-2 align-top dark:border-neutral-700;
+  }
+
+  .mdx-article :where(th) {
+    @apply font-semibold text-neutral-950 dark:text-slate-50;
+  }
+
+  @media (max-width: 425px) {
+    .mdx-article {
+      @apply px-5;
+      font-size: 1rem;
+      line-height: 1.72;
+    }
+
+    .mdx-article :where(h2) {
+      @apply mt-10 text-[1.55rem];
+    }
   }
 }
 
 @layer utilities {
-:root:has(> body.page-scrollbar) {
+  :root:has(> body.page-scrollbar) {
     --m-thin-scrollbar-size: var(--m-scrollbar-size, 6px);
     --m-thin-scrollbar-track: var(--m-scrollbar-track, transparent);
     --m-thin-scrollbar-thumb: var(--m-scrollbar-thumb, #475569);
   }
 
   @supports not selector(::-webkit-scrollbar) {
-  :root:has(> body.page-scrollbar) {
+    :root:has(> body.page-scrollbar) {
       scrollbar-width: thin;
       scrollbar-color: var(--m-thin-scrollbar-thumb) var(--m-thin-scrollbar-track);
     }
   }
 
-:root:has(> body.page-scrollbar)::-webkit-scrollbar {
+  :root:has(> body.page-scrollbar)::-webkit-scrollbar {
     width: var(--m-thin-scrollbar-size);
     height: var(--m-thin-scrollbar-size);
   }
 
-:root:has(> body.page-scrollbar)::-webkit-scrollbar-track {
+  :root:has(> body.page-scrollbar)::-webkit-scrollbar-track {
     background: var(--m-thin-scrollbar-track);
     border-radius: 9999px;
   }
 
-:root:has(> body.page-scrollbar)::-webkit-scrollbar-thumb {
+  :root:has(> body.page-scrollbar)::-webkit-scrollbar-thumb {
     background-color: var(--m-thin-scrollbar-thumb);
     background-clip: padding-box;
     border: 1px solid var(--m-thin-scrollbar-track);
