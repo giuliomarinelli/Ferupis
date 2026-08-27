@@ -11,6 +11,7 @@ type ContainerProps = {
     classOverride?: string | string[]
     context?: ContainerContext
     class?: string | string[]
+    lang?: 'it'
 }
 
 export const Container = component$<ContainerProps>((props) => {
@@ -29,7 +30,7 @@ export const Container = component$<ContainerProps>((props) => {
                                 `px-6 sm:px-8 py-3`
             ],
             props.class ?? ''
-        ]}>
+        ]} lang={context === 'article' ? 'it' : undefined}>
             <Slot />
         </Poly>
     )
