@@ -55,6 +55,13 @@ export const HeroSection = component$(() => {
                 </Link>
 
                 <Link
+                    href="/contatti/"
+                    class={`hero-link video-color col-start-1 row-start-7 sm:col-start-2 sm:row-start-5 md:col-start-3 md:row-start-3`}
+                >
+                    Contattaci
+                </Link>
+
+                {/* <Link
                     href="#video"
                     class={`hero-link video-color col-start-1 row-start-7 sm:col-start-2 sm:row-start-5 md:col-start-3 md:row-start-3`}
                 >
@@ -66,7 +73,7 @@ export const HeroSection = component$(() => {
                     class={`hero-link contatti-color col-start-1 row-start-8 mt-2 sm:col-span-2 sm:row-start-6 md:col-span-1 md:col-start-2 md:row-start-4 md:mt-3`}
                 >
                     Contattaci
-                </Link>
+                </Link> */}
             </nav>
         </section>
     );
