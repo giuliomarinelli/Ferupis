@@ -418,7 +418,9 @@ body {
   }
 
   .site-hr {
-    @apply border-slate-600 dark:border-slate-300;
+    @apply border-slate-700 dark:border-slate-400 w-full max-w-7xl mx-auto;
+    border-top-width: 0.5px;
+    opacity: 0.45;
   }
 
 }
