@@ -5,6 +5,8 @@ import HoneyFilledComb from "~/media/pics/restored/7CEEE0A0F1443E00C998634AFF024
 import BeeOnPurpleFlower from "~/media/pics/restored/9A5FC67B14F873B593BA3FD9DE92301F.png?jsx";
 import HoneyJars from "~/media/pics/restored/17C16691420818F05678E9FC8D9B532B.png?jsx";
 import { IlMieleSubtitle } from "./subtitle";
+import { toSiteRoutePath } from "~/config/routes";
+import { Link } from "@builder.io/qwik-city";
 
 <Container context="article" tag="article" class="mdx-article">
 <ContentHeader.Root class="mb-10 w-full sm:mb-12">
@@ -15,7 +17,7 @@ import { IlMieleSubtitle } from "./subtitle";
 
 <section class="flow-root">
 
-<figure class="md:float-right md:mb-5 md:ml-8 md:mt-6 md:w-[42%]">
+<figure class="md:float-right md:mt-6 md:mb-5 md:ml-8 md:w-[42%]">
   <BeeOnPurpleFlower
     alt="Ape su un fiore viola"
     class="h-auto w-full rounded-xl"
@@ -39,7 +41,7 @@ Tra gli zuccheri predominano glucosio e fruttosio.
 
 ## La cristallizzazione
 
-<figure class="md:float-left md:mb-5 md:mr-8 md:mt-6 md:w-[42%]">
+<figure class="md:float-left md:mt-6 md:mr-8 md:mb-5 md:w-[42%]">
   <HoneyFilledComb
     alt="Miele nelle cellette di un favo"
     class="h-auto w-full rounded-xl"
@@ -59,7 +61,7 @@ La cristallizzazione non rappresenta quindi, di per sé, un difetto del prodotto
 
 ## I mieli del territorio
 
-<figure class="md:float-right md:mb-5 md:ml-8 md:mt-6 md:w-[40%]">
+<figure class="md:float-right md:mt-6 md:mb-5 md:ml-8 md:w-[40%]">
   <BeeAtHive
     alt="Ape vicino all’ingresso di un alveare"
     class="h-auto w-full rounded-xl"
@@ -69,12 +71,14 @@ La cristallizzazione non rappresenta quindi, di per sé, un difetto del prodotto
 
 Tra i principali tipi di miele prodotti nel Veneto Orientale si trovano:
 
-- Tarassaco;
-- Colza;
-- Acacia;
-- Millefiori;
-- Tiglio;
-- Melata di Tiglio.
+- <Link class="font-bold" href={toSiteRoutePath("tarassaco")}>Tarassaco</Link>;
+- **Colza**;
+- <Link class="font-bold" href={toSiteRoutePath("acacia")}>Acacia</Link>;
+- <Link class="font-bold" href={toSiteRoutePath("millefiori")}>Millefiori</Link>;
+- <Link class="font-bold" href={toSiteRoutePath("tiglio")}>Tiglio</Link>;
+- <Link class="font-bold" href={toSiteRoutePath("melata")}>Melata</Link>;
+- **Melata di Tiglio**;
+- <Link class="font-bold" href={toSiteRoutePath("girasole")}>Girasole</Link>.
 
 La disponibilità e le caratteristiche dei diversi mieli variano in funzione delle fioriture, del territorio e dell’andamento delle stagioni.
 

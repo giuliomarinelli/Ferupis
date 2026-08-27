@@ -210,5 +210,89 @@ export const BREADCRUMBS_BY_ROUTE: BreadcrumbManifest = {
       "label": "Il polline",
       "href": "/le-api/polline/"
     }
+  ],
+  "tarassaco": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Il Miele",
+      "href": "/il-miele/"
+    },
+    {
+      "label": "Tarassaco",
+      "href": "/il-miele/tarassaco/"
+    }
+  ],
+  "acacia": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Il Miele",
+      "href": "/il-miele/"
+    },
+    {
+      "label": "Acacia",
+      "href": "/il-miele/acacia/"
+    }
+  ],
+  "millefiori": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Il Miele",
+      "href": "/il-miele/"
+    },
+    {
+      "label": "Millefiori",
+      "href": "/il-miele/millefiori/"
+    }
+  ],
+  "tiglio": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Il Miele",
+      "href": "/il-miele/"
+    },
+    {
+      "label": "Tiglio",
+      "href": "/il-miele/tiglio/"
+    }
+  ],
+  "girasole": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Il Miele",
+      "href": "/il-miele/"
+    },
+    {
+      "label": "Girasole",
+      "href": "/il-miele/girasole/"
+    }
+  ],
+  "melata": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Il Miele",
+      "href": "/il-miele/"
+    },
+    {
+      "label": "Melata",
+      "href": "/il-miele/melata/"
+    }
   ]
 } as const;

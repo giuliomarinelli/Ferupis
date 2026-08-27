@@ -144,6 +144,48 @@ export const SITE_ROUTE_REGISTRY = defineSiteRouteRegistry({
     indexable: true,
     parent: 'leApi'
   },
+  tarassaco: {
+    internalPath: "il-miele/tarassaco",
+    publicPath: "il-miele/tarassaco",
+    label: "Tarassaco",
+    indexable: true,
+    parent: 'ilMiele'
+  },
+  acacia: {
+    internalPath: "il-miele/acacia",
+    publicPath: "il-miele/acacia",
+    label: "Acacia",
+    indexable: true,
+    parent: 'ilMiele'
+  },
+  millefiori: {
+    internalPath: "il-miele/millefiori",
+    publicPath: "il-miele/millefiori",
+    label: "Millefiori",
+    indexable: true,
+    parent: 'ilMiele'
+  },
+  tiglio: {
+    internalPath: "il-miele/tiglio",
+    publicPath: "il-miele/tiglio",
+    label: "Tiglio",
+    indexable: true,
+    parent: 'ilMiele'
+  },
+  girasole: {
+    internalPath: "il-miele/girasole",
+    publicPath: "il-miele/girasole",
+    label: "Girasole",
+    indexable: true,
+    parent: 'ilMiele'
+  },
+  melata: {
+    internalPath: "il-miele/melata",
+    publicPath: "il-miele/melata",
+    label: "Melata",
+    indexable: true,
+    parent: 'ilMiele'
+  },
 });
 
 export type SiteRouteKey = keyof typeof SITE_ROUTE_REGISTRY;

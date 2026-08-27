@@ -1,0 +1,15 @@
+import { ContentHeader } from "~/components/content-typography";
+import { Container } from "~/components/layout/container";
+import BeeAtHive from "~/media/pics/restored/C0B4012B7779EFB5755EB0CC54C03D44.png?jsx";
+import HoneyFilledComb from "~/media/pics/restored/7CEEE0A0F1443E00C998634AFF0243C7.png?jsx";
+import BeeOnPurpleFlower from "~/media/pics/restored/9A5FC67B14F873B593BA3FD9DE92301F.png?jsx";
+import HoneyJars from "~/media/pics/restored/17C16691420818F05678E9FC8D9B532B.png?jsx";
+import { TiglioSubtitle } from "./subtitle";
+
+<Container context="article" tag="article" class="mdx-article">
+  <ContentHeader.Root class="mb-10 w-full sm:mb-12">
+    <ContentHeader.Eyebrow text="Ferupis · Il Miele" />
+    <ContentHeader.Heading text="Tiglio" tag="h1" class="il-miele-color" />
+    <ContentHeader.Subtitle component={TiglioSubtitle} />
+  </ContentHeader.Root>
+</Container>
