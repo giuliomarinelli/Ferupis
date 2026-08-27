@@ -17,6 +17,7 @@ export type ContainerTag =
   | 'h4'
   | 'h5'
   | 'h6'
+  | 'p'
 
 export type PolyProps = {
   as?: ContainerTag;
