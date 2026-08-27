@@ -1,8 +1,7 @@
 import {
   component$,
   Slot,
-  type FunctionComponent,
-  type PropsOf,
+  type HTMLAttributes,
 } from '@builder.io/qwik';
 
 export type ContainerTag =
@@ -19,19 +18,16 @@ export type ContainerTag =
   | 'h5'
   | 'h6'
 
-export const Poly = component$(
-  <C extends string | FunctionComponent = 'div'>({
-    as,
-    ...props
-  }: {
-    as?: C extends ContainerTag ? C : never;
-  } & PropsOf<string extends C ? 'div' : C>) => {
-    const Component = as || 'div';
+export type PolyProps = {
+  as?: ContainerTag;
+} & Omit<HTMLAttributes<HTMLElement>, 'ref'>;
 
-    return (
-      <Component {...props}>
-        <Slot />
-      </Component>
-    );
-  },
-);
+export const Poly = component$<PolyProps>(({ as, ...props }) => {
+  const Component = as || 'div';
+
+  return (
+    <Component {...props}>
+      <Slot />
+    </Component>
+  );
+});

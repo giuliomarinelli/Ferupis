@@ -1,4 +1,5 @@
 import { component$ } from "@builder.io/qwik";
+import { Link } from '@builder.io/qwik-city'
 import HeroLogo from "~/media/pics/restored/9A24F744BA8146C2AE4EF18B13C5B7B8.gif?jsx";
 
 const heroLinkClass =
@@ -11,19 +12,19 @@ export const HeroSection = component$(() => {
                 aria-label="Navigazione principale"
                 class="mx-auto grid w-full grid-cols-1 items-center justify-items-center gap-x-4 gap-y-4 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6 md:grid-cols-[minmax(0,1fr)_minmax(13rem,18rem)_minmax(0,1fr)] md:gap-x-10 md:gap-y-8 lg:gap-x-16"
             >
-                <a
+                <Link
                     href="#api"
                     class={`${heroLinkClass} col-start-1 row-start-1 text-light-primary dark:text-bright-primary md:col-start-1 md:row-start-1`}
                 >
                     Le Api
-                </a>
+                </Link>
 
-                <a
+                <Link
                     href="#miele"
                     class={`${heroLinkClass} col-start-1 row-start-2 text-light-warning dark:text-bright-warning sm:col-start-2 sm:row-start-1 md:col-start-1 md:row-start-2`}
                 >
                     Il Miele
-                </a>
+                </Link>
 
                 <a
                     href="#propoli"
@@ -38,33 +39,33 @@ export const HeroSection = component$(() => {
                     </div>
                 </div>
 
-                <a
+                <Link
                     href="#pappa-reale"
                     class={`${heroLinkClass} col-start-1 row-start-5 text-light-accent dark:text-bright-accent sm:col-span-2 sm:row-start-4 md:col-span-1 md:col-start-3 md:row-start-1`}
                 >
                     La Pappa Reale
-                </a>
+                </Link>
 
-                <a
+                <Link
                     href="#foto"
                     class={`${heroLinkClass} col-start-1 row-start-6 text-light-primary dark:text-bright-primary sm:row-start-5 md:col-start-3 md:row-start-2`}
                 >
                     Foto
-                </a>
+                </Link>
 
-                <a
+                <Link
                     href="#video"
                     class={`${heroLinkClass} col-start-1 row-start-7 text-light-error dark:text-bright-error sm:col-start-2 sm:row-start-5 md:col-start-3 md:row-start-3`}
                 >
                     Video
-                </a>
+                </Link>
 
-                <a
+                <Link
                     href="/contatti/"
                     class={`${heroLinkClass} col-start-1 row-start-8 mt-2 text-light-accent dark:text-bright-accent sm:col-span-2 sm:row-start-6 md:col-span-1 md:col-start-2 md:row-start-4 md:mt-3`}
                 >
                     Contattaci
-                </a>
+                </Link>
             </nav>
         </section>
     );
