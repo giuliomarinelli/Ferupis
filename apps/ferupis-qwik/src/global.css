@@ -286,6 +286,10 @@ body {
     @apply text-light-accent decoration-light-accent underline-offset-4 transition-colors hover:text-violet-500 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-violet-500 dark:text-bright-accent dark:decoration-bright-accent dark:hover:text-violet-200 dark:focus-visible:outline-indigo-300;
   }
 
+  .subtitle {
+    @apply mt-5 max-w-xl text-base leading-7 opacity-75 sm:text-lg;
+  }
+
   /* Base tipografica condivisa dagli articoli scritti in MDX. */
   .mdx-article {
     @apply flex-col items-stretch py-10 sm:py-14 lg:py-18;

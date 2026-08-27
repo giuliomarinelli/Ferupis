@@ -70,5 +70,145 @@ export const BREADCRUMBS_BY_ROUTE: BreadcrumbManifest = {
       "label": "Contattaci",
       "href": "/contattaci/"
     }
+  ],
+  "alveare": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Le Api",
+      "href": "/le-api/"
+    },
+    {
+      "label": "L'alveare",
+      "href": "/le-api/alveare/"
+    }
+  ],
+  "covata": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Le Api",
+      "href": "/le-api/"
+    },
+    {
+      "label": "La covata",
+      "href": "/le-api/covata/"
+    }
+  ],
+  "uovo": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Le Api",
+      "href": "/le-api/"
+    },
+    {
+      "label": "L'uovo d'ape",
+      "href": "/le-api/uovo/"
+    }
+  ],
+  "apeRegina": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Le Api",
+      "href": "/le-api/"
+    },
+    {
+      "label": "L'ape regina",
+      "href": "/le-api/ape-regina/"
+    }
+  ],
+  "favo": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Le Api",
+      "href": "/le-api/"
+    },
+    {
+      "label": "Il favo",
+      "href": "/le-api/favo/"
+    }
+  ],
+  "nascita": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Le Api",
+      "href": "/le-api/"
+    },
+    {
+      "label": "La nascita",
+      "href": "/le-api/nascita/"
+    }
+  ],
+  "apeOperaia": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Le Api",
+      "href": "/le-api/"
+    },
+    {
+      "label": "L'ape operaia",
+      "href": "/le-api/ape-operaia/"
+    }
+  ],
+  "fuco": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Le Api",
+      "href": "/le-api/"
+    },
+    {
+      "label": "Il fuco",
+      "href": "/le-api/fuco/"
+    }
+  ],
+  "sciamatura": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Le Api",
+      "href": "/le-api/"
+    },
+    {
+      "label": "La sciamatura",
+      "href": "/le-api/sciamatura/"
+    }
+  ],
+  "polline": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Le Api",
+      "href": "/le-api/"
+    },
+    {
+      "label": "Il polline",
+      "href": "/le-api/polline/"
+    }
   ]
 } as const;
