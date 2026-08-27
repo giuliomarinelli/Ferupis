@@ -1,0 +1,140 @@
+name: Deploy production
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  deployments: write
+
+concurrency:
+  group: cloudflare-production
+  cancel-in-progress: false
+
+jobs:
+  quality:
+    name: Verify production commit
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    name: Deploy production Pages artifact
+    needs: quality
+    if: github.ref_name == 'master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: production
+      url: https://ferupis.pages.dev
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      PAGES_PROJECT: ferupis
+      PAGES_PUBLIC_URL: https://ferupis.pages.dev
+    steps:
+      - name: Checkout exact commit
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.16.0
+          cache: npm
+
+      - name: Install deployment tooling
+        run: npm ci --ignore-scripts --no-audit
+
+      - name: Download tested Pages artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ferupis-pages-${{ github.sha }}
+          path: apps/ferupis-qwik/dist
+
+      - name: Verify downloaded Pages artifact
+        shell: bash
+        run: |
+          test -f apps/ferupis-qwik/dist/index.html
+          test -f apps/ferupis-qwik/dist/_worker.js
+          test -f apps/ferupis-qwik/dist/_routes.json
+
+      - name: Verify Cloudflare credentials and project
+        shell: bash
+        run: |
+          test -n "$CLOUDFLARE_ACCOUNT_ID"
+          test -n "$CLOUDFLARE_API_TOKEN"
+          npx wrangler whoami
+          npx wrangler pages project list --cwd apps/ferupis-qwik --json > pages-projects.json
+          jq -e --arg project "$PAGES_PROJECT" \
+            '.[] | select(.["Project Name"] == $project)' \
+            pages-projects.json > /dev/null
+
+      - name: Capture current production deployment
+        shell: bash
+        run: |
+          mkdir -p .deployment
+          npx wrangler pages deployment list \
+            --cwd apps/ferupis-qwik \
+            --project-name "$PAGES_PROJECT" \
+            --environment production \
+            --json > .deployment/pages-before.json
+          previous_deployment_id="$(jq -r '.[0].Id // empty' .deployment/pages-before.json)"
+          echo "PREVIOUS_PAGES_DEPLOYMENT_ID=$previous_deployment_id" >> "$GITHUB_ENV"
+
+      - name: Deploy production
+        run: >-
+          npx wrangler pages deploy dist
+          --cwd apps/ferupis-qwik
+          --project-name "$PAGES_PROJECT"
+          --branch master
+          --commit-hash "${{ github.sha }}"
+          --commit-message "GitHub Actions production ${{ github.run_id }}.${{ github.run_attempt }}"
+          --commit-dirty=false
+
+      - name: Resolve production deployment
+        shell: bash
+        run: |
+          npx wrangler pages deployment list \
+            --cwd apps/ferupis-qwik \
+            --project-name "$PAGES_PROJECT" \
+            --environment production \
+            --json > .deployment/pages-after.json
+
+          short_sha="${GITHUB_SHA:0:7}"
+          deployment_id="$(jq -r --arg branch master --arg source "$short_sha" '[.[] | select(.Branch == $branch and ((.Source // "") | startswith($source)))][0].Id // empty' .deployment/pages-after.json)"
+          deployment_url="$(jq -r --arg branch master --arg source "$short_sha" '[.[] | select(.Branch == $branch and ((.Source // "") | startswith($source)))][0].Deployment // empty' .deployment/pages-after.json)"
+          test -n "$deployment_id"
+          test -n "$deployment_url"
+
+          {
+            echo "# Production deployment"
+            echo
+            echo "- Commit: \`$GITHUB_SHA\`"
+            echo "- Pages deployment: \`$deployment_id\`"
+            echo "- Previous deployment: \`${PREVIOUS_PAGES_DEPLOYMENT_ID:-none}\`"
+            echo "- Deployment URL: $deployment_url"
+            echo "- Production URL: $PAGES_PUBLIC_URL"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Smoke-test production
+        shell: bash
+        run: |
+          for attempt in {1..12}; do
+            if curl --silent --show-error --fail --location "$PAGES_PUBLIC_URL/" > /dev/null; then
+              exit 0
+            fi
+            sleep 10
+          done
+          exit 1
+
+      - name: Upload production deployment record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-deployment-record
+          path: .deployment
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 90
