@@ -20,5 +20,8 @@
       "~/*": ["./src/*"]
     }
   },
+  "mdx": {
+    "checkMdx": true
+  },
   "include": ["src", "./*.d.ts", "./*.config.ts"]
 }

@@ -23,3 +23,4 @@ export const Heading = component$<HeadingProps>((props) => (
     {props.text}
   </Poly>
 ));
+
