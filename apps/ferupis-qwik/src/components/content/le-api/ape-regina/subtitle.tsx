@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 
-export const CovataSubtitle = component$(() => (
+export const ApeReginaSubtitle = component$(() => (
   <p class="subtitle">
-    Placeholder.
+    L’unica femmina feconda e il centro riproduttivo della famiglia.
   </p>
 ));

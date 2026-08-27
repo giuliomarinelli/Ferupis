@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 
-export const FucoSubtitle = component$(() => (
+export const FavoSubtitle = component$(() => (
   <p class="subtitle">
-    Placeholder.
+    Cera, cellette esagonali e struttura del nido.
   </p>
 ));

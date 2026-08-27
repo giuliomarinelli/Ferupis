@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 
-export const SciamaturaSubtitle = component$(() => (
+export const PollineSubtitle = component$(() => (
   <p class="subtitle">
-    Placeholder.
+    Dalla raccolta sui fiori al pane delle api.
   </p>
 ));

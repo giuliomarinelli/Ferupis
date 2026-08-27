@@ -2,6 +2,6 @@ import { component$ } from "@builder.io/qwik";
 
 export const ApeOperaiaSubtitle = component$(() => (
   <p class="subtitle">
-    Placeholder.
+    Una vita di lavori che cambiano con l’età.
   </p>
 ));
