@@ -12,8 +12,8 @@ export default extendConfig(baseConfig, () => ({
   plugins: [
     cloudflarePagesAdapter({
       ssg: {
-        include: ["/"],
-        origin: "https://ferupis-qwik.pages.dev",
+        include: ["*"],
+        origin: "https://ferupis.pages.dev",
       },
     }),
   ],

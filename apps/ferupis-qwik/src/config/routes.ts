@@ -63,7 +63,7 @@ export const SITE_ROUTE_REGISTRY = defineSiteRouteRegistry({
   foto: {
     internalPath: "foto",
     publicPath: "foto",
-    label: "Le Api",
+    label: "Foto",
     indexable: true,
     parent: 'home'
   },
