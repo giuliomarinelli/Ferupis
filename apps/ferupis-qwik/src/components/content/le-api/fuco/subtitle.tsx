@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 
-export const FavoSubtitle = component$(() => (
+export const FucoSubtitle = component$(() => (
   <p class="subtitle">
-    Placeholder.
+    Il maschio della famiglia e il suo ruolo nel volo nuziale.
   </p>
 ));

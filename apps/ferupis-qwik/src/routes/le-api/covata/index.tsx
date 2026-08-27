@@ -1,3 +1,19 @@
 import { component$ } from "@builder.io/qwik";
+import { DocumentHead } from "@builder.io/qwik-city";
+import CovataPage from "~/components/content/le-api/covata/page.mdx";
+import { EndPageBtnBlock } from "~/components/UI/end-page-btn-block";
 
-export default component$(() => <>Placeholder</>)
+export default component$(() => (
+    <>
+        <main>
+            <CovataPage />
+        </main>
+        <aside>
+            <EndPageBtnBlock />
+        </aside>
+    </>
+))
+
+export const head: DocumentHead = {
+    title: "La covata | Ferupis"
+}

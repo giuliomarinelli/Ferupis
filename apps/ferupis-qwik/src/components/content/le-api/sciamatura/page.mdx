@@ -1,13 +1,46 @@
 import { ContentHeader } from "~/components/content-typography";
 import { Container } from "~/components/layout/container";
+import SwarmInFlight from "~/media/pics/restored/A827603BF5A44D6BBA056EB20B6FF87A.png?jsx";
+import BeeSwarm from "~/media/pics/restored/2FAFD0E670D845B9B328F82E4284C75A.png?jsx";
+import { SciamaturaSubtitle } from "./subtitle";
 
 <Container context="article" tag="article" class="mdx-article">
 <ContentHeader.Root class="mb-10 w-full sm:mb-12">
-  <ContentHeader.Eyebrow text="Ferupis · Il mondo delle api" />
-  <ContentHeader.Heading text="Placeholder" tag="h1" class="text-light-primary dark:text-bright-primary" />
-  <ContentHeader.Subtitle component={<>Placeholder</>} />
+  <ContentHeader.Eyebrow text="Ferupis · Le Api" />
+  <ContentHeader.Heading text="La sciamatura" tag="h1" class="le-api-color" />
+  <ContentHeader.Subtitle component={SciamaturaSubtitle} />
 </ContentHeader.Root>
 
-## Una vita al servizio dell’alveare
+<section class="flow-root">
+
+<figure class="md:float-left md:mb-5 md:mr-8 md:mt-6 md:w-[42%]">
+  <SwarmInFlight
+    alt="Sciame di api in volo"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Uno sciame in volo.</figcaption>
+</figure>
+
+Con la sciamatura la famiglia attua la propagazione della specie. In primavera l’attività delle api può intensificarsi fino a entrare nella cosiddetta **febbre sciamatoria**.
+
+La colonia si divide: l’ape regina, accompagnata da migliaia di api, lascia l’alveare alla ricerca di un nuovo nido nel quale fondare una nuova famiglia.
+
+</section>
+
+<section class="flow-root">
+
+## La sosta dello sciame
+
+<figure class="md:float-right md:mb-5 md:ml-8 md:mt-6 md:w-[38%]">
+  <BeeSwarm
+    alt="Sciame di api raccolto in grappolo"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Uno sciame raccolto durante una sosta.</figcaption>
+</figure>
+
+Prima di trovare un luogo adatto, la regina, poco abituata al volo, si ferma generalmente nelle vicinanze dell’apiario da cui è uscita. Questa sosta può dare all’apicoltore il tempo di recuperare lo sciame e inserirlo in una nuova arnia.
+
+</section>
 
 </Container>

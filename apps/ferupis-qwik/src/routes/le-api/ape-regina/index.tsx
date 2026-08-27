@@ -1,12 +1,12 @@
 import { component$ } from "@builder.io/qwik";
 import { DocumentHead } from "@builder.io/qwik-city";
-import FavoPage from "~/components/content/le-api/favo/page.mdx";
+import ApeReginaPage from "~/components/content/le-api/ape-regina/page.mdx";
 import { EndPageBtnBlock } from "~/components/UI/end-page-btn-block";
 
 export default component$(() => (
     <>
         <main>
-            <FavoPage />
+            <ApeReginaPage />
         </main>
         <aside>
             <EndPageBtnBlock />
@@ -15,5 +15,5 @@ export default component$(() => (
 ))
 
 export const head: DocumentHead = {
-    title: "Il favo | Ferupis"
+    title: "L’ape regina | Ferupis"
 }
