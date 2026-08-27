@@ -14,6 +14,7 @@ interface CliOptions {
 interface ReviewAsset {
   id: string
   flag: UpscalingFlag
+  topic?: string
   keyname: string
   oldPath: string
   width: number
@@ -190,7 +191,7 @@ async function createReviewAssets(options: CliOptions): Promise<ReviewAsset[]> {
   const assets: ReviewAsset[] = []
 
   for (const entry of selected) {
-    const { id, originalsPath: mappedPath, keyname, oldPath, upscalingFlag } = entry
+    const { id, topic, originalsPath: mappedPath, keyname, oldPath, upscalingFlag } = entry
     const flag = upscalingFlag as UpscalingFlag
     const sourcePath = sourcePathFromMappedPath(mappedPath)
     const metadata = await sharp(sourcePath).metadata()
@@ -220,6 +221,7 @@ async function createReviewAssets(options: CliOptions): Promise<ReviewAsset[]> {
     assets.push({
       id,
       flag,
+      topic,
       keyname: keyname || basename(sourcePath),
       oldPath,
       width,
@@ -260,7 +262,8 @@ function renderCard(asset: ReviewAsset): string {
           <span class="flag ${asset.flag.toLowerCase()}">${asset.flag}</span>
         </div>
         <div class="meta">
-          <div><strong>Legacy:</strong> ${escapeHtml(asset.oldPath)}</div>
+          ${asset.topic ? `<div><strong>Topic:</strong> ${escapeHtml(asset.topic)}</div>` : ''}
+          ${asset.oldPath ? `<div><strong>Legacy:</strong> ${escapeHtml(asset.oldPath)}</div>` : ''}
           <div><strong>Source:</strong> ${asset.width} x ${asset.height}</div>
           <div><strong>1024:</strong> ${asset.scaleTo1024.toFixed(2)}x</div>
           <div><strong>Policy target:</strong> ${asset.targetLongEdge}px (${asset.policyScale.toFixed(2)}x)</div>

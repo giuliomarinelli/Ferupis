@@ -27,12 +27,12 @@ export const HomePage = component$(() => {
                     Il Miele
                 </Link>
 
-                <a
+                <Link
                     href={toSiteRoutePath('laPropoli')}
                     class={`hero-link la-propoli-color col-start-1 row-start-3 sm:col-span-2 sm:row-start-2 md:col-span-1 md:col-start-1 md:row-start-3`}
                 >
                     La Propoli
-                </a>
+                </Link>
 
                 <div class="col-start-1 row-start-4 flex w-full items-center justify-center py-3 sm:col-span-2 sm:row-start-3 md:col-span-1 md:col-start-2 md:row-start-1 md:row-span-3 md:py-0">
                     <div class="w-44 scale-90 2xs:w-52 sm:w-60 md:w-full md:max-w-[18rem]">

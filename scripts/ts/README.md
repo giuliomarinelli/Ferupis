@@ -14,6 +14,14 @@ The upscaling pipeline reads `apps/ferupis-qwik/src/media/pics/index.ts` and tre
 
 The source asset is never modified. Existing restored masters are preserved unless `--overwrite` is explicitly supplied.
 
+### `picsMap` registration metadata
+
+`PicsMap.topic` is optional and groups assets by editorial subject without changing the upscale policy. New document-derived assets should populate it when the subject is known; legacy entries may omit it.
+
+For assets that do not come from `apps/ferupis-old`, keep `oldPath` and `oldWinPath` empty rather than inventing a legacy source. Use a descriptive `keyname` and map `originalsPath` to the file that exists under `originals/`. Assets selected for upscaling reserve `restoredPath` for the PNG produced by the pipeline; assets explicitly kept without upscaling use `RED` and point `restoredPath` and `restoredMimeType` to the byte-identical original copied under `restored/`. Do not pre-copy an upscaling input into `restored/`, otherwise a normal run will preserve that existing file unless `--overwrite` is supplied.
+
+The `originals/` payload is ignored by Git by design. Keep newly registered inputs locally until their restored masters have been generated and committed; a `picsMap` registration without either the local input or its restored master is not portable to a clean checkout.
+
 ### Processing stages
 
 1. Read the mapped source from `picsMap`.
@@ -54,6 +62,12 @@ REALESRGAN_GPU
 or with the corresponding CLI arguments.
 
 ### Commands
+
+The examples below use Bash syntax. In PowerShell, where `npm` resolves to `npm.ps1`, quote the npm argument delimiter so it reaches npm instead of being consumed by PowerShell:
+
+```powershell
+npm run script:pics:upscale '--' --dry-run
+```
 
 Plan all `GREEN` assets without invoking Real-ESRGAN:
 
@@ -146,7 +160,7 @@ All review output remains under ignored `.tmp/` and is not committed.
 
 ### Review workflow
 
-Each card shows the source dimensions, the scale required to reach 1024 px, the policy target, and the effective policy scale. Clicking the image opens the normalized source preview in a separate tab.
+Each card shows the optional editorial topic, the source dimensions, the scale required to reach 1024 px, the policy target, and the effective policy scale. Clicking the image opens the normalized source preview in a separate tab.
 
 `Unclassified` is only the initial review state; IDs are always independently accessible. The sheet supports:
 
