@@ -18,6 +18,43 @@ di completamento sovrapposti.
 workspace Ferupis. Conviene disattivarla nel workspace solo nei progetti che non
 contengono e non prevedono file `.mdx`.
 
+L'estensione fornisce evidenziazione, language server e integrazione TypeScript,
+ma non e' un formatter di documento. Nel workspace Ferupis i file MDX usano
+quindi Prettier in modo esplicito:
+
+```json
+{
+  "mdx.server.enable": true,
+  "[mdx]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  }
+}
+```
+
+Il file `apps/ferupis-qwik/tsconfig.json` abilita inoltre i controlli del
+language server:
+
+```json
+{
+  "mdx": {
+    "checkMdx": true
+  }
+}
+```
+
+### Limite noto dell'auto-import MDX
+
+Nella versione `unifiedjs.vscode-mdx@1.8.17` i suggerimenti di auto-import per
+un componente possono non comparire subito dopo il carattere `<`. Il problema
+e' noto anche a monte. Come soluzione temporanea, scrivi il nome dentro
+un'espressione, per esempio `{ComeBackBtn}`, richiama IntelliSense con
+`Ctrl+Space`, accetta l'auto-import e poi usa normalmente `<ComeBackBtn />`.
+In alternativa usa il quick fix sul simbolo non risolto.
+
+Non riattivare `steoates.autoimport`: esegue una scansione separata e non risolve
+questa limitazione specifica del provider MDX.
+
 ## Impostazioni e plugin TypeScript
 
 Nel workspace Ferupis ESLint viene eseguito al salvataggio, non durante la

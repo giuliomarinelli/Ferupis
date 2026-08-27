@@ -1,3 +1,8 @@
 {
-  "eslint.run": "onSave"
+  "eslint.run": "onSave",
+  "mdx.server.enable": true,
+  "[mdx]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  }
 }

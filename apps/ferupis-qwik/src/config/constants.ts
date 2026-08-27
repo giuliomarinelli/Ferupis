@@ -1,0 +1,1 @@
+export const DESCR_GEMMA = 'Riproduzione di una gemma romana conservata nel Museo Nazionale Concordiese di Portogruaro'

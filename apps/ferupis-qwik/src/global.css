@@ -377,7 +377,7 @@ body {
   }
 
   .mdx-article :where(hr) {
-    @apply my-12 border-0 border-t border-slate-300 dark:border-neutral-700;
+    @apply my-12 w-full border-0 border-t border-slate-300 dark:border-neutral-700;
   }
 
   .mdx-article :where(figure) {
@@ -416,6 +416,11 @@ body {
       @apply mt-10 text-[1.55rem];
     }
   }
+
+  .site-hr {
+    @apply border-slate-600 dark:border-slate-300;
+  }
+
 }
 
 @layer utilities {
@@ -448,4 +453,45 @@ body {
     border: 1px solid var(--m-thin-scrollbar-track);
     border-radius: 9999px;
   }
+
+  .hero-link {
+    @apply font-hero-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-center text-[clamp(1.25rem,5.8vw,2.25rem)] font-semibold leading-snug underline-offset-4 transition-transform duration-200 hover:scale-[1.05] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current motion-reduce:transition-none motion-reduce:hover:scale-100 md:text-[clamp(1.75rem,2.6vw,2.5rem)];
+  }
+
+  .hero-like-heading {
+    @apply font-hero-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-center text-[clamp(1.25rem,5.8vw,2.25rem)] font-semibold leading-snug underline-offset-4 md:text-[clamp(1.75rem,2.6vw,2.5rem)];
+  }
+
+  .le-api-color {
+    @apply text-light-primary dark:text-bright-primary;
+  }
+
+  .il-miele-color {
+    @apply text-light-warning dark:text-bright-warning;
+  }
+
+  .la-propoli-color {
+    @apply text-light-success dark:text-bright-success;
+  }
+
+  .la-pappa-reale-color {
+    @apply text-light-accent dark:text-bright-accent;
+  }
+
+  .foto-color {
+    @apply text-light-primary dark:text-bright-primary;
+  }
+
+  .video-color {
+    @apply text-light-error dark:text-bright-error;
+  }
+
+  .contatti-color {
+    @apply text-light-accent dark:text-bright-accent;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
 }
