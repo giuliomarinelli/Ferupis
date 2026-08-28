@@ -47,9 +47,9 @@ export const PhotoOverlay = component$<PhotoOverlayProps>(({ photo }) => {
       open
       onOpenChange$={handleOpenChange$}
       ariaLabel={photo.title}
-      panelClass="[--overlay-dialog-max-width:96rem] [--overlay-viewport-gutter:1rem] sm:[--overlay-viewport-gutter:1.5rem]"
+      panelClass="[--overlay-dialog-max-width:96rem] [--overlay-viewport-gutter:1rem] sm:[--overlay-viewport-gutter:1.5rem] max-w-fit"
     >
-      <div class="relative flex min-h-[min(44rem,calc(100dvh-2rem))] flex-col p-4 sm:p-6">
+      <div class="relative flex min-h-[min(44rem,calc(100dvh-2rem))] flex-col p-4 sm:p-6 bg-slate-200 dark:bg-neutral-900 text-neutral-950 dark:text-slate-50">
         <button
           type="button"
           class="absolute right-3 top-3 z-10 grid size-10 place-items-center rounded-full text-2xl leading-none hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 dark:hover:bg-white/10"

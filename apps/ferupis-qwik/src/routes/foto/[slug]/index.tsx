@@ -20,10 +20,10 @@ export default component$(() => {
   return photo.value ? <PhotoOverlay photo={photo.value} /> : null;
 });
 
-export const head: DocumentHead = ({ params, status }) => {
+export const head: DocumentHead = ({ params }) => {
   const photo = getPhotoBySlug(params.slug);
 
-  if (!photo || status === 404) {
+  if (!photo) {
     return {
       title: "Foto | Ferupis",
       meta: [
