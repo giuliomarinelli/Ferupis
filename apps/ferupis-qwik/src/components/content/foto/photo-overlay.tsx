@@ -70,7 +70,8 @@ export const PhotoOverlay = component$<PhotoOverlayProps>(({ photo }) => {
         onOpenChange$={handleOpenChange$}
         ariaLabel={photo.title}
         panelClass={[
-          "w-fit! max-w-[calc(100vw-clamp(1rem,4vw,3rem))]! max-h-[calc(100dvh-clamp(1rem,4vw,3rem))]! overflow-hidden!",
+          "w-[calc(100vw-1rem)]! max-w-[calc(100vw-1rem)]! max-h-[calc(100dvh-1rem)]! overflow-hidden!",
+          "sm:w-fit! sm:max-w-[calc(100vw-3rem)]!",
           "[--overlay-border-radius:1.25rem] [--overlay-surface:rgb(248_250_252/0.96)]",
           "[--overlay-border-color:rgb(199_210_254/0.78)] [--overlay-shadow:0_24px_72px_rgb(15_23_42/0.32)]",
           "backdrop-blur-xl",
@@ -78,7 +79,7 @@ export const PhotoOverlay = component$<PhotoOverlayProps>(({ photo }) => {
           "dark:[--overlay-shadow:0_24px_72px_rgb(0_0_0/0.56)]",
         ]}
       >
-        <div class="relative flex w-fit max-w-full flex-col p-3 pt-12 text-neutral-950 sm:p-5 sm:pt-14 dark:text-slate-50">
+        <div class="relative flex w-full min-w-0 flex-col p-3 pt-12 text-neutral-950 sm:w-fit sm:max-w-full sm:p-5 sm:pt-14 dark:text-slate-50">
           <button
             type="button"
             class={[floatingControlClass, "absolute right-2 top-2 z-30 size-9 sm:right-3 sm:top-3 sm:size-10"]}
@@ -89,8 +90,8 @@ export const PhotoOverlay = component$<PhotoOverlayProps>(({ photo }) => {
             <ThinCloseIcon class="size-5 sm:size-[1.375rem]" />
           </button>
 
-          <figure class="flex w-fit max-w-full flex-col items-center justify-center">
-            <div class="relative flex w-fit max-w-full items-center justify-center px-10 sm:px-14 md:px-16">
+          <figure class="flex w-full min-w-0 flex-col items-center justify-center sm:w-fit sm:max-w-full">
+            <div class="relative flex w-full min-w-0 items-center justify-center sm:w-fit sm:max-w-full sm:px-14 md:px-16">
               <Link
                 href={toPhotoPath(navigation.previous.slug)}
                 replaceState
@@ -100,7 +101,7 @@ export const PhotoOverlay = component$<PhotoOverlayProps>(({ photo }) => {
                 title="Fotografia precedente"
                 class={[
                   floatingControlClass,
-                  "absolute left-0 top-1/2 z-20 size-10 -translate-y-1/2 sm:left-1 sm:size-12",
+                  "absolute left-2 top-1/2 z-20 size-10 -translate-y-1/2 sm:left-1 sm:size-12",
                 ]}
               >
                 <AngleLeftJellyIcon class="size-6 sm:size-7" />
@@ -109,7 +110,7 @@ export const PhotoOverlay = component$<PhotoOverlayProps>(({ photo }) => {
               <PhotoImage
                 slug={photo.slug}
                 alt={photo.alt}
-                class="block h-auto max-h-[calc(100dvh-10rem)] w-auto max-w-full rounded-xl border border-slate-200/80 bg-white object-contain shadow-lg shadow-slate-900/10 dark:border-neutral-800 dark:bg-neutral-900 dark:shadow-black/40"
+                class="block h-auto max-h-[calc(100dvh-10rem)] w-full min-w-0 max-w-full rounded-xl border border-slate-200/80 bg-white object-contain shadow-lg shadow-slate-900/10 sm:max-h-[72dvh] sm:w-auto sm:max-w-[min(80vw,72rem)] dark:border-neutral-800 dark:bg-neutral-900 dark:shadow-black/40"
               />
 
               <Link
@@ -121,15 +122,15 @@ export const PhotoOverlay = component$<PhotoOverlayProps>(({ photo }) => {
                 title="Fotografia successiva"
                 class={[
                   floatingControlClass,
-                  "absolute right-0 top-1/2 z-20 size-10 -translate-y-1/2 sm:right-1 sm:size-12",
+                  "absolute right-2 top-1/2 z-20 size-10 -translate-y-1/2 sm:right-1 sm:size-12",
                 ]}
               >
                 <AngleRightJellyIcon class="size-6 sm:size-7" />
               </Link>
             </div>
 
-            <figcaption class="mt-3 flex w-full items-center justify-between gap-4 border-t border-slate-200/80 px-10 pt-3 text-sm text-neutral-700 sm:mt-4 sm:px-14 sm:pt-4 sm:text-base md:px-16 dark:border-neutral-800 dark:text-slate-300">
-              <span class="font-medium tracking-wide text-neutral-900 dark:text-slate-100">
+            <figcaption class="mt-3 flex w-full items-center justify-between gap-4 border-t border-slate-200/80 px-1 pt-3 text-sm text-neutral-700 sm:mt-4 sm:px-0 sm:pt-4 sm:text-base dark:border-neutral-800 dark:text-slate-300">
+              <span class="min-w-0 font-medium tracking-wide text-neutral-900 dark:text-slate-100">
                 {photo.title}
               </span>
               <span class="shrink-0 rounded-full bg-indigo-100/75 px-2.5 py-1 font-sans text-xs font-medium tabular-nums text-light-primary dark:bg-indigo-950/55 dark:text-bright-primary">
