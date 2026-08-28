@@ -13,7 +13,7 @@ export const GoToTopBtn = component$<GoToTopBtnProps>((props) => {
         }))
     return (
         <SecondaryActionOutlineBtn label="Torna su" isLink={false} action={handleTop$} adjunctiveTwClassList={`font-sans ${props.class}`}>
-            <ArrowUpJellyIcon classList="size-5 shrink-0" q:slot="end" />
+            <ArrowUpJellyIcon class="size-5 shrink-0" q:slot="end" />
         </SecondaryActionOutlineBtn>
     )
 })

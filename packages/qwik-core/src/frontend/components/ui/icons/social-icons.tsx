@@ -1,13 +1,13 @@
 import { component$ } from "@builder.io/qwik";
 
 interface SocialIconProps {
-  classList?: string;
+  class?: string | string[];
 }
 
-export const FacebookIcon = component$<SocialIconProps>(({ classList }) => (
+export const FacebookIcon = component$<SocialIconProps>(({ class: className }) => (
   <svg
     viewBox="0 0 640 640"
-    class={`fill-current ${classList ?? ""}`}
+    class={['fill-current', className ?? '']}
     aria-hidden="true"
     focusable="false"
   >
@@ -15,10 +15,10 @@ export const FacebookIcon = component$<SocialIconProps>(({ classList }) => (
   </svg>
 ));
 
-export const InstagramIcon = component$<SocialIconProps>(({ classList }) => (
+export const InstagramIcon = component$<SocialIconProps>(({ class: className }) => (
   <svg
     viewBox="0 0 640 640"
-    class={`fill-current ${classList ?? ""}`}
+    class={['fill-current', className ?? '']}
     aria-hidden="true"
     focusable="false"
   >
@@ -26,10 +26,10 @@ export const InstagramIcon = component$<SocialIconProps>(({ classList }) => (
   </svg>
 ));
 
-export const GitHubIcon = component$<SocialIconProps>(({ classList }) => (
+export const GitHubIcon = component$<SocialIconProps>(({ class: className }) => (
   <svg
     viewBox="0 0 24 24"
-    class={`fill-current ${classList ?? ""}`}
+    class={['fill-current', className ?? '']}
     aria-hidden="true"
     focusable="false"
   >
@@ -37,10 +37,10 @@ export const GitHubIcon = component$<SocialIconProps>(({ classList }) => (
   </svg>
 ));
 
-export const DevIcon = component$<SocialIconProps>(({ classList }) => (
+export const DevIcon = component$<SocialIconProps>(({ class: className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class={`fill-current ${classList ?? ""}`}
+    class={['fill-current', className ?? '']}
     viewBox="0 0 640 640"
     aria-hidden="true"
     focusable="false"
@@ -50,11 +50,11 @@ export const DevIcon = component$<SocialIconProps>(({ classList }) => (
   </svg>
 ));
 
-export const LinkedInIcon = component$<SocialIconProps>(({ classList }) => (
+export const LinkedInIcon = component$<SocialIconProps>(({ class: className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 640 640"
-    class={`fill-current ${classList ?? ""}`}
+    class={['fill-current', className ?? '']}
     aria-hidden="true"
     focusable="false"
   >

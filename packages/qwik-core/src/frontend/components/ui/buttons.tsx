@@ -63,7 +63,7 @@ export const OverlayCloseBtn = component$<OverlayCloseBtnProps>((props) => {
   })
   return (
     <button class="p-1 rounded-md border-2 border-neutral-500 hover:bg-slate-300 dark:hover:bg-gray-700 transition-colors duration-200" onClick$={closeExtended$}>
-      <ThinCloseIcon classList={props.classList ?? 'size-6'} />
+      <ThinCloseIcon class={props.class ?? 'size-6'} />
     </button>
   )
 })
@@ -118,7 +118,7 @@ export const CtaPrimaryBtnSqLink = component$<BtnLinkProps>((props) => {
       title={normalizedTitle}
       onClick$={action}
     >
-      {icon === 'phone' && <PhoneIcon classList="size-5" />}
+      {icon === 'phone' && <PhoneIcon class="size-5" />}
       <span class={labelClassList}>{label}</span>
       <span class={shortLabelClassList}>{normalizedShortLabel}</span>
     </Link>
@@ -126,7 +126,7 @@ export const CtaPrimaryBtnSqLink = component$<BtnLinkProps>((props) => {
 })
 
 export const LargeCloseBtn = component$<IconBtnProps>((props) => {
-  const { action, classList, title } = props
+  const { action, class: className, title } = props
   const handleClick = $(() => {
     action?.()
   })
@@ -136,7 +136,7 @@ export const LargeCloseBtn = component$<IconBtnProps>((props) => {
       type="button"
       title={title}
       onClick$={handleClick}
-      class={classList ?? ''}
+      class={className ?? ''}
     >
       <LargeCloseIcon />
     </button>
