@@ -15,7 +15,7 @@ export const ComeBackBtn = component$<ComeBackBtnProps>((props) => {
             : nav("/"))
     return (
         <PrimaryActionBtn label="Torna indietro" isLink={false} action={handleBack$} adjunctiveTwClassList={`font-sans ${props.class}`}>
-            <ArrowLeftJellyIcon classList="size-5 shrink-0" />
+            <ArrowLeftJellyIcon class="size-5 shrink-0" />
         </PrimaryActionBtn>
     )
 })

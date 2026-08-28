@@ -144,13 +144,13 @@ const ToggleThemeMenu = component$<ToggleThemeBtnProps>(
           >
             <span class="flex items-center gap-2">
               <span aria-hidden="true">
-                <SunIcon classList="size-5 fill-current text-slate-500 dark:text-slate-200" />
+                <SunIcon class="size-5 fill-current text-slate-500 dark:text-slate-200" />
               </span>
               <span>{labelLight}</span>
             </span>
             {themeState.choice === "light" && (
               <span aria-hidden="true">
-                <CheckIcon classList="h-4 w-4 text-light-success dark:text-bright-success" />
+                <CheckIcon class="h-4 w-4 text-light-success dark:text-bright-success" />
               </span>
             )}
           </button>
@@ -173,13 +173,13 @@ const ToggleThemeMenu = component$<ToggleThemeBtnProps>(
           >
             <span class="flex items-center gap-2">
               <span aria-hidden="true">
-                <MoonIcon classList="size-5 fill-current text-slate-500 dark:text-slate-200" />
+                <MoonIcon class="size-5 fill-current text-slate-500 dark:text-slate-200" />
               </span>
               <span>{labelDark}</span>
             </span>
             {themeState.choice === "dark" && (
               <span aria-hidden="true">
-                <CheckIcon classList="h-4 w-4 text-light-success dark:text-bright-success" />
+                <CheckIcon class="h-4 w-4 text-light-success dark:text-bright-success" />
               </span>
             )}
           </button>
@@ -201,24 +201,24 @@ const ToggleThemeMenu = component$<ToggleThemeBtnProps>(
             <span class="flex items-center gap-2">
               {themeState.osTheme === "dark" && (
                 <span aria-hidden="true">
-                  <MoonIcon classList="size-5 fill-current text-slate-500 dark:text-slate-200" />
+                  <MoonIcon class="size-5 fill-current text-slate-500 dark:text-slate-200" />
                 </span>
               )}
               {themeState.osTheme === "light" && (
                 <span aria-hidden="true">
-                  <SunIcon classList="size-5 fill-current text-slate-500 dark:text-slate-200" />
+                  <SunIcon class="size-5 fill-current text-slate-500 dark:text-slate-200" />
                 </span>
               )}
               {!themeState.osTheme && (
                 <span aria-hidden="true">
-                  <MoonIcon classList="h-4 w-4 fill-current text-slate-500 dark:text-slate-200" />
+                  <MoonIcon class="h-4 w-4 fill-current text-slate-500 dark:text-slate-200" />
                 </span>
               )}
               <span>{labelAuto}</span>
             </span>
             {themeState.choice === "OS" && (
               <span aria-hidden="true">
-                <CheckIcon classList="h-4 w-4 text-light-success dark:text-bright-success" />
+                <CheckIcon class="h-4 w-4 text-light-success dark:text-bright-success" />
               </span>
             )}
           </button>
