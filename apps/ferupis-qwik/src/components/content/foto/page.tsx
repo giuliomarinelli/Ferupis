@@ -17,7 +17,7 @@ export const FotoPage = component$(() => (
     tag="section"
     classOverride="relative z-10 mx-auto w-full max-w-7xl px-6 py-20 sm:px-8 lg:px-12"
   >
-    <ContentHeader.Root class="mb-10 w-full sm:mb-12">
+    <ContentHeader.Root class="mb-10 w-full sm:mb-12 font-source-serif-4">
       <ContentHeader.Eyebrow text="Ferupis" />
       <ContentHeader.Heading text="Foto" tag="h1" class="foto-color" />
       <ContentHeader.Subtitle component={FotoSubtitle} />
