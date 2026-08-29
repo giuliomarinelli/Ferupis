@@ -3,7 +3,6 @@ import {
   component$,
   useSignal,
   useVisibleTask$,
-  type Signal,
 } from "@builder.io/qwik";
 import {
   Checkbox,
@@ -97,10 +96,17 @@ export const ContactForm = component$<ContactFormProps>((props) => {
     !emailMissing && !EMAIL_PATTERN.test(email.value.trim());
   const messageMissing = message.value.trim().length === 0;
   const formInvalid =
-    nameMissing || emailMissing || emailInvalid || messageMissing || !privacyAccepted.value;
+    nameMissing ||
+    emailMissing ||
+    emailInvalid ||
+    messageMissing ||
+    !privacyAccepted.value;
 
   // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(async ({ cleanup }) => {
+  useVisibleTask$(async ({ cleanup, track }) => {
+    track(() => succeeded.value);
+    if (succeeded.value) return;
+
     const container = turnstileContainerRef.value;
     if (!container) return;
 
@@ -222,10 +228,6 @@ export const ContactForm = component$<ContactFormProps>((props) => {
     }
   });
 
-  const clearErrors$ = $(() => {
-    serverError.value = "";
-  });
-
   const resetForm$ = $(() => {
     requestId.value = crypto.randomUUID();
     name.value = "";
@@ -244,9 +246,6 @@ export const ContactForm = component$<ContactFormProps>((props) => {
     turnstileClientError.value = "";
     turnstileToken.value = "";
     formRef.value?.reset();
-    const turnstile = window.turnstile;
-    const widgetId = turnstileWidgetId.value;
-    if (turnstile && widgetId) turnstile.reset(widgetId);
     window.setTimeout(() => nameRef.value?.focus(), 0);
   });
 
@@ -342,7 +341,7 @@ export const ContactForm = component$<ContactFormProps>((props) => {
       <div class="grid gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm 2xs:p-5 sm:grid-cols-2 sm:p-7 dark:border-slate-700 dark:bg-neutral-900">
         <div class="min-w-0">
           <FloatingInput
-            inputRef={nameRef as Signal<HTMLInputElement | undefined>}
+            inputRef={nameRef}
             bgClass="bg-white"
             id="contact-name"
             label="Nome"
@@ -366,7 +365,7 @@ export const ContactForm = component$<ContactFormProps>((props) => {
 
         <div class="min-w-0">
           <FloatingInput
-            inputRef={emailRef as Signal<HTMLInputElement | undefined>}
+            inputRef={emailRef}
             bgClass="bg-white"
             id="contact-email"
             label="Email"
@@ -416,7 +415,7 @@ export const ContactForm = component$<ContactFormProps>((props) => {
 
         <div class="min-w-0 sm:col-span-2">
           <FloatingTextarea
-            textareaRef={messageRef as Signal<HTMLTextAreaElement | undefined>}
+            textareaRef={messageRef}
             bgClass="bg-white"
             id="contact-message"
             name="message"
