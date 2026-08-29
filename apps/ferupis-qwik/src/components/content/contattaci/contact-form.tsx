@@ -277,7 +277,7 @@ export const ContactForm = component$<ContactFormProps>((props) => {
   return (
     <form
       ref={formRef}
-      class="mt-10 grid w-full gap-6"
+      class="mt-10 grid w-full gap-6 font-sans"
       preventdefault:submit
       noValidate
       aria-busy={pending.value ? "true" : undefined}
@@ -485,7 +485,7 @@ export const ContactForm = component$<ContactFormProps>((props) => {
           isLink={false}
           buttonType="submit"
           disabled={pending.value}
-          adjunctiveTwClassList="min-h-12"
+          adjunctiveTwClassList="min-h-12 sm:grid sm:gris-cols-3 sm:col-span-2"
         >
           {pending.value ? (
             <>

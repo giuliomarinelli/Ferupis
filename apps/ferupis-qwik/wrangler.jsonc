@@ -4,6 +4,9 @@
   "compatibility_date": "2026-08-22",
   "compatibility_flags": ["nodejs_compat"],
   "pages_build_output_dir": "./dist",
+  "vars": {
+    "CF_TURNSTILE_SITE_KEY": "1x00000000000000000000BB",
+  },
   "queues": {
     "producers": [
       {
@@ -14,6 +17,9 @@
   },
   "env": {
     "preview": {
+      "vars": {
+        "CF_TURNSTILE_SITE_KEY": "<CF_TURNSTILE_SITE_KEY_PREVIEW>",
+      },
       "queues": {
         "producers": [
           {
@@ -24,6 +30,9 @@
       },
     },
     "production": {
+      "vars": {
+        "CF_TURNSTILE_SITE_KEY": "<CF_TURNSTILE_SITE_KEY_PRODUCTION>",
+      },
       "queues": {
         "producers": [
           {
