@@ -5,10 +5,7 @@ export {
   isContactMessageSameOriginRequest,
   parseContactMessageJsonBody,
 } from "./http.ts";
-export {
-  isContactMessageHoneypotTriggered,
-  validateContactMessageSubmission,
-} from "./validation.ts";
+export { validateContactMessageSubmission } from "./validation.ts";
 export { enqueueContactMessage } from "./service.ts";
 
 export type {

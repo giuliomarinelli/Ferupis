@@ -11,7 +11,6 @@ const EXPECTED_PROPERTIES = [
   "privacyAccepted",
   "requestId",
   "subject",
-  "website",
 ] as const;
 
 const UNSAFE_SINGLE_LINE_CHARACTERS = /[\u0000-\u001f\u007f]/;
@@ -25,11 +24,6 @@ const normalizeSingleLine = (value: string): string =>
 
 const normalizeMessage = (value: string): string =>
   value.replace(/\r\n?/g, "\n").trim();
-
-export const isContactMessageHoneypotTriggered = (input: unknown): boolean =>
-  isRecord(input) &&
-  typeof input.website === "string" &&
-  input.website.trim().length > 0;
 
 export const validateContactMessageSubmission = (
   input: unknown,
@@ -91,12 +85,6 @@ export const validateContactMessageSubmission = (
 
   if (input.privacyAccepted !== true) {
     issues.push({ field: "privacyAccepted", code: "required" });
-  }
-
-  if (typeof input.website !== "string" || input.website.length > 512) {
-    issues.push({ field: "website", code: "invalid" });
-  } else if (input.website.trim().length > 0) {
-    issues.push({ field: "website", code: "invalid" });
   }
 
   if (issues.length > 0) return { ok: false, issues };

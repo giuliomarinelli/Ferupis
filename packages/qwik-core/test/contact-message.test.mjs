@@ -4,7 +4,6 @@ import test from "node:test";
 import {
   CONTACT_MESSAGE_MAX_BODY_BYTES,
   enqueueContactMessage,
-  isContactMessageHoneypotTriggered,
   isContactMessageSameOriginRequest,
   parseContactMessageJsonBody,
   validateContactMessageSubmission,
@@ -19,7 +18,6 @@ const validInput = () => ({
   subject: "  Informazioni sul miele  ",
   message: "Buongiorno,\r\nvorrei alcune informazioni.\n\nGrazie.",
   privacyAccepted: true,
-  website: "",
 });
 
 test("contact submissions are normalized and validated strictly", () => {
@@ -69,14 +67,6 @@ test("contact submissions reject unexpected fields, invalid email and control ch
     }).ok,
     false,
   );
-});
-
-test("the honeypot is detected before normal validation", () => {
-  assert.equal(
-    isContactMessageHoneypotTriggered({ ...validInput(), website: "spam.test" }),
-    true,
-  );
-  assert.equal(isContactMessageHoneypotTriggered(validInput()), false);
 });
 
 test("contact JSON parsing enforces content type and the real streamed body limit", async () => {

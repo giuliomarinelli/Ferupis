@@ -6,6 +6,7 @@ import {
 } from "@builder.io/qwik";
 import {
   Checkbox,
+  CircleCheckRegularIcon,
   ClassicSpinner,
   FloatingInput,
   FloatingTextarea,
@@ -72,7 +73,6 @@ export const ContactForm = component$<ContactFormProps>((props) => {
   const email = useSignal("");
   const subject = useSignal("");
   const message = useSignal("");
-  const website = useSignal("");
   const privacyAccepted = useSignal(false);
   const nameTouched = useSignal(false);
   const emailTouched = useSignal(false);
@@ -234,7 +234,6 @@ export const ContactForm = component$<ContactFormProps>((props) => {
     email.value = "";
     subject.value = "";
     message.value = "";
-    website.value = "";
     privacyAccepted.value = false;
     nameTouched.value = false;
     emailTouched.value = false;
@@ -252,17 +251,18 @@ export const ContactForm = component$<ContactFormProps>((props) => {
   if (succeeded.value) {
     return (
       <section
-        class="mt-10 rounded-2xl border border-emerald-300 bg-emerald-50 p-6 shadow-sm sm:p-8 dark:border-emerald-800 dark:bg-emerald-950/30"
+        class="font-sans mt-10 rounded-2xl border border-emerald-300 bg-emerald-50 p-6 shadow-sm sm:p-8 dark:border-emerald-800 dark:bg-emerald-950/30"
         role="status"
         aria-live="polite"
       >
-        <h2 class="text-2xl font-semibold text-emerald-950 dark:text-emerald-100">
-          Messaggio ricevuto
+        <h2 class="flex items-center gap-2.5 text-2xl font-semibold text-emerald-950 dark:text-emerald-100">
+          <CircleCheckRegularIcon class="shrink-0 size-12" />
+          <span>Messaggio ricevuto</span>
         </h2>
         <p class="mt-3 leading-7 text-emerald-900 dark:text-emerald-200">
           Grazie per averci contattato. Ti risponderemo appena possibile.
         </p>
-        <div class="mt-6 max-w-sm font-sans">
+        <div class="mt-6 max-w-sm">
           <PrimaryActionBtn
             label="Invia un altro messaggio"
             isLink={false}
@@ -308,7 +308,6 @@ export const ContactForm = component$<ContactFormProps>((props) => {
               subject: subject.value,
               message: message.value,
               privacyAccepted: privacyAccepted.value,
-              website: website.value,
             }),
           });
 
@@ -437,24 +436,6 @@ export const ContactForm = component$<ContactFormProps>((props) => {
             }}
           />
         </div>
-      </div>
-
-      <div
-        class="absolute -left-[10000px] top-auto h-px w-px overflow-hidden"
-        aria-hidden="true"
-      >
-        <label for="contact-website">Sito web</label>
-        <input
-          id="contact-website"
-          name="website"
-          type="text"
-          tabIndex={-1}
-          autoComplete="off"
-          value={website.value}
-          onInput$={(_, currentTarget) => {
-            website.value = currentTarget.value;
-          }}
-        />
       </div>
 
       <Checkbox

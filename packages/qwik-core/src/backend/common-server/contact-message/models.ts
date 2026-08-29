@@ -16,8 +16,7 @@ export type ContactMessageField =
   | "email"
   | "subject"
   | "message"
-  | "privacyAccepted"
-  | "website";
+  | "privacyAccepted";
 
 export type ContactMessageValidationIssue = Readonly<{
   field: ContactMessageField;

@@ -2,7 +2,6 @@ import type { RequestHandler } from "@builder.io/qwik-city";
 import {
   applyContactMessageApiHeaders,
   enqueueContactMessage,
-  isContactMessageHoneypotTriggered,
   isContactMessageSameOriginRequest,
   parseContactMessageJsonBody,
   validateContactMessageSubmission,
@@ -32,14 +31,6 @@ export const onPost: RequestHandler = async (event) => {
   const parsed = await parseContactMessageJsonBody(event.request);
   if (!parsed.ok) {
     event.json(parsed.status, { ok: false, code: parsed.code });
-    return;
-  }
-
-  if (isContactMessageHoneypotTriggered(parsed.body)) {
-    console.info(
-      JSON.stringify({ event: "contact_message_create", outcome: "SPAM_TRAP" }),
-    );
-    event.json(202, { ok: true, requestId: crypto.randomUUID() });
     return;
   }
 
