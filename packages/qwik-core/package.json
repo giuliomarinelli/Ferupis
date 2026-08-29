@@ -13,7 +13,9 @@
   },
   "exports": {
     ".": "./src/index.ts",
+    "./contact-message": "./src/backend/common-server/contact-message/index.ts",
     "./email": "./src/backend/common-server/email/index.ts",
+    "./security": "./src/backend/common-server/security/index.ts",
     "./system-color-scheme": "./src/frontend/contexts/system-color-scheme/index.ts",
     "./overlay": "./src/frontend/components/ui/overlay/index.ts",
     "./ui": "./src/frontend/components/ui/index.ts",

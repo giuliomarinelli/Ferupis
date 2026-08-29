@@ -3,7 +3,10 @@ import {
   createMessageBatch,
   getQueueResult,
 } from "cloudflare:test";
-import { createEmailDeliveryTestJob } from "@gm/qwik-core/email";
+import {
+  createEmailContactMessageInternalJob,
+  createEmailDeliveryTestJob,
+} from "@gm/qwik-core/email";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   consumeEmailBatch,
@@ -17,6 +20,19 @@ const JOB = createEmailDeliveryTestJob({
   source: "test.consumer",
   notificationId: "4bf92f37-0987-4f2b-8b0b-b5791d9e15cf",
   correlationId: "d41895d2-1c9e-4d0c-911d-8eec09f6c6b4",
+  enqueuedAt: "2026-08-29T07:00:00.000Z",
+});
+
+const CONTACT_JOB = createEmailContactMessageInternalJob({
+  locale: "it",
+  recipient: { email: "ferupiss@gmail.com" },
+  name: "Mario Rossi",
+  email: "mario@example.com",
+  subject: null,
+  message: "Vorrei alcune informazioni.",
+  source: "ferupis.contact",
+  notificationId: "efba9128-60d6-48a4-a558-a8cd52155146",
+  correlationId: "efba9128-60d6-48a4-a558-a8cd52155146",
   enqueuedAt: "2026-08-29T07:00:00.000Z",
 });
 
@@ -62,6 +78,20 @@ describe("email queue consumer", () => {
     expect(fetcher).toHaveBeenCalledOnce();
     expect(result.explicitAcks).toEqual(["message-1"]);
     expect(result.retryMessages).toEqual([]);
+  });
+
+  it("uses the validated visitor email as Reply-To only for contact jobs", async () => {
+    let resendBody: Record<string, unknown> | undefined;
+    const fetcher = vi.fn<FetchLike>(async (_input, init) => {
+      resendBody = JSON.parse(String(init?.body)) as Record<string, unknown>;
+      return Response.json({ id: "resend-contact-email-id" });
+    });
+
+    const result = await consume(CONTACT_JOB, RESEND_ENV, fetcher);
+
+    expect(result.explicitAcks).toEqual(["message-1"]);
+    expect(resendBody?.reply_to).toBe("mario@example.com");
+    expect(resendBody?.to).toEqual(["ferupiss@gmail.com"]);
   });
 
   it("sends preview messages through Resend", async () => {

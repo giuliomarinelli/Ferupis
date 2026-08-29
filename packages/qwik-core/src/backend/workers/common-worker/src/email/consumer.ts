@@ -1,4 +1,8 @@
-import { isEmailJob, type EmailJob } from "@gm/qwik-core/email";
+import {
+  EMAIL_CONTACT_MESSAGE_INTERNAL_TEMPLATE,
+  isEmailJob,
+  type EmailJob,
+} from "@gm/qwik-core/email";
 import type {
   CommonWorkerEnv,
   QueueMessage,
@@ -72,6 +76,14 @@ const readRuntimeConfig = (env: EmailConsumerEnv): EmailRuntimeConfig => {
     resendApiKey: env.RESEND_API_KEY,
   };
 };
+
+const resolveReplyTo = (
+  job: EmailJob,
+  config: EmailRuntimeConfig,
+): string | undefined =>
+  job.template === EMAIL_CONTACT_MESSAGE_INTERNAL_TEMPLATE
+    ? job.payload.email
+    : config.replyTo;
 
 const retryDelaySeconds = (attempts: number, error: unknown): number => {
   if (
@@ -164,7 +176,7 @@ export const consumeEmailBatch = async (
         {
           apiKey: config.resendApiKey,
           from: config.from,
-          replyTo: config.replyTo,
+          replyTo: resolveReplyTo(job, config),
           to: job.recipient,
           subject: rendered.subject,
           html: rendered.html,

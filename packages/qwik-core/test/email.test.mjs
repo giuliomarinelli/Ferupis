@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
+  createEmailContactMessageInternalJob,
   createEmailDeliveryTestJob,
   enqueueEmailJob,
   enqueueEmailJobs,
@@ -17,6 +18,20 @@ const createJob = () =>
     locale: "it",
     recipient: { email: "recipient@example.com", name: "Recipient" },
     source: "test.email",
+    notificationId: FIXED_NOTIFICATION_ID,
+    correlationId: FIXED_CORRELATION_ID,
+    enqueuedAt: FIXED_ENQUEUED_AT,
+  });
+
+const createContactJob = () =>
+  createEmailContactMessageInternalJob({
+    locale: "it",
+    recipient: { email: "ferupiss@gmail.com" },
+    name: "Mario Rossi",
+    email: "mario@example.com",
+    subject: "Informazioni",
+    message: "Prima riga\nSeconda riga",
+    source: "ferupis.contact",
     notificationId: FIXED_NOTIFICATION_ID,
     correlationId: FIXED_CORRELATION_ID,
     enqueuedAt: FIXED_ENQUEUED_AT,
@@ -45,8 +60,19 @@ test("email jobs are versioned, deterministic and runtime-validatable", () => {
   });
 });
 
+test("contact email jobs preserve multiline messages without exposing mail headers", () => {
+  const job = createContactJob();
+
+  assert.equal(isEmailJob(job), true);
+  assert.equal(job.template, "contact-message-internal");
+  assert.equal(job.payload.message, "Prima riga\nSeconda riga");
+  assert.equal("replyTo" in job, false);
+  assert.equal("subject" in job, false);
+});
+
 test("email jobs reject unknown fields and header injection", () => {
   const job = createJob();
+  const contactJob = createContactJob();
 
   assert.equal(isEmailJob({ ...job, subject: "Injected subject" }), false);
   assert.equal(
@@ -60,6 +86,16 @@ test("email jobs reject unknown fields and header injection", () => {
   );
   assert.equal(
     isEmailJob({ ...job, metadata: { ...job.metadata, source: "bad source" } }),
+    false,
+  );
+  assert.equal(
+    isEmailJob({
+      ...contactJob,
+      payload: {
+        ...contactJob.payload,
+        subject: "Hello\r\nBcc: attacker@example.com",
+      },
+    }),
     false,
   );
 });
