@@ -13,6 +13,7 @@ export default extendConfig(baseConfig, () => ({
     cloudflarePagesAdapter({
       ssg: {
         include: ["*"],
+        exclude: ["/contattaci/"],
         origin: "https://ferupis.pages.dev",
       },
     }),
