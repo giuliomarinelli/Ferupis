@@ -15,6 +15,7 @@
   "scripts": {
     "dev:f": "npm run dev --workspace @apps/ferupis-qwik -- --port 5176 --host 0.0.0.0",
     "build:f": "npm run build --workspace @apps/ferupis-qwik",
+    "test:e2e:f": "npm run build:f && npm run test.e2e --workspace @apps/ferupis-qwik",
     "cf:dev:f": "npm run build:f && node scripts/run-ferupis-pages-dev.mjs",
     "cf:dev:common-worker": "npm run dev --workspace @workers/common-worker",
     "cf:dry-run:common-worker:dev": "wrangler deploy --config packages/qwik-core/src/backend/workers/common-worker/wrangler.jsonc --env= --dry-run",

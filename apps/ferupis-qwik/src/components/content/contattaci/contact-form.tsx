@@ -245,7 +245,9 @@ export const ContactForm = component$<ContactFormProps>((props) => {
     turnstileClientError.value = "";
     turnstileToken.value = "";
     formRef.value?.reset();
-    window.setTimeout(() => nameRef.value?.focus(), 0);
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => nameRef.value?.focus());
+    });
   });
 
   if (succeeded.value) {

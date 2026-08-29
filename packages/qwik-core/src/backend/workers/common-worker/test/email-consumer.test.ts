@@ -50,14 +50,23 @@ const consume = async (
   env: EmailConsumerEnv,
   fetcher: FetchLike,
 ) => {
-  const batch = createMessageBatch("ferupis-email-test", [
-    {
-      id: "message-1",
-      timestamp: new Date("2026-08-29T07:00:01.000Z"),
+  return consumeBatch([body], env, fetcher);
+};
+
+const consumeBatch = async (
+  bodies: readonly unknown[],
+  env: EmailConsumerEnv,
+  fetcher: FetchLike,
+) => {
+  const batch = createMessageBatch(
+    "ferupis-email-test",
+    bodies.map((body, index) => ({
+      id: `message-${index + 1}`,
+      timestamp: new Date(`2026-08-29T07:00:0${index + 1}.000Z`),
       attempts: 1,
       body,
-    },
-  ]);
+    })),
+  );
   const ctx = createExecutionContext();
   await consumeEmailBatch(batch, env, fetcher);
   return getQueueResult(batch, ctx);
@@ -129,6 +138,68 @@ describe("email queue consumer", () => {
     expect(JSON.parse(String(errorLog.mock.calls[0]?.[0]))).toMatchObject({
       messageId: "message-1",
       delaySeconds: 42,
+    });
+  });
+
+  it("acknowledges and retries messages independently within one batch", async () => {
+    vi.spyOn(console, "log").mockImplementation(() => {});
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    let calls = 0;
+    const fetcher = vi.fn<FetchLike>(async () => {
+      calls += 1;
+      return calls === 1
+        ? Response.json(
+            { type: "internal_server_error", message: "Unavailable" },
+            { status: 503 },
+          )
+        : Response.json({ id: "resend-contact-email-id" });
+    });
+
+    const result = await consumeBatch([JOB, CONTACT_JOB], RESEND_ENV, fetcher);
+
+    expect(fetcher).toHaveBeenCalledTimes(2);
+    expect(result.explicitAcks).toEqual(["message-2"]);
+    expect(result.retryMessages).toEqual([{ msgId: "message-1" }]);
+  });
+
+  it("retries non-retryable provider failures for DLQ retention", async () => {
+    const errorLog = vi.spyOn(console, "error").mockImplementation(() => {});
+    const fetcher: FetchLike = async () =>
+      Response.json(
+        { type: "daily_quota_exceeded", message: "Quota exhausted" },
+        { status: 429, headers: { "Retry-After": "600" } },
+      );
+
+    const result = await consume(JOB, RESEND_ENV, fetcher);
+
+    expect(result.explicitAcks).toEqual([]);
+    expect(result.retryMessages).toEqual([{ msgId: "message-1" }]);
+    expect(JSON.parse(String(errorLog.mock.calls[0]?.[0]))).toMatchObject({
+      messageId: "message-1",
+      errorCode: "RESEND_REJECTED",
+      providerType: "daily_quota_exceeded",
+      retryable: false,
+      delaySeconds: 300,
+    });
+  });
+
+  it("retries missing runtime credentials without calling Resend", async () => {
+    const errorLog = vi.spyOn(console, "error").mockImplementation(() => {});
+    const fetcher = vi.fn<FetchLike>();
+
+    const result = await consume(
+      JOB,
+      { ...RESEND_ENV, RESEND_API_KEY: "short" },
+      fetcher,
+    );
+
+    expect(fetcher).not.toHaveBeenCalled();
+    expect(result.explicitAcks).toEqual([]);
+    expect(result.retryMessages).toEqual([{ msgId: "message-1" }]);
+    expect(JSON.parse(String(errorLog.mock.calls[0]?.[0]))).toMatchObject({
+      messageId: "message-1",
+      errorCode: "RESEND_API_KEY_MISSING",
+      delaySeconds: 300,
     });
   });
 

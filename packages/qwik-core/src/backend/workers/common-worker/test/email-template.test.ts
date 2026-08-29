@@ -29,6 +29,20 @@ const createContactJob = () =>
     enqueuedAt: "2026-08-29T07:00:00.000Z",
   });
 
+const createHostileContactJob = () =>
+  createEmailContactMessageInternalJob({
+    locale: "it",
+    recipient: { email: "ferupiss@gmail.com" },
+    name: "<img src=x onerror=alert(1)>",
+    email: "mario@example.com",
+    subject: "Richiesta & dettagli",
+    message: "Prima riga\n<script>alert(1)</script>",
+    source: "ferupis.contact",
+    notificationId: "4bf92f37-0987-4f2b-8b0b-b5791d9e15cf",
+    correlationId: "d41895d2-1c9e-4d0c-911d-8eec09f6c6b4",
+    enqueuedAt: "2026-08-29T07:00:00.000Z",
+  });
+
 describe("React Email template rendering", () => {
   it("renders accessible Italian HTML and plain text", async () => {
     const rendered = await renderEmailJob(createJob("it"), {
@@ -67,5 +81,19 @@ describe("React Email template rendering", () => {
     expect(rendered.html).toContain("Mario Rossi");
     expect(rendered.html).toContain("mario@example.com");
     expect(rendered.text).toContain("vorrei alcune informazioni");
+  });
+
+  it("escapes HTML-active visitor content while preserving readable plain text", async () => {
+    const rendered = await renderEmailJob(createHostileContactJob(), {
+      appEnvironment: "production",
+      siteOrigin: "https://ferupis.pages.dev",
+    });
+
+    expect(rendered.html).toContain("&lt;img src=x onerror=alert(1)&gt;");
+    expect(rendered.html).toContain("&lt;script&gt;alert(1)&lt;/script&gt;");
+    expect(rendered.html).not.toContain("<img src=x");
+    expect(rendered.html).not.toContain("<script>");
+    expect(rendered.text).toContain("<img src=x onerror=alert(1)>");
+    expect(rendered.text).toContain("<script>alert(1)</script>");
   });
 });

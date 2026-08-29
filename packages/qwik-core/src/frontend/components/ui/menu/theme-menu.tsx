@@ -37,21 +37,31 @@ const ToggleThemeMenu = component$<ToggleThemeBtnProps>(
 
     // gestione mount / animazione visibilità
     // eslint-disable-next-line qwik/no-use-visible-task
-    useVisibleTask$(({ track }) => {
+    useVisibleTask$(({ track, cleanup }) => {
       track(() => menuState.isOpened);
 
       if (menuState.isOpened) {
         menuState.isMounted = true;
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
+        let visibilityFrame: number | undefined;
+        const mountFrame = requestAnimationFrame(() => {
+          visibilityFrame = requestAnimationFrame(() => {
             menuState.isVisible = true;
           });
         });
+
+        cleanup(() => {
+          cancelAnimationFrame(mountFrame);
+          if (visibilityFrame !== undefined) {
+            cancelAnimationFrame(visibilityFrame);
+          }
+        });
       } else {
         menuState.isVisible = false;
-        setTimeout(() => {
+        const unmountTimer = window.setTimeout(() => {
           menuState.isMounted = false;
         }, 250);
+
+        cleanup(() => window.clearTimeout(unmountTimer));
       }
     });
 

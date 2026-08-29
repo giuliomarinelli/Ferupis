@@ -5,6 +5,7 @@ import {
   isSameOriginRequest,
   requireTurnstile,
   resolveTurnstileExpectedHostname,
+  verifyTurnstileChallenge,
 } from "@gm/qwik-core/security";
 
 test("Turnstile hostname configuration is mandatory outside development", () => {
@@ -87,6 +88,137 @@ test("Turnstile still requires a configured secret outside development", async (
       expectedAction: "contact_submit",
     }),
     { ok: false, reason: "missing_secret" },
+  );
+});
+
+test("Turnstile rejects missing and overlong tokens before Siteverify", async (t) => {
+  const originalFetch = globalThis.fetch;
+  let fetchCalls = 0;
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+  });
+
+  globalThis.fetch = async () => {
+    fetchCalls += 1;
+    return Response.json({ success: true });
+  };
+
+  assert.deepEqual(
+    await requireTurnstile({
+      request: new Request("https://ferupis.pages.dev/api/contact/messages/"),
+      appEnvironment: "production",
+      secret: "secret",
+      expectedAction: "contact_submit",
+      expectedHostname: "ferupis.pages.dev",
+    }),
+    { ok: false, reason: "missing_token" },
+  );
+  assert.deepEqual(
+    await requireTurnstile({
+      request: new Request("https://ferupis.pages.dev/api/contact/messages/", {
+        headers: {
+          "X-Turnstile-Challenge-Token": "x".repeat(2049),
+        },
+      }),
+      appEnvironment: "production",
+      secret: "secret",
+      expectedAction: "contact_submit",
+      expectedHostname: "ferupis.pages.dev",
+    }),
+    {
+      ok: false,
+      reason: "invalid_token",
+      errorCodes: ["token-too-long"],
+    },
+  );
+  assert.equal(fetchCalls, 0);
+});
+
+test("Turnstile rejects successful challenges with the wrong action or hostname", async (t) => {
+  const originalFetch = globalThis.fetch;
+  let fetchCalls = 0;
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+  });
+
+  globalThis.fetch = async () => {
+    fetchCalls += 1;
+    return Response.json(
+      fetchCalls === 1
+        ? {
+            success: true,
+            action: "unexpected_action",
+            hostname: "ferupis.pages.dev",
+          }
+        : {
+            success: true,
+            action: "contact_submit",
+            hostname: "attacker.example",
+          },
+    );
+  };
+
+  assert.deepEqual(
+    await verifyTurnstileChallenge({
+      token: "token",
+      secret: "secret",
+      expectedAction: "contact_submit",
+      expectedHostname: "ferupis.pages.dev",
+    }),
+    {
+      ok: false,
+      reason: "siteverify_failed",
+      errorCodes: ["action-mismatch"],
+    },
+  );
+  assert.deepEqual(
+    await verifyTurnstileChallenge({
+      token: "token",
+      secret: "secret",
+      expectedAction: "contact_submit",
+      expectedHostname: "ferupis.pages.dev",
+    }),
+    {
+      ok: false,
+      reason: "siteverify_failed",
+      errorCodes: ["hostname-mismatch"],
+    },
+  );
+});
+
+test("Turnstile maps network and aborted Siteverify requests deterministically", async (t) => {
+  const originalFetch = globalThis.fetch;
+
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+  });
+
+  globalThis.fetch = async () => {
+    throw new TypeError("offline");
+  };
+  assert.deepEqual(
+    await verifyTurnstileChallenge({ token: "token", secret: "secret" }),
+    {
+      ok: false,
+      reason: "network_error",
+      errorCodes: ["internal-error"],
+    },
+  );
+
+  globalThis.fetch = async () => {
+    const error = new Error("aborted");
+    error.name = "AbortError";
+    throw error;
+  };
+  assert.deepEqual(
+    await verifyTurnstileChallenge({ token: "token", secret: "secret" }),
+    {
+      ok: false,
+      reason: "timeout",
+      errorCodes: ["siteverify-timeout"],
+    },
   );
 });
 

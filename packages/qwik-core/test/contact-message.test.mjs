@@ -70,11 +70,14 @@ test("contact submissions reject unexpected fields, invalid email and control ch
 });
 
 test("contact JSON parsing enforces content type and the real streamed body limit", async () => {
-  const validRequest = new Request("https://ferupis.example/api/contact/messages/", {
-    method: "POST",
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-    body: JSON.stringify(validInput()),
-  });
+  const validRequest = new Request(
+    "https://ferupis.example/api/contact/messages/",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(validInput()),
+    },
+  );
   const parsed = await parseContactMessageJsonBody(validRequest);
   assert.equal(parsed.ok, true);
 
@@ -95,7 +98,9 @@ test("contact JSON parsing enforces content type and the real streamed body limi
     new Request("https://ferupis.example/api/contact/messages/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ value: "x".repeat(CONTACT_MESSAGE_MAX_BODY_BYTES) }),
+      body: JSON.stringify({
+        value: "x".repeat(CONTACT_MESSAGE_MAX_BODY_BYTES),
+      }),
     }),
   );
   assert.equal(oversized.ok, false);
@@ -160,4 +165,45 @@ test("validated contact messages enqueue one typed internal notification", async
     message: "Buongiorno,\nvorrei alcune informazioni.\n\nGrazie.",
   });
   assert.deepEqual(calls[0].options, { contentType: "json" });
+});
+
+test("contact messages fail closed when the internal recipient is invalid", async () => {
+  const validation = validateContactMessageSubmission(validInput());
+  assert.equal(validation.ok, true);
+  if (!validation.ok) return;
+
+  let queueCalls = 0;
+  const result = await enqueueContactMessage(validation.value, {
+    internalNotificationEmail: "not-an-email",
+    emailQueue: {
+      async send() {
+        queueCalls += 1;
+      },
+      async sendBatch() {},
+    },
+  });
+
+  assert.deepEqual(result, { ok: false, code: "TEMPORARY_FAILURE" });
+  assert.equal(queueCalls, 0);
+});
+
+test("contact messages report a rejected queue publication", async () => {
+  const validation = validateContactMessageSubmission(validInput());
+  assert.equal(validation.ok, true);
+  if (!validation.ok) return;
+
+  const result = await enqueueContactMessage(validation.value, {
+    internalNotificationEmail: "ferupiss@gmail.com",
+    emailQueue: {
+      async send() {
+        throw new Error("queue unavailable");
+      },
+      async sendBatch() {},
+    },
+  });
+
+  assert.deepEqual(result, {
+    ok: false,
+    code: "NOTIFICATION_QUEUE_UNAVAILABLE",
+  });
 });

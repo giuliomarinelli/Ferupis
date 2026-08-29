@@ -82,6 +82,65 @@ describe("Resend REST client", () => {
     });
   });
 
+  it("rejects successful responses that omit the provider id", async () => {
+    const fetcher: FetchLike = async () => Response.json({});
+
+    const error = await sendResendEmail(INPUT, fetcher).catch(
+      (caught: unknown) => caught,
+    );
+
+    expect(error).toBeInstanceOf(ResendRequestError);
+    expect(error).toMatchObject({
+      message: "RESEND_INVALID_RESPONSE",
+      status: 200,
+      retryable: true,
+    });
+  });
+
+  it("classifies malformed server responses as retryable and clamps Retry-After", async () => {
+    const fetcher: FetchLike = async () =>
+      new Response("not-json", {
+        status: 503,
+        headers: {
+          "Content-Type": "application/json",
+          "Retry-After": "7200",
+        },
+      });
+
+    const error = await sendResendEmail(INPUT, fetcher).catch(
+      (caught: unknown) => caught,
+    );
+
+    expect(error).toBeInstanceOf(ResendRequestError);
+    expect(error).toMatchObject({
+      message: "RESEND_INVALID_RESPONSE",
+      status: 503,
+      retryAfterSeconds: 3600,
+      retryable: true,
+    });
+  });
+
+  it("does not retry provider quota exhaustion", async () => {
+    const fetcher: FetchLike = async () =>
+      Response.json(
+        { type: "daily_quota_exceeded", message: "Quota exhausted" },
+        { status: 429, headers: { "Retry-After": "600" } },
+      );
+
+    const error = await sendResendEmail(INPUT, fetcher).catch(
+      (caught: unknown) => caught,
+    );
+
+    expect(error).toBeInstanceOf(ResendRequestError);
+    expect(error).toMatchObject({
+      message: "RESEND_REJECTED",
+      status: 429,
+      providerType: "daily_quota_exceeded",
+      retryAfterSeconds: 600,
+      retryable: false,
+    });
+  });
+
   it("classifies network failures as retryable", async () => {
     const fetcher: FetchLike = async () => {
       throw new Error("offline");
