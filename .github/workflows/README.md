@@ -1,7 +1,7 @@
 # GitHub Actions deployment setup
 
-The workflows build one tested Cloudflare Pages artifact and reuse that exact
-artifact for preview and production deployment.
+The workflows build one tested Cloudflare Pages artifact, validate the common
+Worker bundle, and deploy the common Worker before the matching Pages artifact.
 
 ## One-time Cloudflare setup
 
@@ -14,12 +14,28 @@ npx wrangler pages project create ferupis --production-branch master
 In the GitHub repository configure:
 
 - repository or environment variable `CLOUDFLARE_ACCOUNT_ID`;
-- environment secret `CLOUDFLARE_API_TOKEN`, with Cloudflare Pages Write access;
+- environment secret `CLOUDFLARE_API_TOKEN`, with Cloudflare Pages and Workers
+  Scripts write access plus Queues edit access;
 - GitHub environments named `preview` and `production`.
 
 Production protection rules can be added to the `production` environment. If
 the Pages project is connected to Git, disable its automatic builds to avoid a
 second deployment alongside GitHub Actions.
+
+Create the email queues and dead-letter queues before the first Worker deploy:
+
+```bash
+npx wrangler queues create ferupis-email-dev
+npx wrangler queues create ferupis-email-dev-dlq
+npx wrangler queues create ferupis-email-preview
+npx wrangler queues create ferupis-email-preview-dlq
+npx wrangler queues create ferupis-email-production
+npx wrangler queues create ferupis-email-production-dlq
+```
+
+After the sender domain is verified in Resend, set `RESEND_API_KEY`
+interactively for preview and production using the commands documented in
+`packages/qwik-core/src/backend/workers/common-worker/src/email/README.md`.
 
 ## Branch deployments
 
@@ -28,9 +44,9 @@ second deployment alongside GitHub Actions.
 - both deployment workflows can also be run manually from their matching
   branch.
 
-The production workflow writes both the new deployment ID and the previous one
-to its job summary. A known-good production ID can be supplied to the rollback
-workflow.
+The production workflow writes the Worker version, the new Pages deployment ID,
+and the previous Pages deployment ID to its job summary. Supply a known-good
+Pages deployment ID and Worker version ID together to the rollback workflow.
 
 ## Manual Markdown release notes
 

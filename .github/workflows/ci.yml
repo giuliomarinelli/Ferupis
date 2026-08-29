@@ -35,6 +35,9 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --no-audit
 
+      - name: Validate generated common Worker bindings
+        run: npm run types:cloudflare:check:common-worker
+
       - name: Typecheck workspaces
         run: npm run build.types --workspaces --if-present
 
@@ -49,6 +52,12 @@ jobs:
 
       - name: Build Ferupis Pages artifact
         run: npm run build:f
+
+      - name: Dry-run common Worker preview
+        run: npm run cf:dry-run:common-worker:preview
+
+      - name: Dry-run common Worker production
+        run: npm run cf:dry-run:common-worker:prod
 
       - name: Verify Pages artifact
         shell: bash

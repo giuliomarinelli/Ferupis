@@ -21,11 +21,11 @@ jobs:
     uses: ./.github/workflows/ci.yml
 
   deploy:
-    name: Deploy production Pages artifact
+    name: Deploy production stack
     needs: quality
     if: github.ref_name == 'master'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     environment:
       name: production
       url: https://ferupis.pages.dev
@@ -34,6 +34,7 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       PAGES_PROJECT: ferupis
       PAGES_PUBLIC_URL: https://ferupis.pages.dev
+      WORKER_NAME: ferupis-common-worker
     steps:
       - name: Checkout exact commit
         uses: actions/checkout@v4
@@ -83,6 +84,26 @@ jobs:
           previous_deployment_id="$(jq -r '.[0].Id // empty' .deployment/pages-before.json)"
           echo "PREVIOUS_PAGES_DEPLOYMENT_ID=$previous_deployment_id" >> "$GITHUB_ENV"
 
+      - name: Deploy production common Worker
+        run: >-
+          npx wrangler deploy
+          --config packages/qwik-core/src/backend/workers/common-worker/wrangler.jsonc
+          --env production
+          --tag "${{ github.sha }}"
+          --message "GitHub Actions production ${{ github.run_id }}.${{ github.run_attempt }}"
+          --keep-vars
+
+      - name: Resolve production Worker version
+        shell: bash
+        run: |
+          npx wrangler versions list \
+            --config packages/qwik-core/src/backend/workers/common-worker/wrangler.jsonc \
+            --env production \
+            --json > .deployment/worker-after.json
+          worker_version_id="$(jq -r --arg tag "$GITHUB_SHA" '[.[] | select(.annotations["workers/tag"] == $tag)][-1].id // empty' .deployment/worker-after.json)"
+          test -n "$worker_version_id"
+          echo "WORKER_VERSION_ID=$worker_version_id" >> "$GITHUB_ENV"
+
       - name: Deploy production
         run: >-
           npx wrangler pages deploy dist
@@ -112,6 +133,8 @@ jobs:
             echo "# Production deployment"
             echo
             echo "- Commit: \`$GITHUB_SHA\`"
+            echo "- Worker: \`$WORKER_NAME\`"
+            echo "- Worker version: \`$WORKER_VERSION_ID\`"
             echo "- Pages deployment: \`$deployment_id\`"
             echo "- Previous deployment: \`${PREVIOUS_PAGES_DEPLOYMENT_ID:-none}\`"
             echo "- Deployment URL: $deployment_url"

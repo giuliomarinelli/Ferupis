@@ -21,11 +21,11 @@ jobs:
     uses: ./.github/workflows/ci.yml
 
   deploy:
-    name: Deploy preview Pages artifact
+    name: Deploy preview stack
     needs: quality
     if: github.ref_name == 'preview'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     environment:
       name: preview
       url: https://preview.ferupis.pages.dev
@@ -34,6 +34,7 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       PAGES_PROJECT: ferupis
       PAGES_PUBLIC_URL: https://preview.ferupis.pages.dev
+      WORKER_NAME: ferupis-common-worker-preview
     steps:
       - name: Checkout exact commit
         uses: actions/checkout@v4
@@ -71,6 +72,27 @@ jobs:
             '.[] | select(.["Project Name"] == $project)' \
             pages-projects.json > /dev/null
 
+      - name: Deploy preview common Worker
+        run: >-
+          npx wrangler deploy
+          --config packages/qwik-core/src/backend/workers/common-worker/wrangler.jsonc
+          --env preview
+          --tag "${{ github.sha }}"
+          --message "GitHub Actions preview ${{ github.run_id }}.${{ github.run_attempt }}"
+          --keep-vars
+
+      - name: Resolve preview Worker version
+        shell: bash
+        run: |
+          mkdir -p .deployment
+          npx wrangler versions list \
+            --config packages/qwik-core/src/backend/workers/common-worker/wrangler.jsonc \
+            --env preview \
+            --json > .deployment/worker-after.json
+          worker_version_id="$(jq -r --arg tag "$GITHUB_SHA" '[.[] | select(.annotations["workers/tag"] == $tag)][-1].id // empty' .deployment/worker-after.json)"
+          test -n "$worker_version_id"
+          echo "WORKER_VERSION_ID=$worker_version_id" >> "$GITHUB_ENV"
+
       - name: Deploy preview
         run: >-
           npx wrangler pages deploy dist
@@ -101,6 +123,8 @@ jobs:
             echo "# Preview deployment"
             echo
             echo "- Commit: \`$GITHUB_SHA\`"
+            echo "- Worker: \`$WORKER_NAME\`"
+            echo "- Worker version: \`$WORKER_VERSION_ID\`"
             echo "- Pages deployment: \`$deployment_id\`"
             echo "- Deployment URL: $deployment_url"
             echo "- Branch alias: $PAGES_PUBLIC_URL"

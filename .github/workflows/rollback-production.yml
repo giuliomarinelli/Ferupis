@@ -7,6 +7,10 @@ on:
         description: Successful production Pages deployment ID to restore
         required: true
         type: string
+      worker_version_id:
+        description: ferupis-common-worker version ID to restore
+        required: true
+        type: string
       reason:
         description: Incident or rollback reason
         required: true
@@ -26,7 +30,7 @@ concurrency:
 
 jobs:
   rollback:
-    name: Restore known-good Pages deployment
+    name: Restore known-good production versions
     runs-on: ubuntu-latest
     timeout-minutes: 20
     environment:
@@ -59,6 +63,26 @@ jobs:
             > rollback-response.json
           jq -e '.success == true' rollback-response.json > /dev/null
 
+      - name: Checkout rollback tooling
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.16.0
+          cache: npm
+
+      - name: Install deployment tooling
+        run: npm ci --ignore-scripts --no-audit
+
+      - name: Roll back common Worker
+        run: >-
+          npx wrangler rollback "${{ inputs.worker_version_id }}"
+          --config packages/qwik-core/src/backend/workers/common-worker/wrangler.jsonc
+          --env production
+          --message "${{ inputs.reason }}"
+          --yes
+
       - name: Verify production after rollback
         shell: bash
         run: |
@@ -77,6 +101,7 @@ jobs:
             echo "# Production rollback"
             echo
             echo "- Pages deployment: \`$ROLLBACK_DEPLOYMENT_ID\`"
+            echo "- Worker version: \`${{ inputs.worker_version_id }}\`"
             echo "- Reason: $ROLLBACK_REASON"
             echo "- Production URL: $PAGES_PUBLIC_URL"
           } >> "$GITHUB_STEP_SUMMARY"
