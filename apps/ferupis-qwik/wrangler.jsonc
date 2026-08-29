@@ -5,6 +5,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "pages_build_output_dir": "./dist",
   "vars": {
+    "APP_ENV": "dev",
     "CF_TURNSTILE_SITE_KEY": "1x00000000000000000000BB",
   },
   "queues": {
@@ -18,6 +19,7 @@
   "env": {
     "preview": {
       "vars": {
+        "APP_ENV": "preview",
         "CF_TURNSTILE_SITE_KEY": "<CF_TURNSTILE_SITE_KEY_PREVIEW>",
       },
       "queues": {
@@ -31,6 +33,7 @@
     },
     "production": {
       "vars": {
+        "APP_ENV": "production",
         "CF_TURNSTILE_SITE_KEY": "<CF_TURNSTILE_SITE_KEY_PRODUCTION>",
       },
       "queues": {

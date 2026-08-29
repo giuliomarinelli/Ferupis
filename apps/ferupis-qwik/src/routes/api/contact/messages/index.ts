@@ -12,11 +12,9 @@ import {
   resolveTurnstileExpectedHostname,
 } from "@gm/qwik-core/security";
 import { resolveContactRuntimeEnv } from "~/server/contact-runtime";
-import { CONTACT_EMAIL } from "~/site-config";
+import { CONTACT_EMAIL, TEST_CONTACT_EMAIL } from "~/config/constants";
 
 const TURNSTILE_ACTION_CONTACT_SUBMIT = "contact_submit";
-const TURNSTILE_TEST_SECRET_ALWAYS_PASSES =
-  "1x0000000000000000000000000000000AA";
 
 export const onRequest: RequestHandler = (event) => {
   applyContactMessageApiHeaders(event.headers);
@@ -56,7 +54,10 @@ export const onPost: RequestHandler = async (event) => {
   }
 
   const env = resolveContactRuntimeEnv(event.platform);
-  if (!env.EMAIL_QUEUE || !env.CF_TURNSTILE_SECRET_KEY) {
+  if (
+    !env.EMAIL_QUEUE ||
+    (env.APP_ENV !== "dev" && !env.CF_TURNSTILE_SECRET_KEY)
+  ) {
     event.json(503, { ok: false, code: "TEMPORARY_FAILURE" });
     return;
   }
@@ -72,12 +73,10 @@ export const onPost: RequestHandler = async (event) => {
 
   const turnstile = await requireTurnstile({
     request: event.request,
+    appEnvironment: env.APP_ENV,
     secret: env.CF_TURNSTILE_SECRET_KEY,
     expectedHostname: turnstileHostname.expectedHostname,
-    expectedAction:
-      env.CF_TURNSTILE_SECRET_KEY === TURNSTILE_TEST_SECRET_ALWAYS_PASSES
-        ? undefined
-        : TURNSTILE_ACTION_CONTACT_SUBMIT,
+    expectedAction: TURNSTILE_ACTION_CONTACT_SUBMIT,
   });
   if (!turnstile.ok) {
     event.json(400, {
@@ -89,7 +88,7 @@ export const onPost: RequestHandler = async (event) => {
 
   const result = await enqueueContactMessage(validation.value, {
     emailQueue: env.EMAIL_QUEUE,
-    internalNotificationEmail: CONTACT_EMAIL,
+    internalNotificationEmail: ['env', 'preview'].includes(env.APP_ENV ?? 'env') ? TEST_CONTACT_EMAIL : CONTACT_EMAIL,
   });
 
   if (!result.ok) {

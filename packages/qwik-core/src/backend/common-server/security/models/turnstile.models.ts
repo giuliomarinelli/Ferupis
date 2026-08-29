@@ -18,6 +18,7 @@ export type TurnstileSiteverifyResponse = Readonly<{
 
 export type RequireTurnstileInput = Readonly<{
   request: Request;
+  appEnvironment: string | undefined;
   secret: string | undefined;
   expectedHostname?: string;
   expectedAction?: string;

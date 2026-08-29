@@ -1,1 +1,0 @@
-export const CONTACT_EMAIL = 'ferupiss@gmail.com'

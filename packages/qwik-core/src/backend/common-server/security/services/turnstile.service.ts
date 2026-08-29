@@ -6,8 +6,9 @@ import type {
   VerifyTurnstileInput,
 } from "../models/turnstile.models.ts";
 
-export const TURNSTILE_CHALLENGE_TOKEN_HEADER =
-  "X-Turnstile-Challenge-Token";
+export const TURNSTILE_CHALLENGE_TOKEN_HEADER = "X-Turnstile-Challenge-Token";
+const TURNSTILE_TEST_SECRET_ALWAYS_PASSES =
+  "1x0000000000000000000000000000000AA";
 
 export const resolveTurnstileExpectedHostname = (
   input: ResolveTurnstileExpectedHostnameInput,
@@ -40,9 +41,7 @@ export const resolveTurnstileExpectedHostname = (
   return { ok: false, reason: "expected_hostname_unavailable" };
 };
 
-export const verifyTurnstileChallenge = async (
-  input: VerifyTurnstileInput,
-) => {
+export const verifyTurnstileChallenge = async (input: VerifyTurnstileInput) => {
   if (!input.token) {
     return { ok: false, reason: "missing_token" } as const;
   }
@@ -123,6 +122,10 @@ export const verifyTurnstileChallenge = async (
 };
 
 export const requireTurnstile = async (input: RequireTurnstileInput) => {
+  const secret =
+    input.appEnvironment === "dev"
+      ? TURNSTILE_TEST_SECRET_ALWAYS_PASSES
+      : input.secret;
   const token = input.request.headers.get(TURNSTILE_CHALLENGE_TOKEN_HEADER);
   const forwardedFor = input.request.headers.get("X-Forwarded-For");
   const remoteIp =
@@ -132,9 +135,14 @@ export const requireTurnstile = async (input: RequireTurnstileInput) => {
 
   return verifyTurnstileChallenge({
     token,
-    secret: input.secret,
+    secret,
     remoteIp,
     expectedHostname: input.expectedHostname,
-    expectedAction: input.expectedAction,
+    // Cloudflare's dummy token reports the fixed test action rather than the
+    // action passed to render(). Real credentials must always match ours.
+    expectedAction:
+      secret === TURNSTILE_TEST_SECRET_ALWAYS_PASSES
+        ? undefined
+        : input.expectedAction,
   });
 };
