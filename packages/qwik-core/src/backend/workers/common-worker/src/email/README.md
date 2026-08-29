@@ -89,9 +89,13 @@ producer bindings are deliberately not part of builds or tests.
 5. Expose a template-specific producer factory; do not expose a generic public
    email action.
 
-## Local testing limitation
+## Local testing
 
-Cloudflare Pages can publish to a local Queue, but Wrangler cannot run a Pages
-producer and a separate Worker consumer against the same local Queue. Consumer
-tests therefore use `createMessageBatch()` in Workerd. Validate the complete
-producer-to-consumer path in preview.
+Run `npm run cf:dev:f` from the repository root. The launcher starts Pages and
+the common worker in one Wrangler multi-config session so the local
+`ferupis-email-dev` producer and consumer share the same Queue. Do not start the
+standalone `cf:dev:common-worker` process alongside this stack.
+
+The common worker reads the local Resend secret from its ignored `.dev.vars`
+file. Consumer tests continue to use `createMessageBatch()` in Workerd, while
+the combined local stack validates the complete form-to-Resend path.

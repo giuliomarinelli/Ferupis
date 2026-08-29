@@ -88,7 +88,9 @@ export const onPost: RequestHandler = async (event) => {
 
   const result = await enqueueContactMessage(validation.value, {
     emailQueue: env.EMAIL_QUEUE,
-    internalNotificationEmail: ['env', 'preview'].includes(env.APP_ENV ?? 'env') ? TEST_CONTACT_EMAIL : CONTACT_EMAIL,
+    internalNotificationEmail: ["dev", "preview"].includes(env.APP_ENV ?? "dev")
+      ? TEST_CONTACT_EMAIL
+      : CONTACT_EMAIL,
   });
 
   if (!result.ok) {

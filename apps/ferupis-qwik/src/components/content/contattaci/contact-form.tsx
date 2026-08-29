@@ -262,7 +262,7 @@ export const ContactForm = component$<ContactFormProps>((props) => {
         <p class="mt-3 leading-7 text-emerald-900 dark:text-emerald-200">
           Grazie per averci contattato. Ti risponderemo appena possibile.
         </p>
-        <div class="mt-6 max-w-sm">
+        <div class="mt-6 max-w-sm font-sans">
           <PrimaryActionBtn
             label="Invia un altro messaggio"
             isLink={false}
