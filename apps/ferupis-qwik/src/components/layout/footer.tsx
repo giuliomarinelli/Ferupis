@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import { Container } from "./container";
 import { Link } from "@builder.io/qwik-city";
-import { CONTACT_EMAIL } from "~/site-config";
+import { CONTACT_EMAIL } from "~/config/constants";
 import { BoltIcon, ContactIcon } from "@gm/qwik-core/ui";
 
 export const Footer = component$(() => {

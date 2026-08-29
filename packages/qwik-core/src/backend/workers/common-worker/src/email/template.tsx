@@ -13,7 +13,13 @@ import {
   render,
   toPlainText,
 } from "react-email";
-import type { EmailJob } from "@gm/qwik-core/email";
+import {
+  EMAIL_CONTACT_MESSAGE_INTERNAL_TEMPLATE,
+  EMAIL_DELIVERY_TEST_TEMPLATE,
+  type EmailContactMessageInternalJob,
+  type EmailDeliveryTestJob,
+  type EmailJob,
+} from "@gm/qwik-core/email";
 
 export type EmailTemplateConfig = Readonly<{
   appEnvironment: string;
@@ -37,7 +43,19 @@ type DeliveryTestCopy = Readonly<{
   footer: string;
 }>;
 
-const COPY = {
+type ContactMessageCopy = Readonly<{
+  subject: string;
+  preview: string;
+  heading: string;
+  name: string;
+  email: string;
+  subjectLabel: string;
+  message: string;
+  noSubject: string;
+  footer: string;
+}>;
+
+const DELIVERY_TEST_COPY = {
   it: {
     subject: "Test di consegna email — Ferupis",
     preview: "Il servizio email asincrono è operativo.",
@@ -63,6 +81,33 @@ const COPY = {
     footer: "Technical message generated automatically by Ferupis.",
   },
 } as const satisfies Record<EmailJob["locale"], DeliveryTestCopy>;
+
+const CONTACT_MESSAGE_COPY = {
+  it: {
+    subject: "Nuovo messaggio dal sito Ferupis",
+    preview: "È arrivato un nuovo messaggio dal modulo Contattaci.",
+    heading: "Nuovo messaggio dal sito",
+    name: "Nome",
+    email: "Email",
+    subjectLabel: "Oggetto",
+    message: "Messaggio",
+    noSubject: "Nessun oggetto",
+    footer:
+      "Puoi rispondere direttamente a questa email: il Reply-To è impostato sull'indirizzo indicato dal visitatore.",
+  },
+  en: {
+    subject: "New message from the Ferupis website",
+    preview: "A new message arrived from the contact form.",
+    heading: "New website message",
+    name: "Name",
+    email: "Email",
+    subjectLabel: "Subject",
+    message: "Message",
+    noSubject: "No subject",
+    footer:
+      "You can reply directly to this email: Reply-To is set to the address supplied by the visitor.",
+  },
+} as const satisfies Record<EmailJob["locale"], ContactMessageCopy>;
 
 const main: CSSProperties = {
   backgroundColor: "#f7f2e7",
@@ -106,15 +151,21 @@ const paragraph: CSSProperties = {
   margin: "0 0 18px",
 };
 
-const environment: CSSProperties = {
+const details: CSSProperties = {
   backgroundColor: "#fbf4df",
   borderRadius: "10px",
   color: "#624318",
   fontFamily: "Arial, sans-serif",
   fontSize: "14px",
-  lineHeight: "1.5",
+  lineHeight: "1.6",
   margin: "24px 0",
   padding: "14px 16px",
+};
+
+const messageStyle: CSSProperties = {
+  ...paragraph,
+  overflowWrap: "anywhere",
+  whiteSpace: "pre-wrap",
 };
 
 const button: CSSProperties = {
@@ -140,8 +191,11 @@ const footer: CSSProperties = {
 const DeliveryTestEmail = ({
   job,
   config,
-}: Readonly<{ job: EmailJob; config: EmailTemplateConfig }>) => {
-  const copy = COPY[job.locale];
+}: Readonly<{
+  job: EmailDeliveryTestJob;
+  config: EmailTemplateConfig;
+}>) => {
+  const copy = DELIVERY_TEST_COPY[job.locale];
 
   return (
     <Html lang={job.locale}>
@@ -154,7 +208,7 @@ const DeliveryTestEmail = ({
             {copy.heading}
           </Heading>
           <Text style={paragraph}>{copy.introduction}</Text>
-          <Section style={environment}>
+          <Section style={details}>
             {copy.environmentLabel}: <strong>{config.appEnvironment}</strong>
           </Section>
           <Text style={paragraph}>{copy.confirmation}</Text>
@@ -169,14 +223,70 @@ const DeliveryTestEmail = ({
   );
 };
 
+const ContactMessageEmail = ({
+  job,
+}: Readonly<{ job: EmailContactMessageInternalJob }>) => {
+  const copy = CONTACT_MESSAGE_COPY[job.locale];
+
+  return (
+    <Html lang={job.locale}>
+      <Head />
+      <Preview>{copy.preview}</Preview>
+      <Body lang={job.locale} style={main}>
+        <Container style={container}>
+          <Text style={eyebrow}>Ferupis</Text>
+          <Heading as="h1" style={heading}>
+            {copy.heading}
+          </Heading>
+          <Section style={details}>
+            <Text style={{ margin: "0 0 6px" }}>
+              <strong>{copy.name}:</strong> {job.payload.name}
+            </Text>
+            <Text style={{ margin: "0 0 6px" }}>
+              <strong>{copy.email}:</strong> {job.payload.email}
+            </Text>
+            <Text style={{ margin: 0 }}>
+              <strong>{copy.subjectLabel}:</strong>{" "}
+              {job.payload.subject ?? copy.noSubject}
+            </Text>
+          </Section>
+          <Heading as="h2" style={{ ...heading, fontSize: "20px" }}>
+            {copy.message}
+          </Heading>
+          <Text style={messageStyle}>{job.payload.message}</Text>
+          <Hr style={{ borderColor: "#ded3bc", margin: "32px 0 0" }} />
+          <Text style={footer}>{copy.footer}</Text>
+        </Container>
+      </Body>
+    </Html>
+  );
+};
+
 export const renderEmailJob = async (
   job: EmailJob,
   config: EmailTemplateConfig,
 ): Promise<RenderedEmail> => {
-  const html = await render(<DeliveryTestEmail job={job} config={config} />);
-  return {
-    subject: COPY[job.locale].subject,
-    html,
-    text: toPlainText(html),
-  };
+  if (job.template === EMAIL_DELIVERY_TEST_TEMPLATE) {
+    const html = await render(<DeliveryTestEmail job={job} config={config} />);
+    return {
+      subject: DELIVERY_TEST_COPY[job.locale].subject,
+      html,
+      text: toPlainText(html),
+    };
+  }
+
+  if (job.template === EMAIL_CONTACT_MESSAGE_INTERNAL_TEMPLATE) {
+    const html = await render(<ContactMessageEmail job={job} />);
+    const baseSubject = CONTACT_MESSAGE_COPY[job.locale].subject;
+    return {
+      subject: job.payload.subject
+        ? `${baseSubject}: ${job.payload.subject}`
+        : baseSubject,
+      html,
+      text: toPlainText(html),
+    };
+  }
+
+  const exhaustive: never = job;
+  throw new TypeError(`Unsupported email job: ${String(exhaustive)}`);
 };

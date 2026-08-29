@@ -9,7 +9,7 @@
   "vars": {
     "APP_ENV": "dev",
     "EMAIL_DELIVERY_MODE": "resend",
-    "EMAIL_FROM": "Ferupis <noreply@giuliomarinelli.com>",
+    "EMAIL_FROM": "Ferupis <noreply@ferupis.com>",
     "EMAIL_REPLY_TO": "ferupiss@gmail.com",
     "SITE_ORIGIN": "http://localhost:8788",
   },
@@ -44,7 +44,7 @@
       "vars": {
         "APP_ENV": "preview",
         "EMAIL_DELIVERY_MODE": "resend",
-        "EMAIL_FROM": "Ferupis <noreply@giuliomarinelli.com>",
+        "EMAIL_FROM": "Ferupis <noreply@ferupis.com>",
         "EMAIL_REPLY_TO": "ferupiss@gmail.com",
         "SITE_ORIGIN": "https://preview.ferupis.pages.dev",
       },
@@ -79,7 +79,7 @@
       "vars": {
         "APP_ENV": "production",
         "EMAIL_DELIVERY_MODE": "resend",
-        "EMAIL_FROM": "Ferupis <noreply@giuliomarinelli.com>",
+        "EMAIL_FROM": "Ferupis <noreply@ferupis.com>",
         "EMAIL_REPLY_TO": "ferupiss@gmail.com",
         "SITE_ORIGIN": "https://ferupis.pages.dev",
       },

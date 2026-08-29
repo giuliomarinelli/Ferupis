@@ -279,6 +279,54 @@ body {
 }
 
 @layer components {
+  .m-floating-field {
+    @apply relative rounded-md;
+    --m-floating-label-y: 1.75rem;
+    --m-floating-label-active-y: 0px;
+  }
+
+  .m-floating-field-bg,
+  .m-floating-label,
+  .m-floating-label::before {
+    background-color: inherit;
+  }
+
+  .m-floating-field-bg {
+    @apply pointer-events-none absolute inset-0 rounded-md;
+    z-index: 0;
+  }
+
+  .m-floating-input-element {
+    @apply relative z-10 block w-full rounded-md bg-transparent px-4 py-4 text-base transition duration-300;
+    font-size: 16px;
+  }
+
+  .m-floating-label {
+    @apply absolute left-4 origin-left px-1 leading-5 transition-[color,font-size,top,transform] duration-300;
+    top: var(--m-floating-label-y);
+    transform: translateY(-50%);
+    z-index: 20;
+  }
+
+  .m-floating-label::before {
+    position: absolute;
+    z-index: -1;
+    inset: -0.15rem -0.25rem;
+    border-radius: 9999px;
+    content: "";
+  }
+
+  .m-floating-label--active {
+    @apply text-base;
+    top: var(--m-floating-label-active-y);
+    transform: translateY(-50%);
+  }
+
+  .m-floating-label--inactive {
+    @apply cursor-text text-lg text-slate-500 dark:text-slate-400;
+    transform: translateY(-50%);
+  }
+
   .site-header {
     @apply sticky top-0 z-30 flex h-[64.5px] shrink-0 flex-col justify-center border-b-[0.1px] border-indigo-300 bg-indigo-50/80 py-3 backdrop-blur-lg dark:border-slate-500 dark:bg-neutral-950/80;
   }
@@ -308,6 +356,11 @@ body {
 
   .mdx-article :where(p) {
     @apply mt-5;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .justify-text {
     text-align: justify;
     hyphens: auto;
   }
