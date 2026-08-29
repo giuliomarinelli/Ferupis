@@ -39,7 +39,7 @@ const CONTACT_JOB = createEmailContactMessageInternalJob({
 const RESEND_ENV = {
   APP_ENV: "production",
   EMAIL_DELIVERY_MODE: "resend",
-  EMAIL_FROM: "Ferupis <noreply@giuliomarinelli.com>",
+  EMAIL_FROM: "Ferupis <noreply@ferupis.com>",
   EMAIL_REPLY_TO: "ferupiss@gmail.com",
   RESEND_API_KEY: "re_test_key",
   SITE_ORIGIN: "https://ferupis.pages.dev",
