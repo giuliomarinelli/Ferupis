@@ -7,6 +7,9 @@ import { BREADCRUMBS_BY_ROUTE } from "~/generated/breadcrumbs";
 import { Footer } from "~/components/layout/footer";
 import { Header } from "~/components/layout/header";
 import { BgStack } from "~/components/UI/bg-stack";
+import { technicalSeoHead } from "~/seo/technical-seo";
+
+export const head = technicalSeoHead;
 
 export default component$(() => {
   const location = useLocation();

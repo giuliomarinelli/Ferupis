@@ -26,14 +26,6 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: "Contattaci | Ferupis",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Contatta Ferupis per informazioni sui prodotti, sull'attività apistica e sui contenuti del sito.",
-    },
-  ],
   scripts: [
     {
       key: "cloudflare-turnstile",

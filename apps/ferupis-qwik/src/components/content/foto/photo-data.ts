@@ -240,7 +240,6 @@ export const PHOTO_GALLERY = [
 export const getPhotoBySlug = (slug: string): PhotoDefinition | undefined =>
   PHOTO_GALLERY.find((photo) => photo.slug === slug);
 
-
 export const getPhotoNavigation = (slug: string) => {
   const index = PHOTO_GALLERY.findIndex((photo) => photo.slug === slug);
 
@@ -250,17 +249,19 @@ export const getPhotoNavigation = (slug: string) => {
 
   return {
     index,
-    previous: PHOTO_GALLERY[(index - 1 + PHOTO_GALLERY.length) % PHOTO_GALLERY.length],
+    previous:
+      PHOTO_GALLERY[(index - 1 + PHOTO_GALLERY.length) % PHOTO_GALLERY.length],
     next: PHOTO_GALLERY[(index + 1) % PHOTO_GALLERY.length],
   };
 };
 
 export const toPhotoPath = (slug: string) => `/foto/${slug}/`;
 
-export type PhotoSlug = (typeof PHOTO_GALLERY)[number]['slug']
+export type PhotoSlug = (typeof PHOTO_GALLERY)[number]["slug"];
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const PHOTO_ROUTE_KEY_PREFIX = "foto-detail" as const
-export type PhotoRouteKey = CamelCase<`${typeof PHOTO_ROUTE_KEY_PREFIX}-${PhotoSlug}`>
+const PHOTO_ROUTE_KEY_PREFIX = "foto-detail" as const;
+export type PhotoRouteKey =
+  CamelCase<`${typeof PHOTO_ROUTE_KEY_PREFIX}-${PhotoSlug}`>;
 
 export const getPhotoRouteDefinitions = (): Record<
   PhotoRouteKey,
@@ -272,11 +273,12 @@ export const getPhotoRouteDefinitions = (): Record<
       {
         indexable: true,
         internalPath: `foto/${item.slug}`,
-        publicPath: `foto/${item.slug}`,        
+        publicPath: `foto/${item.slug}`,
+        seo: {
+          title: `${item.title} | Foto | Ferupis`,
+          description: item.description,
+        },
       },
     ]),
-  ) as Record<
-    PhotoRouteKey,
-    SiteRouteDefinition<"foto">
-  >;
+  ) as Record<PhotoRouteKey, SiteRouteDefinition<"foto">>;
 };

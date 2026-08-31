@@ -1,6 +1,7 @@
 import { cloudflarePagesAdapter } from "@builder.io/qwik-city/adapters/cloudflare-pages/vite";
 import { extendConfig } from "@builder.io/qwik-city/vite";
 import baseConfig from "../../vite.config";
+import { SITE_CONFIG } from "../../src/config/site-config";
 
 export default extendConfig(baseConfig, () => ({
   build: {
@@ -13,8 +14,14 @@ export default extendConfig(baseConfig, () => ({
     cloudflarePagesAdapter({
       ssg: {
         include: ["*"],
-        exclude: ["/contattaci/"],
-        origin: "https://ferupis.pages.dev",
+        exclude: [
+          "/contattaci/",
+          "/sitemap.xml",
+          "/robots.txt",
+          "/llms.txt",
+        ],
+        origin: SITE_CONFIG.origin,
+        sitemapOutFile: null,
       },
     }),
   ],

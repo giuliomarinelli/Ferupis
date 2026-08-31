@@ -11,7 +11,7 @@ import {
   resolveTurnstileExpectedHostname,
 } from "@gm/qwik-core/security";
 import { resolveContactRuntimeEnv } from "~/server/contact-runtime";
-import { CONTACT_EMAIL, TEST_CONTACT_EMAIL } from "~/config/constants";
+import { CONTACT_EMAIL, TEST_CONTACT_EMAIL } from "~/config/site-config";
 
 const TURNSTILE_ACTION_CONTACT_SUBMIT = "contact_submit";
 
