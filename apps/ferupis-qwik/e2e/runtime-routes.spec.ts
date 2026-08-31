@@ -55,6 +55,13 @@ test("una route foto sconosciuta risponde 404 e impedisce l'indicizzazione", asy
 test("espone discovery SEO dinamica dal runtime Pages", async ({ request }) => {
   const sitemap = await request.get("/sitemap.xml");
   expect(sitemap.status()).toBe(200);
+  expect(sitemap.headers()).toMatchObject({
+    "permissions-policy":
+      "camera=(), geolocation=(), microphone=(), payment=(), usb=()",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY",
+  });
   expect(sitemap.headers()["content-type"]).toBe(
     "application/xml; charset=utf-8",
   );
@@ -91,6 +98,13 @@ test("renderizza canonical, social metadata e JSON-LD rotta per rotta", async ({
   );
 
   expect(response?.status()).toBe(200);
+  expect(response?.headers()).toMatchObject({
+    "permissions-policy":
+      "camera=(), geolocation=(), microphone=(), payment=(), usb=()",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY",
+  });
   await expect(page).toHaveTitle("L'ape regina | Ferupis");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",

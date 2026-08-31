@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { getIndexableRouteKeys } from "../src/config/routes.ts";
 import {
@@ -79,4 +80,38 @@ test("publishes crawler and AI discovery files from the same registry", () => {
   assert.match(llms, /^# Ferupis/m);
   assert.match(llms, /https:\/\/ferupis\.pages\.dev\/il-miele\//);
   assert.doesNotMatch(llms, /<[^>]+>/);
+});
+
+test("keeps static Pages requests outside the Worker", async () => {
+  const routes = JSON.parse(
+    await readFile(new URL("../public/_routes.json", import.meta.url), "utf8"),
+  );
+
+  assert.deepEqual(routes, {
+    version: 1,
+    include: [
+      "/api/*",
+      "/contattaci",
+      "/contattaci/*",
+      "/foto/*",
+      "/sitemap.xml",
+      "/robots.txt",
+      "/llms.txt",
+    ],
+    exclude: [],
+  });
+  assert.equal(routes.include.includes("/*"), false);
+});
+
+test("defines Pages headers for static security and asset caching", async () => {
+  const headers = await readFile(
+    new URL("../public/_headers", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(headers, /X-Content-Type-Options: nosniff/);
+  assert.match(headers, /X-Frame-Options: DENY/);
+  assert.match(headers, /\/build\/\*/);
+  assert.match(headers, /max-age=31536000, immutable/);
+  assert.match(headers, /\/404\.html[\s\S]*X-Robots-Tag: noindex, nofollow/);
 });
