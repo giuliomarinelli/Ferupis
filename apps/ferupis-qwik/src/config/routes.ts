@@ -1,4 +1,6 @@
-type SiteRouteDefinition<RouteKey extends string> = {
+import { getPhotoRouteDefinitions } from "../components/content/foto/photo-data.ts";
+
+export type SiteRouteDefinition<RouteKey extends string> = {
   /** The filesystem/Qwik City route, without leading or trailing slashes. */
   internalPath: string;
 
@@ -186,6 +188,7 @@ export const SITE_ROUTE_REGISTRY = defineSiteRouteRegistry({
     indexable: true,
     parent: 'ilMiele'
   },
+  ...getPhotoRouteDefinitions()
 });
 
 export type SiteRouteKey = keyof typeof SITE_ROUTE_REGISTRY;

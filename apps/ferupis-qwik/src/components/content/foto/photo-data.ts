@@ -1,3 +1,7 @@
+import type { SiteRouteDefinition } from "../../../config/routes.ts";
+import type { CamelCase } from "../../../helpers.ts";
+import { toCamelCase } from "../../../helpers.ts";
+
 export type PhotoDefinition = {
   slug: string;
   title: string;
@@ -6,7 +10,7 @@ export type PhotoDefinition = {
   description: string;
 };
 
-export const PHOTO_GALLERY: readonly PhotoDefinition[] = [
+export const PHOTO_GALLERY = [
   {
     slug: "uova-api",
     title: "Uova di ape",
@@ -231,10 +235,11 @@ export const PHOTO_GALLERY: readonly PhotoDefinition[] = [
     caption: "Girasole",
     description: "Fotografia Ferupis dedicata al girasole.",
   },
-];
+] as const satisfies readonly PhotoDefinition[];
 
 export const getPhotoBySlug = (slug: string): PhotoDefinition | undefined =>
   PHOTO_GALLERY.find((photo) => photo.slug === slug);
+
 
 export const getPhotoNavigation = (slug: string) => {
   const index = PHOTO_GALLERY.findIndex((photo) => photo.slug === slug);
@@ -251,3 +256,27 @@ export const getPhotoNavigation = (slug: string) => {
 };
 
 export const toPhotoPath = (slug: string) => `/foto/${slug}/`;
+
+export type PhotoSlug = (typeof PHOTO_GALLERY)[number]['slug']
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const PHOTO_ROUTE_KEY_PREFIX = "foto-detail" as const
+export type PhotoRouteKey = CamelCase<`${typeof PHOTO_ROUTE_KEY_PREFIX}-${PhotoSlug}`>
+
+export const getPhotoRouteDefinitions = (): Record<
+  PhotoRouteKey,
+  SiteRouteDefinition<"foto">
+> => {
+  return Object.fromEntries(
+    PHOTO_GALLERY.map((item) => [
+      toCamelCase(`fotoDetail_${item.slug}`),
+      {
+        indexable: true,
+        internalPath: `foto/${item.slug}`,
+        publicPath: `foto/${item.slug}`,        
+      },
+    ]),
+  ) as Record<
+    PhotoRouteKey,
+    SiteRouteDefinition<"foto">
+  >;
+};

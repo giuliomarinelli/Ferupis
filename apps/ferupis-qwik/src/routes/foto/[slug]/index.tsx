@@ -15,6 +15,7 @@ export const usePhotoRoute = routeLoader$(({ params, status }) => {
 });
 
 export default component$(() => {
+
   const photo = usePhotoRoute();
 
   return photo.value ? <PhotoOverlay photo={photo.value} /> : null;
