@@ -1,0 +1,41 @@
+import { ContentHeader } from "~/components/content-typography";
+import { Container } from "~/components/layout/container";
+import EmergenceStepOne from "~/media/pics/restored/FC118CCADFB447B4A6DA6789610DBD4E.png?jsx";
+import EmergenceStepTwo from "~/media/pics/restored/EA7C2A8E660A4D459EFBD5CE5D194B8D.png?jsx";
+import EmergenceStepThree from "~/media/pics/restored/F0C22AC2D431434292A57E6E595BF693.png?jsx";
+import EmergenceStepFour from "~/media/pics/restored/C9B7683A358F4A84AD3807A52422EA31.png?jsx";
+import BeeEmergenceAnimation from "~/media/pics/restored/5917A35070AD47C593B317234C183A93.gif?jsx";
+import { NascitaSubtitle } from "./subtitle";
+
+<Container context="article" tag="article" class="mdx-article">
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Le Api" />
+  <ContentHeader.Heading text="La nascita" tag="h1" class="le-api-color" />
+  <ContentHeader.Subtitle component={NascitaSubtitle} />
+</ContentHeader.Root>
+
+L’ape operaia impiega 21 giorni per nascere dalla deposizione dell’uovo, il fuco 24 giorni e l’ape regina 16.
+
+## Dalla larva all’adulto
+
+Dall’uovo nasce una piccola larva che, in pochi giorni, cresce fino a occupare tutto lo spazio della propria celletta nel favo. La larva tesse quindi un sottile bozzolo, all’interno del quale avviene la metamorfosi in pupa e poi in insetto adulto.
+
+<figure>
+  <div class="grid w-full grid-cols-2 gap-3 sm:grid-cols-4">
+    <EmergenceStepOne alt="Primo momento della nascita di un’ape" class="h-auto w-full rounded-lg" />
+    <EmergenceStepTwo alt="Secondo momento della nascita di un’ape" class="h-auto w-full rounded-lg" />
+    <EmergenceStepThree alt="Terzo momento della nascita di un’ape" class="h-auto w-full rounded-lg" />
+    <EmergenceStepFour alt="Quarto momento della nascita di un’ape" class="h-auto w-full rounded-lg" />
+  </div>
+  <figcaption>Quattro momenti della nascita di un’ape dalla celletta.</figcaption>
+</figure>
+
+<figure class="max-w-sm">
+  <BeeEmergenceAnimation
+    alt="Sequenza animata della nascita di un’ape"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>La sequenza animata conservata dal sito Ferupis originale.</figcaption>
+</figure>
+
+</Container>

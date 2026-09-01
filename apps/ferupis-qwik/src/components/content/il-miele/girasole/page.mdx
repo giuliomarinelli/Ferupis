@@ -1,0 +1,42 @@
+import { ContentHeader } from "~/components/content-typography";
+import { Container } from "~/components/layout/container";
+import SunflowerField from "~/media/pics/restored/B8A17870FD5A4D71A3991638AB6AED74.jpg?jsx";
+import SunflowerBloom from "~/media/pics/restored/3D96756C590A4A0DAE8F0A66EBFFDB81.jpg?jsx";
+import { GirasoleSubtitle } from "./subtitle";
+
+<Container context="article" tag="article" class="mdx-article">
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Il Miele" />
+  <ContentHeader.Heading text="Girasole" tag="h1" class="il-miele-color" />
+  <ContentHeader.Subtitle component={GirasoleSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-right md:mb-5 md:ml-8 md:mt-6 md:w-[44%]">
+  <SunflowerField
+    alt="Campo di girasoli"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Un campo di girasoli.</figcaption>
+</figure>
+
+Il miele di girasole si caratterizza per un sapore dolce, con una nota vegetale. Cristallizza spontaneamente in breve tempo.
+
+Il colore è caratteristico e di un giallo intenso.
+
+</section>
+
+<figure class="mx-auto max-w-md">
+  <SunflowerBloom
+    alt="Fiore di girasole"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Il fiore del girasole.</figcaption>
+</figure>
+
+## Nella tradizione popolare
+
+La medicina popolare indica questo miele come adatto a mantenere basso il livello di colesterolo nel sangue.
+
+</Container>

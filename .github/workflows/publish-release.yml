@@ -1,0 +1,102 @@
+name: Publish release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag of the existing draft GitHub release
+        required: true
+        type: string
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: release-${{ inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish manually written release
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ inputs.tag }}
+    steps:
+      - name: Checkout repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve draft release and target commit
+        shell: bash
+        run: |
+          mkdir -p .release
+          gh api "repos/$GITHUB_REPOSITORY/releases?per_page=100" > .release/releases.json
+
+          release_id="$(jq -r --arg tag "$RELEASE_TAG" '[.[] | select(.tag_name == $tag)][0].id // empty' .release/releases.json)"
+          is_draft="$(jq -r --arg tag "$RELEASE_TAG" '[.[] | select(.tag_name == $tag)][0].draft // empty' .release/releases.json)"
+          target="$(jq -r --arg tag "$RELEASE_TAG" '[.[] | select(.tag_name == $tag)][0].target_commitish // empty' .release/releases.json)"
+          notes="$(jq -r --arg tag "$RELEASE_TAG" '[.[] | select(.tag_name == $tag)][0].body // empty' .release/releases.json)"
+
+          test -n "$release_id"
+          test "$is_draft" = "true"
+          test -n "$target"
+          test -n "${notes//[[:space:]]/}"
+
+          if git rev-parse --verify "refs/tags/$RELEASE_TAG^{commit}" > /dev/null 2>&1; then
+            release_commit="$(git rev-parse "refs/tags/$RELEASE_TAG^{commit}")"
+          else
+            git fetch origin "$target" --depth=1
+            release_commit="$(git rev-parse 'FETCH_HEAD^{commit}')"
+          fi
+
+          echo "RELEASE_ID=$release_id" >> "$GITHUB_ENV"
+          echo "RELEASE_COMMIT=$release_commit" >> "$GITHUB_ENV"
+
+      - name: Wait for matching production deployment
+        shell: bash
+        run: |
+          for attempt in {1..80}; do
+            run_json="$(gh run list \
+              --workflow deploy-production.yml \
+              --commit "$RELEASE_COMMIT" \
+              --limit 20 \
+              --json databaseId,status,conclusion,headSha)"
+            run_id="$(jq -r --arg sha "$RELEASE_COMMIT" '[.[] | select(.headSha == $sha)][0].databaseId // empty' <<< "$run_json")"
+            status="$(jq -r --arg sha "$RELEASE_COMMIT" '[.[] | select(.headSha == $sha)][0].status // empty' <<< "$run_json")"
+            conclusion="$(jq -r --arg sha "$RELEASE_COMMIT" '[.[] | select(.headSha == $sha)][0].conclusion // empty' <<< "$run_json")"
+
+            if [[ "$status" == "completed" && "$conclusion" == "success" ]]; then
+              echo "PRODUCTION_RUN_ID=$run_id" >> "$GITHUB_ENV"
+              exit 0
+            fi
+            if [[ "$status" == "completed" && -n "$conclusion" && "$conclusion" != "success" ]]; then
+              echo "Production deployment $run_id completed with $conclusion" >&2
+              exit 1
+            fi
+            sleep 30
+          done
+
+          echo "Timed out waiting for production deployment of $RELEASE_COMMIT" >&2
+          exit 1
+
+      - name: Publish draft without changing its Markdown notes
+        shell: bash
+        run: |
+          gh api \
+            --method PATCH \
+            "repos/$GITHUB_REPOSITORY/releases/$RELEASE_ID" \
+            -F draft=false > .release/published.json
+
+          release_url="$(jq -r '.html_url' .release/published.json)"
+          {
+            echo "# Published release"
+            echo
+            echo "- Tag: \`$RELEASE_TAG\`"
+            echo "- Commit: \`$RELEASE_COMMIT\`"
+            echo "- Production workflow: \`$PRODUCTION_RUN_ID\`"
+            echo "- Release: $release_url"
+          } >> "$GITHUB_STEP_SUMMARY"

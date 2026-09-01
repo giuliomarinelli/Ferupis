@@ -1,0 +1,35 @@
+import { ContentHeader } from "~/components/content-typography";
+import { Container } from "~/components/layout/container";
+import ApiaryHives from "~/media/pics/restored/D317433D0F3741C5806F5718D4AACE17.png?jsx";
+import { AlveareSubtitle } from "./subtitle";
+
+<Container context="article" tag="article" class="mdx-article">
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Le Api" />
+  <ContentHeader.Heading text="L’alveare" tag="h1" class="le-api-color" />
+  <ContentHeader.Subtitle component={AlveareSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-right md:mb-5 md:ml-8 md:mt-6 md:w-[42%]">
+  <ApiaryHives
+    alt="Alveari in apiario"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Alveari dell’apiario Ferupis.</figcaption>
+</figure>
+
+L’alveare è formato dalle api e dai favi costruiti su appositi telaini mobili, normalmente dieci. I telaini permettono all’apicoltore di estrarre i favi e controllare l’attività della famiglia.
+
+</section>
+
+## Nido e melario
+
+L’alveare è composto da due parti distinte.
+
+Il **nido** è la zona in cui si svolgono le attività di allevamento della covata e vengono immagazzinate le scorte alimentari di pronto utilizzo.
+
+Il **melario**, posto sopra il nido, è invece la parte in cui le api depositano il miele.
+
+</Container>

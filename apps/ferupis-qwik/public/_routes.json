@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "include": [
+    "/api/*",
+    "/contattaci",
+    "/contattaci/*",
+    "/foto/*",
+    "/sitemap.xml",
+    "/robots.txt",
+    "/llms.txt"
+  ],
+  "exclude": []
+}

@@ -1,0 +1,46 @@
+import { ContentHeader } from "~/components/content-typography";
+import { Container } from "~/components/layout/container";
+import EggsInComb from "~/media/pics/restored/F7014E940EDA462089A932DABCCADF6F.png?jsx";
+import BeeEggDetail from "~/media/pics/restored/14536B7F1B37402A8E1D77947DEDBD18.jpg?jsx";
+import { UovoSubtitle } from "./subtitle";
+
+<Container context="article" tag="article" class="mdx-article">
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Le Api" />
+  <ContentHeader.Heading text="L’uovo d’ape" tag="h1" class="le-api-color" />
+  <ContentHeader.Subtitle component={UovoSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-right md:mb-5 md:ml-8 md:mt-6 md:w-[44%]">
+  <EggsInComb
+    alt="Uova deposte nelle cellette del favo"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Uova deposte nelle cellette del favo.</figcaption>
+</figure>
+
+Lo stadio di uovo dura tre giorni per tutti gli individui della famiglia: ape operaia, fuco e ape regina.
+
+</section>
+
+<section class="flow-root">
+
+## La deposizione
+
+<figure class="w-40 max-w-full md:float-left md:mb-5 md:mr-8 md:mt-6">
+  <BeeEggDetail
+    alt="Dettaglio di un uovo d’ape"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Dettaglio di un uovo d’ape.</figcaption>
+</figure>
+
+L’uovo viene deposto dall’ape regina, che inserisce l’addome all’interno della celletta del favo. Prima della deposizione controlla con le antenne che la cella sia vuota e pulita, quindi fa aderire l’uovo al centro della celletta.
+
+La regina continua a deporre uova durante la propria attività riproduttiva, arrivando anche a migliaia di uova al giorno.
+
+</section>
+
+</Container>

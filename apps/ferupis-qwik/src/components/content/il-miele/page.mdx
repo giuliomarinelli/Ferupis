@@ -1,0 +1,106 @@
+import { ContentHeader } from "~/components/content-typography";
+import { Container } from "~/components/layout/container";
+import BeeAtHive from "~/media/pics/restored/C0B4012B7779EFB5755EB0CC54C03D44.png?jsx";
+import HoneyFilledComb from "~/media/pics/restored/7CEEE0A0F1443E00C998634AFF0243C7.png?jsx";
+import BeeOnPurpleFlower from "~/media/pics/restored/9A5FC67B14F873B593BA3FD9DE92301F.png?jsx";
+import HoneyJars from "~/media/pics/restored/17C16691420818F05678E9FC8D9B532B.png?jsx";
+import { IlMieleSubtitle } from "./subtitle";
+import { toSiteRoutePath } from "~/config/routes";
+import { Link } from "@builder.io/qwik-city";
+
+<Container context="article" tag="article" class="mdx-article">
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Il Miele" />
+  <ContentHeader.Heading text="Il miele" tag="h1" class="il-miele-color" />
+  <ContentHeader.Subtitle component={IlMieleSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-right md:mt-6 md:mb-5 md:ml-8 md:w-[42%]">
+  <BeeOnPurpleFlower
+    alt="Ape su un fiore viola"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Un’ape durante la raccolta sui fiori.</figcaption>
+</figure>
+
+Il miele è la sostanza alimentare prodotta dalle api a partire dal nettare dei fiori o dalle secrezioni di parti vive delle piante.
+
+Le api raccolgono queste sostanze, le trasformano e le combinano con proprie secrezioni, per poi depositarle nei favi. All’interno dell’alveare avvengono numerosi scambi da un’ape all’altra, che contribuiscono alla graduale maturazione del miele e al suo arricchimento di enzimi derivati dalle secrezioni ghiandolari delle api.
+
+</section>
+
+## Composizione
+
+I principali componenti del miele sono zuccheri e acqua, accompagnati da acidi organici, sali minerali, enzimi e altre sostanze presenti in quantità minori.
+
+Tra gli zuccheri predominano glucosio e fruttosio.
+
+<section class="flow-root">
+
+## La cristallizzazione
+
+<figure class="md:float-left md:mt-6 md:mr-8 md:mb-5 md:w-[42%]">
+  <HoneyFilledComb
+    alt="Miele nelle cellette di un favo"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Miele maturo nelle cellette del favo.</figcaption>
+</figure>
+
+La cristallizzazione è un processo naturale che dipende principalmente dalla composizione del miele e dalla temperatura.
+
+Un maggiore contenuto di glucosio tende a favorire una cristallizzazione più rapida. Solo alcuni tipi di miele rimangono liquidi per periodi particolarmente lunghi.
+
+La cristallizzazione non rappresenta quindi, di per sé, un difetto del prodotto, ma una delle possibili evoluzioni naturali del miele nel tempo.
+
+</section>
+
+<section class="flow-root">
+
+## I mieli del territorio
+
+<figure class="md:float-right md:mt-6 md:mb-5 md:ml-8 md:w-[40%]">
+  <BeeAtHive
+    alt="Ape vicino all’ingresso di un alveare"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Api all’ingresso dell’alveare.</figcaption>
+</figure>
+
+Tra i principali tipi di miele prodotti nel Veneto Orientale si trovano:
+
+- <Link class="font-bold" href={toSiteRoutePath("tarassaco")}>Tarassaco</Link>;
+- **Colza**;
+- <Link class="font-bold" href={toSiteRoutePath("acacia")}>Acacia</Link>;
+- <Link class="font-bold" href={toSiteRoutePath("millefiori")}>Millefiori</Link>;
+- <Link class="font-bold" href={toSiteRoutePath("tiglio")}>Tiglio</Link>;
+- <Link class="font-bold" href={toSiteRoutePath("melata")}>Melata</Link>;
+- **Melata di Tiglio**;
+- <Link class="font-bold" href={toSiteRoutePath("girasole")}>Girasole</Link>.
+
+La disponibilità e le caratteristiche dei diversi mieli variano in funzione delle fioriture, del territorio e dell’andamento delle stagioni.
+
+</section>
+
+## La melata
+
+La melata è una sostanza zuccherina legata all’attività di afidi e altri piccoli insetti che si nutrono della linfa delle piante.
+
+Le api possono raccoglierla e utilizzarla, al pari del nettare, per la produzione di miele.
+
+## Conservazione
+
+Il miele deve essere conservato correttamente, al riparo da fonti di calore e da condizioni che possano alterarne le caratteristiche.
+
+Nel materiale Ferupis viene indicato un consumo preferenziale entro tre anni dalla data di produzione.
+
+<figure class="max-w-xs sm:max-w-sm">
+  <HoneyJars
+    alt="Vasetti di miele Ferupis"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Vasetti di miele Ferupis.</figcaption>
+</figure>
+</Container>

@@ -1,0 +1,205 @@
+# Media tooling
+
+## Legacy image upscaling
+
+The upscaling pipeline reads `apps/ferupis-qwik/src/media/pics/index.ts` and treats `upscalingFlag` as an executable policy.
+
+### Policy
+
+| Flag | Behaviour |
+| --- | --- |
+| `GREEN` | Automatic. Final master targets a 1024 px long edge. If reaching 1024 would require more than 3x effective enlargement, the asset fails because the flag is inconsistent with the policy. |
+| `YELLOW` | Manual gate. Dry-run can inspect the group; actual processing requires explicit `--ids` plus `--approve-yellow`. Final master is capped at `min(1024, source long edge * 3)`. |
+| `RED` | Hard block. The pipeline never invokes photographic AI upscaling for the asset. |
+
+The source asset is never modified. Existing restored masters are preserved unless `--overwrite` is explicitly supplied.
+
+### `picsMap` registration metadata
+
+`PicsMap.topic` is optional and groups assets by editorial subject without changing the upscale policy. New document-derived assets should populate it when the subject is known; legacy entries may omit it.
+
+For assets that do not come from `apps/ferupis-old`, keep `oldPath` and `oldWinPath` empty rather than inventing a legacy source. Use a descriptive `keyname` and map `originalsPath` to the file that exists under `originals/`. Assets selected for upscaling reserve `restoredPath` for the PNG produced by the pipeline; assets explicitly kept without upscaling use `RED` and point `restoredPath` and `restoredMimeType` to the byte-identical original copied under `restored/`. Do not pre-copy an upscaling input into `restored/`, otherwise a normal run will preserve that existing file unless `--overwrite` is supplied.
+
+The `originals/` payload is ignored by Git by design. Keep newly registered inputs locally until their restored masters have been generated and committed; a `picsMap` registration without either the local input or its restored master is not portable to a clean checkout.
+
+### Processing stages
+
+1. Read the mapped source from `picsMap`.
+2. Decode and normalize the legacy source to PNG with Sharp.
+3. When enlargement is needed, run `realesrgan-ncnn-vulkan` with `realesrgan-x4plus` at x4.
+4. Downsample the model output with Sharp to the policy target while preserving aspect ratio.
+5. Write the restored master as PNG to `apps/ferupis-qwik/src/media/pics/restored/<id>.png`.
+6. Write an execution report under `.tmp/upscale/reports/`.
+
+`.tmp/` is ignored by Git. Restored masters are not ignored and can be reviewed before they are committed.
+
+### Runtime requirements
+
+`sharp` is already a root development dependency.
+
+On Windows the default executable path is:
+
+```text
+C:\tools\realesrgan\realesrgan-ncnn-vulkan.exe
+```
+
+The default NCNN model directory is inferred as:
+
+```text
+C:\tools\realesrgan\models
+```
+
+The pipeline preflights both `<model>.param` and `<model>.bin` before launching Real-ESRGAN.
+
+Alternative locations can be configured with:
+
+```text
+REALESRGAN_BIN
+REALESRGAN_MODELS
+REALESRGAN_GPU
+```
+
+or with the corresponding CLI arguments.
+
+### Commands
+
+The examples below use Bash syntax. In PowerShell, where `npm` resolves to `npm.ps1`, quote the npm argument delimiter so it reaches npm instead of being consumed by PowerShell:
+
+```powershell
+npm run script:pics:upscale '--' --dry-run
+```
+
+Plan all `GREEN` assets without invoking Real-ESRGAN:
+
+```bash
+npm run script:pics:upscale -- --dry-run
+```
+
+Process all `GREEN` assets:
+
+```bash
+npm run script:pics:upscale
+```
+
+Process selected `GREEN` assets:
+
+```bash
+npm run script:pics:upscale -- --ids D4A26D9D0D034AE7B77B0F776710E8A3,7B978A4F7D3E4D589CF600FADD1FFFC3
+```
+
+Inspect every `YELLOW` asset without processing it:
+
+```bash
+npm run script:pics:upscale -- --flag YELLOW --dry-run
+```
+
+Process explicitly reviewed `YELLOW` assets:
+
+```bash
+npm run script:pics:upscale -- --ids ID1,ID2,ID3 --approve-yellow
+```
+
+Keeping the approval separate from the id selection prevents accidental batch promotion of all `YELLOW` assets.
+
+Keep normalization and raw x4 intermediates for QA:
+
+```bash
+npm run script:pics:upscale -- --ids <ID> --keep-temp
+```
+
+Replace an already restored master only when this is intentional:
+
+```bash
+npm run script:pics:upscale -- --ids <ID> --overwrite
+```
+
+Use a different model or GPU for a controlled comparison:
+
+```bash
+npm run script:pics:upscale -- --ids <ID> --model realesrnet-x4plus --gpu 0 --keep-temp
+```
+
+A `RED` id always fails, even when selected explicitly.
+
+## Upscaling review sheet
+
+The review tool generates a local HTML contact sheet so `YELLOW` assets can be assessed in batches instead of opening files one by one.
+
+The default selection is every `YELLOW` asset:
+
+```bash
+npm run script:pics:review
+```
+
+Review another flag group:
+
+```bash
+npm run script:pics:review -- --flag GREEN
+```
+
+Review only explicit ids:
+
+```bash
+npm run script:pics:review -- --ids ID1,ID2,ID3
+```
+
+The generated sheet is written to:
+
+```text
+.tmp/upscale/review/index.html
+```
+
+Generated thumbnails and full-resolution normalized previews are written under:
+
+```text
+.tmp/upscale/review/thumbs/
+.tmp/upscale/review/previews/
+```
+
+All review output remains under ignored `.tmp/` and is not committed.
+
+### Review workflow
+
+Each card shows the optional editorial topic, the source dimensions, the scale required to reach 1024 px, the policy target, and the effective policy scale. Clicking the image opens the normalized source preview in a separate tab.
+
+`Unclassified` is only the initial review state; IDs are always independently accessible. The sheet supports:
+
+- `Copy ID` on every card (the displayed ID is clickable too);
+- `Copy all IDs` regardless of review state;
+- checkbox selection of arbitrary cards;
+- `Select visible` after filtering;
+- `Copy selected IDs`;
+- bulk `Approve selected`, `Test selected`, and `Reject selected` actions;
+- `Copy approved IDs`, `Copy test IDs`, and `Copy rejected IDs`;
+- a ready-to-run upscale command for all approved assets.
+
+Clipboard writes use the browser Clipboard API when available and fall back to a legacy copy path when necessary.
+
+Decisions are persisted in the browser with `localStorage` and are intentionally not written back to `picsMap` automatically. If any approved asset is `YELLOW`, the copied upscale command automatically includes `--approve-yellow`.
+
+## Restored media synchronization
+
+Once the AI restoration pass is complete, every `picsMap` entry must resolve to exactly one asset under `apps/ferupis-qwik/src/media/pics/restored/`.
+
+Run:
+
+```bash
+npm run script:pics:restored-sync
+```
+
+The sync is idempotent and performs two operations together:
+
+1. it indexes the files already present in `restored/` by image id and leaves them untouched;
+2. for every id missing from `restored/`, it copies the original source into `restored/` preserving the original file extension.
+
+For fallback copies the script first tries the mapped `src/media/pics/originals/<id>.*` source used in the local working tree. If that source is not present (for example in a clean Git checkout), it resolves the tracked legacy source through `apps/ferupis-old` plus `oldPath`.
+
+It then updates `restoredPath` for every element of `picsMap`. The path is derived from the file that actually exists on disk, so an AI-restored image can point to `<id>.png` while a copied fallback can point to `<id>.jpg`, `<id>.gif`, or another original extension. `restoredMimeType` is aligned to the actual restored file type; legacy metadata and the upscaling flag remain associated with the same id.
+
+The script fails if more than one restored file exists for the same id, because the map must remain unambiguous.
+
+Preview the operation without writing files or modifying `index.ts`:
+
+```bash
+npm run script:pics:restored-sync -- --dry-run
+```

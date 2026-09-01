@@ -1,0 +1,54 @@
+import { ContentHeader } from "~/components/content-typography";
+import { Container } from "~/components/layout/container";
+import YoungMetcalfa from "~/media/pics/restored/9E17C9334B6143F2BB88C81687F8E338.jpg?jsx";
+import HoneydewFoliage from "~/media/pics/restored/8CAB30A4AD0E4CCD86805D7ADDDA19C3.jpg?jsx";
+import MetcalfaDetail from "~/media/pics/restored/01560D11345D44BD89D2F836C6FB6C80.jpg?jsx";
+import HoneydewJar from "~/media/pics/restored/314E8B90D26F480F948A8F134D4F2EF1.png?jsx";
+import { MelataSubtitle } from "./subtitle";
+
+<Container context="article" tag="article" class="mdx-article">
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Il Miele" />
+  <ContentHeader.Heading text="Melata" tag="h1" class="text-light-success dark:text-bright-success" />
+  <ContentHeader.Subtitle component={MelataSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-left md:mt-6 md:mr-8 md:mb-5 md:w-[46%]">
+  <YoungMetcalfa alt="Metcalfa giovane" class="h-auto w-full rounded-xl" />
+  <figcaption>Una giovane metcalfa.</figcaption>
+</figure>
+
+La melata è la sostanza prodotta dal metabolismo degli afidi, della metcalfa e di altri piccoli insetti che succhiano la linfa dalle foglie delle piante. Le api raccolgono questa sostanza zuccherina e la elaborano trasformandola in miele di melata.
+
+Il sapore è un po’ meno dolce rispetto a quello dei mieli di nettare ed è caratteristico. Il colore è molto scuro, a volte tendente al nero. Il miele di melata è molto denso e non cristallizza.
+
+</section>
+
+## Un miele ricco di sali minerali
+
+Questo miele si caratterizza per una quantità di sali minerali maggiore rispetto ad altri tipi di miele ed è apprezzato da chi svolge attività sportiva.
+
+<div class="grid gap-5 sm:grid-cols-3">
+  <figure>
+    <HoneydewFoliage
+      alt="Foglie interessate dalla produzione di melata"
+      class="h-auto w-full rounded-xl"
+    />
+    <figcaption>Foglie sulle quali può essere raccolta la melata.</figcaption>
+  </figure>
+  <figure>
+    <MetcalfaDetail alt="Metcalfa" class="h-auto w-full rounded-xl" />
+    <figcaption>Una metcalfa.</figcaption>
+  </figure>
+  <figure>
+    <HoneydewJar
+      alt="Vasetto di miele di melata"
+      class="mx-auto h-auto w-full max-w-xs rounded-xl"
+    />
+    <figcaption>Un vasetto di miele di melata.</figcaption>
+  </figure>
+</div>
+
+</Container>

@@ -1,0 +1,111 @@
+{
+  "$schema": "../../../../../../node_modules/wrangler/config-schema.json",
+  "name": "ferupis-common-worker-dev",
+  "main": "src/index.ts",
+  "workers_dev": false,
+  "preview_urls": false,
+  "compatibility_date": "2026-08-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "APP_ENV": "dev",
+    "EMAIL_DELIVERY_MODE": "resend",
+    "EMAIL_FROM": "Ferupis <noreply@ferupis.com>",
+    "EMAIL_REPLY_TO": "ferupiss@gmail.com",
+    "SITE_ORIGIN": "http://localhost:8788",
+  },
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "invocation_logs": false,
+    },
+    "traces": {
+      "enabled": false,
+    },
+  },
+  "queues": {
+    "consumers": [
+      {
+        "queue": "ferupis-email-dev",
+        "max_batch_size": 1,
+        "max_batch_timeout": 1,
+        "max_retries": 5,
+        "max_concurrency": 1,
+        "dead_letter_queue": "ferupis-email-dev-dlq",
+      },
+    ],
+  },
+  "env": {
+    "preview": {
+      "name": "ferupis-common-worker-preview",
+      "workers_dev": false,
+      "preview_urls": false,
+      "vars": {
+        "APP_ENV": "preview",
+        "EMAIL_DELIVERY_MODE": "resend",
+        "EMAIL_FROM": "Ferupis <noreply@ferupis.com>",
+        "EMAIL_REPLY_TO": "ferupiss@gmail.com",
+        "SITE_ORIGIN": "https://preview.ferupis.pages.dev",
+      },
+      "observability": {
+        "enabled": true,
+        "logs": {
+          "enabled": true,
+          "head_sampling_rate": 1,
+          "invocation_logs": false,
+        },
+        "traces": {
+          "enabled": false,
+        },
+      },
+      "queues": {
+        "consumers": [
+          {
+            "queue": "ferupis-email-preview",
+            "max_batch_size": 1,
+            "max_batch_timeout": 1,
+            "max_retries": 5,
+            "max_concurrency": 1,
+            "dead_letter_queue": "ferupis-email-preview-dlq",
+          },
+        ],
+      },
+    },
+    "production": {
+      "name": "ferupis-common-worker",
+      "workers_dev": false,
+      "preview_urls": false,
+      "vars": {
+        "APP_ENV": "production",
+        "EMAIL_DELIVERY_MODE": "resend",
+        "EMAIL_FROM": "Ferupis <noreply@ferupis.com>",
+        "EMAIL_REPLY_TO": "ferupiss@gmail.com",
+        "SITE_ORIGIN": "https://ferupis.pages.dev",
+      },
+      "observability": {
+        "enabled": true,
+        "logs": {
+          "enabled": true,
+          "head_sampling_rate": 1,
+          "invocation_logs": false,
+        },
+        "traces": {
+          "enabled": false,
+        },
+      },
+      "queues": {
+        "consumers": [
+          {
+            "queue": "ferupis-email-production",
+            "max_batch_size": 1,
+            "max_batch_timeout": 1,
+            "max_retries": 5,
+            "max_concurrency": 1,
+            "dead_letter_queue": "ferupis-email-production-dlq",
+          },
+        ],
+      },
+    },
+  },
+}

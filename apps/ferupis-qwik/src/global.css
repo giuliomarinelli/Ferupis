@@ -1,0 +1,559 @@
+@import "tailwindcss";
+@source "../../../packages/qwik-core/src";
+
+/* Font per Brand: Ysabeau e Tenor Sans */
+
+@font-face {
+  font-family: "Ysabeau";
+  font-style: italic;
+  font-weight: 1 1000;
+  font-display: swap;
+  src: url("/fonts/Ysabeau-BoldItalic-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Ysabeau";
+  font-style: normal;
+  font-weight: 1 1000;
+  font-display: swap;
+  src: url("/fonts/Ysabeau-Bold-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Tenor Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/TenorSans-subset.woff2") format("woff2");
+}
+
+/* Font per contenuto: Newsreader, Source Serif 4, Literata e Spectral */
+
+@font-face {
+  font-family: "Newsreader 16pt";
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("/fonts/Newsreader16pt-Italic-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Newsreader 16pt";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("/fonts/Newsreader16pt-Regular-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url("/fonts/SourceSerif4Italic-Italic-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url("/fonts/SourceSerif4Roman-Regular-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Literata";
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url("/fonts/Literata-Italic-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Literata";
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url("/fonts/Literata-Regular-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Spectral-Bold-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Spectral-BoldItalic-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral ExtraBold";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/Spectral-ExtraBold-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral ExtraBold";
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/Spectral-ExtraBoldItalic-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral ExtraLight";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("/fonts/Spectral-ExtraLight-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral ExtraLight";
+  font-style: italic;
+  font-weight: 200;
+  font-display: swap;
+  src: url("/fonts/Spectral-ExtraLightItalic-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Spectral-Italic-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral Light";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/Spectral-Light-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral Light";
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/Spectral-LightItalic-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral Medium";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/Spectral-Medium-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral Medium";
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/Spectral-MediumItalic-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Spectral-Regular-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral SemiBold";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/Spectral-SemiBold-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Spectral SemiBold";
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/Spectral-SemiBoldItalic-subset.woff2") format("woff2");
+}
+
+/* Font per link Sezione Hero: Fraunces, Bricolage Grotesque e Bree Serif */
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Fraunces-9ptBlackItalic-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Fraunces-9ptBlack-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque 96pt ExtraBold";
+  font-style: normal;
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  src: url("/fonts/BricolageGrotesque-96ptExtraBold-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Bree Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/BreeSerif-Regular-subset.woff2") format("woff2");
+}
+
+/* Font sans-serif per evenienza: Roboto */
+
+@font-face {
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  src: url("/fonts/Roboto-Italic-subset.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  src: url("/fonts/Roboto-Regular-subset.woff2") format("woff2");
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Breakpoint */
+  --breakpoint-xs: 426px;
+  --breakpoint-2xs: 376px;
+  --breakpoint-3xs: 300px;
+
+  /* Colori */
+  --color-light-primary: oklch(0.424 0.199 265.64);
+  --color-bright-primary: oklch(78.5% 0.115 274.713);
+  --color-light-accent: oklch(0.432 0.232 292.76);
+  --color-bright-accent: oklch(90.2% 0.063 306.703);
+  --color-light-error: oklch(0.444 0.177 26.9);
+  --color-bright-error: oklch(0.7353 0.1624 20.51);
+  --color-primary-light-soft: oklch(89.4% 0.057 293.283 / 0.9);
+  --color-light-success: oklch(0.432 0.095 166.91);
+  --color-bright-success: oklch(0.845 0.143 164.98);
+  --color-light-warning: oklch(0.4606 0.1038 58.04);
+  --color-bright-warning: oklch(0.905 0.182 98.11);
+
+  /* Font */
+  --font-body: Tenor Sans, sans-serif;
+  --font-brand: Ysabeau, sans-serif;
+  --font-hero-link: Fraunces, sans-serif;
+  --font-sans: Roboto, sans-serif;
+  --font-source-serif-4: "Source Serif 4", "Literata", Georgia, serif;
+}
+
+html,
+body {
+  @apply bg-slate-50 text-neutral-950 font-body dark:bg-neutral-950 dark:text-slate-50;
+}
+
+@layer components {
+  .m-floating-field {
+    @apply relative rounded-md;
+    --m-floating-label-y: 1.75rem;
+    --m-floating-label-active-y: 0px;
+  }
+
+  .m-floating-field-bg,
+  .m-floating-label,
+  .m-floating-label::before {
+    background-color: inherit;
+  }
+
+  .m-floating-field-bg {
+    @apply pointer-events-none absolute inset-0 rounded-md;
+    z-index: 0;
+  }
+
+  .m-floating-input-element {
+    @apply relative z-10 block w-full rounded-md bg-transparent px-4 py-4 text-base transition duration-300;
+    font-size: 16px;
+  }
+
+  .m-floating-label {
+    @apply absolute left-4 origin-left px-1 leading-5 transition-[color,font-size,top,transform] duration-300;
+    top: var(--m-floating-label-y);
+    transform: translateY(-50%);
+    z-index: 20;
+  }
+
+  .m-floating-label::before {
+    position: absolute;
+    z-index: -1;
+    inset: -0.15rem -0.25rem;
+    border-radius: 9999px;
+    content: "";
+  }
+
+  .m-floating-label--active {
+    @apply text-base;
+    top: var(--m-floating-label-active-y);
+    transform: translateY(-50%);
+  }
+
+  .m-floating-label--inactive {
+    @apply cursor-text text-lg text-slate-500 dark:text-slate-400;
+    transform: translateY(-50%);
+  }
+
+  .site-header {
+    @apply sticky top-0 z-30 flex h-[64.5px] shrink-0 flex-col justify-center border-b-[0.1px] border-indigo-300 bg-indigo-50/80 py-3 backdrop-blur-lg dark:border-slate-500 dark:bg-neutral-950/80;
+  }
+
+  .a-link {
+    @apply text-light-accent decoration-light-accent underline-offset-4 transition-colors hover:text-violet-500 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-violet-500 dark:text-bright-accent dark:decoration-bright-accent dark:hover:text-violet-200 dark:focus-visible:outline-indigo-300;
+  }
+
+  .subtitle {
+    @apply mt-5 max-w-xl text-base leading-7 opacity-75 sm:text-lg;
+  }
+
+  /* Base tipografica condivisa dagli articoli scritti in MDX. */
+  .mdx-article {
+    @apply flex-col items-stretch py-10 sm:py-14 lg:py-18;
+    font-family: "Source Serif 4", "Literata", Georgia, serif;
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+    line-height: 1.8;
+    text-wrap: pretty;
+  }
+
+  .mdx-article > :where(p, ul, ol, blockquote, pre, table),
+  .mdx-article > :where(h2, h3, h4),
+  .mdx-article > :where(figure) {
+    width: 100%;
+  }
+
+  .mdx-article :where(p) {
+    @apply mt-5;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .justify-text {
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .mdx-article :where(h2, h3, h4) {
+    font-family: "Spectral", "Source Serif 4", Georgia, serif;
+    text-wrap: balance;
+  }
+
+  .mdx-article :where(h2) {
+    @apply mt-12 text-2xl font-semibold tracking-tight text-light-primary sm:mt-14 sm:text-3xl dark:text-bright-primary;
+    line-height: 1.2;
+  }
+
+  .mdx-article :where(h3) {
+    @apply mt-10 text-xl font-semibold tracking-tight text-neutral-900 sm:text-2xl dark:text-slate-100;
+    line-height: 1.25;
+  }
+
+  .mdx-article :where(h4) {
+    @apply mt-8 text-lg font-semibold text-neutral-900 sm:text-xl dark:text-slate-100;
+  }
+
+  .mdx-article :where(strong) {
+    @apply font-semibold text-neutral-950 dark:text-white;
+  }
+
+  .mdx-article :where(em) {
+    font-style: italic;
+  }
+
+  .mdx-article :where(a) {
+    @apply text-light-accent decoration-light-accent underline decoration-1 underline-offset-4 transition-colors hover:text-violet-500 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-violet-500 dark:text-bright-accent dark:decoration-bright-accent dark:hover:text-violet-200 dark:focus-visible:outline-indigo-300;
+  }
+
+  .mdx-article :where(ul, ol) {
+    @apply mt-5 space-y-3 pl-6 sm:pl-7;
+  }
+
+  .mdx-article :where(ul) {
+    @apply list-disc;
+  }
+
+  .mdx-article :where(ol) {
+    @apply list-decimal;
+  }
+
+  .mdx-article :where(li) {
+    @apply pl-1;
+  }
+
+  .mdx-article :where(li)::marker {
+    color: var(--color-light-primary);
+  }
+
+  .dark .mdx-article :where(li)::marker {
+    color: var(--color-bright-primary);
+  }
+
+  .mdx-article :where(blockquote) {
+    @apply mt-8 border-l-4 border-light-primary/60 bg-indigo-50/60 px-5 py-4 italic dark:border-bright-primary/60 dark:bg-indigo-950/20;
+  }
+
+  .mdx-article :where(code):not(pre code) {
+    @apply rounded bg-slate-200/70 px-1.5 py-0.5 font-mono text-[0.9em] text-neutral-950 dark:bg-neutral-800 dark:text-slate-50;
+  }
+
+  .mdx-article :where(pre) {
+    @apply mt-8 max-w-full overflow-x-auto rounded-xl border border-slate-300 bg-slate-100 p-4 text-sm leading-6 dark:border-neutral-700 dark:bg-neutral-900;
+  }
+
+  .mdx-article :where(pre code) {
+    @apply font-mono;
+  }
+
+  .mdx-article :where(hr) {
+    @apply my-12 w-full border-0 border-t border-slate-300 dark:border-neutral-700;
+  }
+
+  .mdx-article :where(figure) {
+    @apply mx-auto mt-12 flex flex-col items-center gap-3 text-center sm:mt-14;
+  }
+
+  .mdx-article :where(figcaption) {
+    @apply text-sm leading-6 text-neutral-600 dark:text-slate-400;
+    font-family: "Tenor Sans", sans-serif;
+  }
+
+  .mdx-article :where(img) {
+    @apply max-w-full;
+  }
+
+  .mdx-article :where(table) {
+    @apply mt-8 block max-w-full overflow-x-auto border-collapse text-left text-sm sm:text-base;
+  }
+
+  .mdx-article :where(th, td) {
+    @apply border-b border-slate-300 px-3 py-2 align-top dark:border-neutral-700;
+  }
+
+  .mdx-article :where(th) {
+    @apply font-semibold text-neutral-950 dark:text-slate-50;
+  }
+
+  @media (max-width: 425px) {
+    .mdx-article {
+      @apply px-5;
+      font-size: 1rem;
+      line-height: 1.72;
+    }
+
+    .mdx-article :where(h2) {
+      @apply mt-10 text-[1.55rem];
+    }
+  }
+
+  .site-hr {
+    @apply border-slate-700 dark:border-slate-400 w-full max-w-5xl mx-auto;
+    border-top-width: 0.5px;
+    opacity: 0.45;
+  }
+
+}
+
+@layer utilities {
+  :root:has(> body.page-scrollbar) {
+    --m-thin-scrollbar-size: var(--m-scrollbar-size, 6px);
+    --m-thin-scrollbar-track: var(--m-scrollbar-track, transparent);
+    --m-thin-scrollbar-thumb: var(--m-scrollbar-thumb, #475569);
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
+    :root:has(> body.page-scrollbar) {
+      scrollbar-width: thin;
+      scrollbar-color: var(--m-thin-scrollbar-thumb) var(--m-thin-scrollbar-track);
+    }
+  }
+
+  :root:has(> body.page-scrollbar)::-webkit-scrollbar {
+    width: var(--m-thin-scrollbar-size);
+    height: var(--m-thin-scrollbar-size);
+  }
+
+  :root:has(> body.page-scrollbar)::-webkit-scrollbar-track {
+    background: var(--m-thin-scrollbar-track);
+    border-radius: 9999px;
+  }
+
+  :root:has(> body.page-scrollbar)::-webkit-scrollbar-thumb {
+    background-color: var(--m-thin-scrollbar-thumb);
+    background-clip: padding-box;
+    border: 1px solid var(--m-thin-scrollbar-track);
+    border-radius: 9999px;
+  }
+
+  .hero-link {
+    @apply font-hero-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-center text-[clamp(1.25rem,5.8vw,2.25rem)] font-semibold leading-snug underline-offset-4 transition-transform duration-200 hover:scale-[1.05] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current motion-reduce:transition-none motion-reduce:hover:scale-100 md:text-[clamp(1.75rem,2.6vw,2.5rem)];
+  }
+
+  .hero-like-heading {
+    @apply font-hero-link inline-flex items-center justify-center rounded-lg px-3 py-2 text-center text-[clamp(1.25rem,5.8vw,2.25rem)] font-semibold leading-snug underline-offset-4 md:text-[clamp(1.75rem,2.6vw,2.5rem)];
+  }
+
+  .le-api-color {
+    @apply text-light-primary dark:text-bright-primary;
+  }
+
+  .il-miele-color {
+    @apply text-light-warning dark:text-bright-warning;
+  }
+
+  .la-propoli-color {
+    @apply text-light-success dark:text-bright-success;
+  }
+
+  .la-pappa-reale-color {
+    @apply text-light-accent dark:text-bright-accent;
+  }
+
+  .foto-color {
+    @apply text-light-primary dark:text-bright-primary;
+  }
+
+  .video-color {
+    @apply text-light-error dark:text-bright-error;
+  }
+
+  .contatti-color {
+    @apply text-light-accent dark:text-bright-accent;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+}

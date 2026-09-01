@@ -1,0 +1,49 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "ferupis",
+  "compatibility_date": "2026-08-22",
+  "compatibility_flags": ["nodejs_compat"],
+  "pages_build_output_dir": "./dist",
+  "vars": {
+    "APP_ENV": "dev",
+    "CF_TURNSTILE_SITE_KEY": "1x00000000000000000000BB",
+  },
+  "queues": {
+    "producers": [
+      {
+        "binding": "EMAIL_QUEUE",
+        "queue": "ferupis-email-dev",
+      },
+    ],
+  },
+  "env": {
+    "preview": {
+      "vars": {
+        "APP_ENV": "preview",
+        "CF_TURNSTILE_SITE_KEY": "0x4AAAAAAEjzAO2pfq4Q2514",
+      },
+      "queues": {
+        "producers": [
+          {
+            "binding": "EMAIL_QUEUE",
+            "queue": "ferupis-email-preview",
+          },
+        ],
+      },
+    },
+    "production": {
+      "vars": {
+        "APP_ENV": "production",
+        "CF_TURNSTILE_SITE_KEY": "<CF_TURNSTILE_SITE_KEY_PRODUCTION>",
+      },
+      "queues": {
+        "producers": [
+          {
+            "binding": "EMAIL_QUEUE",
+            "queue": "ferupis-email-production",
+          },
+        ],
+      },
+    },
+  },
+}

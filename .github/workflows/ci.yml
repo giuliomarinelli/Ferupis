@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  workflow_call:
+  pull_request:
+  push:
+    branches:
+      - develop
+      - "release/**"
+      - "hotfix/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify monorepo
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout exact commit
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.16.0
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit
+
+      - name: Validate generated common Worker bindings
+        run: npm run types:cloudflare:check:common-worker
+
+      - name: Typecheck workspaces
+        run: npm run build.types --workspaces --if-present
+
+      - name: Lint workspaces
+        run: npm run lint --workspaces --if-present
+
+      - name: Test workspaces
+        run: npm run test --workspaces --if-present
+
+      - name: Audit dependencies
+        run: npm audit --audit-level=moderate
+
+      - name: Build Ferupis Pages artifact
+        run: npm run build:f
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Test Ferupis Pages in Chromium
+        run: npm run test.e2e --workspace @apps/ferupis-qwik
+
+      - name: Upload Playwright diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-diagnostics-${{ github.sha }}
+          path: .tmp/playwright
+          if-no-files-found: ignore
+          include-hidden-files: true
+          retention-days: 7
+
+      - name: Dry-run common Worker preview
+        run: npm run cf:dry-run:common-worker:preview
+
+      - name: Dry-run common Worker production
+        run: npm run cf:dry-run:common-worker:prod
+
+      - name: Verify Pages artifact
+        shell: bash
+        run: |
+          test -f apps/ferupis-qwik/dist/index.html
+          test -f apps/ferupis-qwik/dist/_worker.js
+          test -f apps/ferupis-qwik/server/entry.cloudflare-pages.js
+          test -f apps/ferupis-qwik/dist/_routes.json
+          test -f apps/ferupis-qwik/dist/_headers
+          test ! -e apps/ferupis-qwik/dist/sitemap.xml
+          test ! -e apps/ferupis-qwik/dist/robots.txt
+          test ! -e apps/ferupis-qwik/dist/llms.txt
+          grep -Fq '"/sitemap.xml"' apps/ferupis-qwik/dist/_routes.json
+          grep -Fq '"/robots.txt"' apps/ferupis-qwik/dist/_routes.json
+          grep -Fq '"/llms.txt"' apps/ferupis-qwik/dist/_routes.json
+
+      - name: Validate test and workflow formatting
+        run: >
+          npx prettier --check
+          ".github/workflows/*.yml"
+          "apps/ferupis-qwik/e2e/*.ts"
+          "apps/ferupis-qwik/playwright.config.ts"
+          "apps/ferupis-qwik/test/app-module-loader.mjs"
+          "apps/ferupis-qwik/test/contact-messages-route.test.mjs"
+          "apps/ferupis-qwik/test/photo-data.test.mjs"
+          "packages/qwik-core/test/contact-message.test.mjs"
+          "packages/qwik-core/test/security.test.mjs"
+          "packages/qwik-core/src/backend/workers/common-worker/test/*.ts"
+
+      - name: Upload tested Pages artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ferupis-pages-${{ github.sha }}
+          path: |
+            apps/ferupis-qwik/dist
+            apps/ferupis-qwik/server
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 7

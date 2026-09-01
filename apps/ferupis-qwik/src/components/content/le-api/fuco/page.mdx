@@ -1,0 +1,31 @@
+import { ContentHeader } from "~/components/content-typography";
+import { Container } from "~/components/layout/container";
+import DroneBee from "~/media/pics/restored/7B4E259E22B34820A94042D2BE27A849.png?jsx";
+import { FucoSubtitle } from "./subtitle";
+
+<Container context="article" tag="article" class="mdx-article">
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Le Api" />
+  <ContentHeader.Heading text="Il fuco" tag="h1" class="le-api-color" />
+  <ContentHeader.Subtitle component={FucoSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-right md:mb-5 md:ml-8 md:mt-6 md:w-[42%]">
+  <DroneBee
+    alt="Fuco adulto"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Un fuco adulto.</figcaption>
+</figure>
+
+Il fuco è il maschio della famiglia e ha la funzione di fecondare l’ape regina. Nel periodo primaverile i fuchi possono volare a centinaia in attesa dei voli nuziali delle regine.
+
+È facilmente riconoscibile per le dimensioni maggiori rispetto alle operaie e non possiede il pungiglione.
+
+Durante l’accoppiamento il fuco muore: l’estroflessione dell’endofallo richiede una contrazione muscolare che lo paralizza.
+
+</section>
+
+</Container>

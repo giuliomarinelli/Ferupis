@@ -1,0 +1,160 @@
+name: Deploy preview
+
+on:
+  push:
+    branches:
+      - preview
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  deployments: write
+
+concurrency:
+  group: cloudflare-preview
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Verify preview commit
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    name: Deploy preview stack
+    needs: quality
+    if: github.ref_name == 'preview'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: preview
+      url: https://preview.ferupis.pages.dev
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      PAGES_PROJECT: ferupis
+      PAGES_PUBLIC_URL: https://preview.ferupis.pages.dev
+      WORKER_NAME: ferupis-common-worker-preview
+    steps:
+      - name: Checkout exact commit
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.16.0
+          cache: npm
+
+      - name: Install deployment tooling
+        run: npm ci --ignore-scripts --no-audit
+
+      - name: Download tested Pages artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ferupis-pages-${{ github.sha }}
+          path: apps/ferupis-qwik
+
+      - name: Verify downloaded Pages artifact
+        shell: bash
+        run: |
+          test -f apps/ferupis-qwik/dist/index.html
+          test -f apps/ferupis-qwik/dist/_worker.js
+          test -f apps/ferupis-qwik/server/entry.cloudflare-pages.js
+          test -f apps/ferupis-qwik/dist/_routes.json
+          test -f apps/ferupis-qwik/dist/_headers
+          test ! -e apps/ferupis-qwik/dist/sitemap.xml
+          test ! -e apps/ferupis-qwik/dist/robots.txt
+          test ! -e apps/ferupis-qwik/dist/llms.txt
+          grep -Fq '"/sitemap.xml"' apps/ferupis-qwik/dist/_routes.json
+          grep -Fq '"/robots.txt"' apps/ferupis-qwik/dist/_routes.json
+          grep -Fq '"/llms.txt"' apps/ferupis-qwik/dist/_routes.json
+
+      - name: Verify Cloudflare credentials and project
+        shell: bash
+        run: |
+          test -n "$CLOUDFLARE_ACCOUNT_ID"
+          test -n "$CLOUDFLARE_API_TOKEN"
+          npx wrangler whoami
+          npx wrangler pages project list --cwd apps/ferupis-qwik --json > pages-projects.json
+          jq -e --arg project "$PAGES_PROJECT" \
+            '.[] | select(.["Project Name"] == $project)' \
+            pages-projects.json > /dev/null
+
+      - name: Deploy preview common Worker
+        run: >-
+          npx wrangler deploy
+          --config packages/qwik-core/src/backend/workers/common-worker/wrangler.jsonc
+          --env preview
+          --tag "${{ github.sha }}"
+          --message "GitHub Actions preview ${{ github.run_id }}.${{ github.run_attempt }}"
+          --keep-vars
+
+      - name: Resolve preview Worker version
+        shell: bash
+        run: |
+          mkdir -p .deployment
+          npx wrangler versions list \
+            --config packages/qwik-core/src/backend/workers/common-worker/wrangler.jsonc \
+            --env preview \
+            --json > .deployment/worker-after.json
+          worker_version_id="$(jq -r --arg tag "$GITHUB_SHA" '[.[] | select(.annotations["workers/tag"] == $tag)][-1].id // empty' .deployment/worker-after.json)"
+          test -n "$worker_version_id"
+          echo "WORKER_VERSION_ID=$worker_version_id" >> "$GITHUB_ENV"
+
+      - name: Deploy preview
+        run: >-
+          npx wrangler pages deploy dist
+          --cwd apps/ferupis-qwik
+          --project-name "$PAGES_PROJECT"
+          --branch preview
+          --commit-hash "${{ github.sha }}"
+          --commit-message "GitHub Actions preview ${{ github.run_id }}.${{ github.run_attempt }}"
+          --commit-dirty=false
+
+      - name: Resolve preview deployment
+        shell: bash
+        run: |
+          mkdir -p .deployment
+          npx wrangler pages deployment list \
+            --cwd apps/ferupis-qwik \
+            --project-name "$PAGES_PROJECT" \
+            --environment preview \
+            --json > .deployment/pages.json
+
+          short_sha="${GITHUB_SHA:0:7}"
+          deployment_id="$(jq -r --arg branch preview --arg source "$short_sha" '[.[] | select(.Branch == $branch and ((.Source // "") | startswith($source)))][0].Id // empty' .deployment/pages.json)"
+          deployment_url="$(jq -r --arg branch preview --arg source "$short_sha" '[.[] | select(.Branch == $branch and ((.Source // "") | startswith($source)))][0].Deployment // empty' .deployment/pages.json)"
+          test -n "$deployment_id"
+          test -n "$deployment_url"
+
+          {
+            echo "# Preview deployment"
+            echo
+            echo "- Commit: \`$GITHUB_SHA\`"
+            echo "- Worker: \`$WORKER_NAME\`"
+            echo "- Worker version: \`$WORKER_VERSION_ID\`"
+            echo "- Pages deployment: \`$deployment_id\`"
+            echo "- Deployment URL: $deployment_url"
+            echo "- Branch alias: $PAGES_PUBLIC_URL"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Smoke-test preview
+        shell: bash
+        run: |
+          for attempt in {1..12}; do
+            if curl --silent --show-error --fail --location "$PAGES_PUBLIC_URL/" > /dev/null; then
+              exit 0
+            fi
+            sleep 10
+          done
+          exit 1
+
+      - name: Upload preview deployment record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-deployment-record
+          path: .deployment
+          if-no-files-found: warn
+          include-hidden-files: true
+          retention-days: 30

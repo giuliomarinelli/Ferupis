@@ -1,0 +1,35 @@
+import { ContentHeader } from "~/components/content-typography";
+import { Container } from "~/components/layout/container";
+import WildflowerField from "~/media/pics/restored/9097A5EF951B4393BA7EE06B0D7DEE92.jpg?jsx";
+import { MillefioriSubtitle } from "./subtitle";
+
+<Container context="article" tag="article" class="mdx-article">
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Il Miele" />
+  <ContentHeader.Heading text="Millefiori" tag="h1" class="il-miele-color" />
+  <ContentHeader.Subtitle component={MillefioriSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-left md:mb-5 md:mr-8 md:mt-6 md:w-[42%]">
+  <WildflowerField
+    alt="Campo di fiori"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Un ambiente di fioritura da cui può nascere un miele millefiori.</figcaption>
+</figure>
+
+Il miele millefiori deriva da nettari anche molto diversi tra loro, che possono variare non soltanto in base alle zone geografiche, ma anche in conseguenza dell’andamento climatico stagionale.
+
+Normalmente il sapore è dolce e gradevole. Talvolta una particolare essenza, anche se presente in piccole quantità, può dare al miele sensazioni gustative caratteristiche.
+
+</section>
+
+## Colore e stagione
+
+Il colore cambia a seconda del periodo di produzione. Dalle fioriture primaverili si ottengono mieli più chiari e con meno sali minerali; dalle fioriture estive mieli più scuri, anche per la possibile presenza di melate.
+
+Il miele millefiori tende a cristallizzare dopo qualche mese dalla produzione.
+
+</Container>

@@ -1,0 +1,54 @@
+import { ContentHeader } from "~/components/content-typography";
+import { Container } from "~/components/layout/container";
+import QueenBee from "~/media/pics/restored/555190C3119C494EB64BC96EA3A40B53.png?jsx";
+import QueenLayingEggs from "~/media/pics/restored/70A2D41697FB4C4D87ED4BCDE1239C94.png?jsx";
+import { ApeReginaSubtitle } from "./subtitle";
+
+<Container context="article" tag="article" class="mdx-article">
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Le Api" />
+  <ContentHeader.Heading text="L’ape regina" tag="h1" class="le-api-color" />
+  <ContentHeader.Subtitle component={ApeReginaSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-left md:mb-5 md:mr-8 md:mt-6 md:w-[42%]">
+  <QueenBee
+    alt="Ape regina tra le operaie"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>L’ape regina tra le operaie.</figcaption>
+</figure>
+
+L’ape regina è l’unica femmina feconda dell’alveare. Può vivere fino a cinque anni e trascorre gran parte della propria vita all’interno dell’alveare, tra i favi, deponendo le uova.
+
+Esce per il volo nuziale nei primi giorni di vita, durante il quale può essere fecondata da più fuchi, e successivamente quando prende parte alla sciamatura.
+
+</section>
+
+<section class="flow-root">
+
+## Allevamento e marcatura
+
+<figure class="md:float-right md:mb-5 md:ml-8 md:mt-6 md:w-[40%]">
+  <QueenLayingEggs
+    alt="Ape regina durante la deposizione"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>La regina durante la deposizione delle uova.</figcaption>
+</figure>
+
+Esistono tecniche di allevamento delle api regine che permettono di selezionare razza e caratteristiche desiderate. Le regine possono essere marchiate con colori differenti, utilizzati per indicarne l’anno di nascita.
+
+</section>
+
+## La nascita di una nuova regina
+
+Quando un alveare ha effettuato la sciamatura e rimane senza regina, le api allevano nuove regine costruendo apposite celle reali. Tra le nuove nate, normalmente una sola rimarrà a portare avanti la vita della famiglia.
+
+Poco prima di nascere le regine producono un suono particolare, descritto nel testo storico Ferupis come un **“qua qua”** che ricorda il richiamo delle anatre. Questo canto segnala la presenza delle future regine all’interno delle celle.
+
+Può accadere che la prima regina nata eviti il confronto con le altre e dia origine a una sciamatura secondaria. Normalmente, invece, la nuova regina cerca le sorelle ancora nelle celle reali e le elimina con il pungiglione.
+
+</Container>

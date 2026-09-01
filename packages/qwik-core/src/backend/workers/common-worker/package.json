@@ -1,0 +1,30 @@
+{
+  "name": "@workers/common-worker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "engines": {
+    "node": "22.16.0",
+    "npm": "10.9.2"
+  },
+  "scripts": {
+    "build.types": "tsc --noEmit",
+    "dev": "wrangler dev --persist-to ../../../../../../.wrangler/shared",
+    "test": "vitest run",
+    "types.cloudflare": "wrangler types --config wrangler.jsonc --env-file .dev.vars.example",
+    "types.cloudflare.check": "wrangler types --config wrangler.jsonc --env-file .dev.vars.example --check"
+  },
+  "dependencies": {
+    "@gm/qwik-core": "0.1.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-email": "6.9.2"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "0.22.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "typescript": "5.4.5",
+    "vitest": "4.1.11"
+  }
+}

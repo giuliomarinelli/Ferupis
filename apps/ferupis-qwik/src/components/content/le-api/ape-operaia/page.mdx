@@ -1,0 +1,51 @@
+import { ContentHeader } from "~/components/content-typography";
+import { Container } from "~/components/layout/container";
+import WorkerBees from "~/media/pics/restored/700D717009F24909BD8DAFC4A78A5D34.jpg?jsx";
+import BeeOnAcacia from "~/media/pics/restored/64225C194C7A457F804107E653FDEE18.jpg?jsx";
+import BeeOnDandelion from "~/media/pics/restored/35C02E9B88884EA3A954C663F5FAEB0A.jpg?jsx";
+import BeeOnLinden from "~/media/pics/restored/1637E2E43AFC4EA9B5062B6AAE629F0A.jpg?jsx";
+import { ApeOperaiaSubtitle } from "./subtitle";
+
+<Container context="article" tag="article" class="mdx-article">
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Le Api" />
+  <ContentHeader.Heading text="L’ape operaia" tag="h1" class="le-api-color" />
+  <ContentHeader.Subtitle component={ApeOperaiaSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-right md:mb-5 md:ml-8 md:mt-6 md:w-[38%]">
+  <WorkerBees
+    alt="Due api operaie"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Api operaie.</figcaption>
+</figure>
+
+Nel periodo produttivo, che nel Nord Italia va indicativamente da marzo a settembre, la vita di un’ape operaia dura circa quattro-sei settimane. Nel periodo invernale può invece vivere alcuni mesi, mentre l’attività dell’alveare si riduce e le uscite sono limitate alle giornate con temperature superiori a circa 5-10 °C.
+
+I lavori svolti dall’ape operaia durante la vita adulta sono numerosi e cambiano con l’età.
+
+</section>
+
+## I lavori nell’alveare
+
+Nei primi due giorni di vita l’operaia si occupa della pulizia delle celle e del riscaldamento della covata. In seguito, secondo una progressione legata all’età, nutre prima le larve più sviluppate e poi quelle giovani, cura e alimenta l’ape regina e provvede all’immagazzinamento delle provviste.
+
+Si occupa inoltre della pulizia e della ventilazione dell’alveare, della costruzione dei favi, compie voli di esplorazione e svolge attività di guardia.
+
+## Il lavoro all’esterno
+
+Dal ventiduesimo giorno di vita l’ape operaia svolge prevalentemente attività all’esterno dell’alveare, raccogliendo acqua, nettare, polline e propoli.
+
+<figure>
+  <div class="grid w-full grid-cols-1 gap-4 xs:grid-cols-3">
+    <BeeOnAcacia alt="Ape su fiori di acacia" class="h-auto w-full rounded-lg" />
+    <BeeOnDandelion alt="Ape su tarassaco" class="h-auto w-full rounded-lg" />
+    <BeeOnLinden alt="Ape su tiglio" class="h-auto w-full rounded-lg" />
+  </div>
+  <figcaption>Api durante la raccolta su acacia, tarassaco e tiglio.</figcaption>
+</figure>
+
+</Container>

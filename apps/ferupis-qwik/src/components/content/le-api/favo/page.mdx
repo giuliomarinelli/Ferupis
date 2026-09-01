@@ -1,0 +1,35 @@
+import { ContentHeader } from "~/components/content-typography";
+import { Container } from "~/components/layout/container";
+import NaturalComb from "~/media/pics/restored/80A867A98B9E4B358C49CDB520282707.png?jsx";
+import { FavoSubtitle } from "./subtitle";
+
+<Container context="article" tag="article" class="mdx-article">
+<ContentHeader.Root class="mb-10 w-full sm:mb-12">
+  <ContentHeader.Eyebrow text="Ferupis · Le Api" />
+  <ContentHeader.Heading text="Il favo" tag="h1" class="le-api-color" />
+  <ContentHeader.Subtitle component={FavoSubtitle} />
+</ContentHeader.Root>
+
+<section class="flow-root">
+
+<figure class="md:float-right md:mb-5 md:ml-8 md:mt-6 md:w-[42%]">
+  <NaturalComb
+    alt="Favo costruito con cera nuova"
+    class="h-auto w-full rounded-xl"
+  />
+  <figcaption>Favo costruito con cera nuova e senza foglio cereo.</figcaption>
+</figure>
+
+Il favo viene costruito dalle api utilizzando piccole scaglie di cera prodotte da apposite ghiandole situate nell’addome. Le cellette hanno forma esagonale, una disposizione che permette di utilizzare lo spazio in modo razionale.
+
+Il favo raffigurato è stato costruito interamente con cera nuova, riconoscibile dal colore molto chiaro, e senza l’inserimento del foglio cereo.
+
+</section>
+
+## Il foglio cereo e il telaino
+
+Il foglio cereo presenta già impressa la base esagonale delle cellette, che viene poi completata dalle api. L’apicoltore può inserirlo all’interno di un telaino di legno per facilitare la costruzione del favo.
+
+Il telaino permette inoltre di estrarre facilmente il favo dall’arnia per controllare l’attività della famiglia.
+
+</Container>

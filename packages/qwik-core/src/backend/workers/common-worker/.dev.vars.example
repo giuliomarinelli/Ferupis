@@ -1,0 +1,3 @@
+# Local development uses Resend. Replace this placeholder in the ignored
+# .dev.vars file with the development sending key before testing email delivery.
+RESEND_API_KEY="replace-with-resend-sending-api-key"
