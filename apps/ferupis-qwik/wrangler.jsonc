@@ -20,7 +20,7 @@
     "preview": {
       "vars": {
         "APP_ENV": "preview",
-        "CF_TURNSTILE_SITE_KEY": "<CF_TURNSTILE_SITE_KEY_PREVIEW>",
+        "CF_TURNSTILE_SITE_KEY": "0x4AAAAAAEjzAO2pfq4Q2514",
       },
       "queues": {
         "producers": [
