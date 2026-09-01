@@ -323,7 +323,7 @@ test("contact message route composes HTTP, Turnstile and Queue behavior", async 
     },
     {
       appEnvironment: "preview",
-      expectedRecipient: TEST_CONTACT_EMAIL,
+      expectedRecipient: CONTACT_EMAIL,
       hostname: "preview.ferupis.pages.dev",
       origin: "https://preview.ferupis.pages.dev",
       secret: "preview-secret",
